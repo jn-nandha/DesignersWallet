@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+
+# City.create!(city_name: "Ahmedabad")
+# City.create!(city_name: "Surat")
+# City.create!(city_name: "Jamnagar")
+
+
+User.create!(email:"tejal0003@gmail.com", password:"tejal0003", name:"Tejasvini", activation:"Yes", city_id: 1 )

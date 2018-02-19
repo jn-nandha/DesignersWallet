@@ -1,3 +1,20 @@
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script>
+  $( function() {
+    alert("hello")
+    var city = <%= @cty.inspect.html_safe %>;
+    $( "#user_city_id" ).autocomplete({
+      source: city
+    });
+  } );
+</script>
+
+
+
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -10,7 +27,13 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.email_field :name, autocomplete: "off" %>
+    <%= f.text_field :name, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city_id %><br />
+    <%= f.text_field :city_id %>
+    <%= f.hidden_field :activation, value: "Yes" %>
   </div>
 
   <div class="field">
@@ -29,6 +52,9 @@
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
+
+  
+
 <% end %>
 
 <%= render "users/shared/links" %>

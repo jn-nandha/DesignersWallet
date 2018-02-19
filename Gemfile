@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 
-
+gem 'pry'
 
 gem 'carrierwave', '~> 1.0'
 gem 'bootstrap-sass'

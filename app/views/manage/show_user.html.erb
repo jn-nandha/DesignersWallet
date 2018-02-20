@@ -1,0 +1,32 @@
+<p>
+<%= link_to "<<BACK>>" , root_path %>
+
+</p>
+<p>
+  <%= link_to  "ADD Company" , new_company_registration_path %>,
+</p>
+
+<table border="1" >
+  <tr>
+    <th>USER___MANAGEMENT
+    </th>
+
+  </tr>
+<% @comp.each do |a| %>
+
+	
+<tr>
+
+
+    <td>
+    	<%= link_to  a.comp_name , edit_company_registration_path  %><br>
+    </td>
+   <td>
+    	<%= link_to  "DELETE Company" , delete_path %>,
+    	<%= link_to  "UPDATE Company" , edit_company_registration_path %><br>
+    </td>
+    
+  </tr>
+  <% end %>
+
+</table>

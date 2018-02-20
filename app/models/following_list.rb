@@ -1,4 +1,4 @@
 class FollowingList < ApplicationRecord
-	belongs_to :user , foreign_key: "to_id"
-	belongs_to :user , foreign_key: "from_id"
+	belongs_to :to , class_name: "User"
+	belongs_to :from , class_name: "User"
 end

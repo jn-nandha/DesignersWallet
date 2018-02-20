@@ -1,7 +1,5 @@
 class DesignController < ApplicationController
-
-	def index
-  	end
+	before_action :authenticate_user!
 
 	def new
 		@design = Design.new
@@ -9,7 +7,7 @@ class DesignController < ApplicationController
 
 	def create
 		@design = Design.new(design_params)
-		@design.user_id = 1
+		@design.user_id = current_user.id
 		if @design.save!
 			redirect_to design_show_path, notice: "design is uploaded"
 		else
@@ -17,11 +15,8 @@ class DesignController < ApplicationController
 		end
 	end
 
-
-
-
 	def show
-		@designs = Design.all
+		@designs = Design.where(user_id: current_user.id)
 	end
 
 	private

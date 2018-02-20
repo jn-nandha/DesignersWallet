@@ -1,0 +1,7 @@
+
+<%= button_to "Add Image", design_path, method: "get" %>
+<h1>Dashboard</h1>
+<% @designs.each do |design| %>
+	<%= design.user.name %><br />
+	<%= image_tag("#{design.image_url}") %><br />
+<% end %>

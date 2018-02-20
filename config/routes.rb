@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get 'design/show'
       get 'follow/index'
       get 'follow/request' , to: 'follow#request'
+      get 'addashboard' => 'admin#addashboard'
     #resources :designs, only: [:new,:create,:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

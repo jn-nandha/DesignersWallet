@@ -1,0 +1,29 @@
+<%= render 'navbar' %>
+<%= render 'sidebar' %>
+
+<h1>Welcome Admin</h1>
+
+All Users: <br>
+<% @user.each do |u| %>
+	Name : <%= u.name %> <br>
+<% end %>
+
+<br><br><br>
+Data From feedback:<br>
+	<b>Total Feedback : <%= @feedback.count(:report) %></b> <br><br>
+
+	<% @feedback.each do |f| %>
+	like : <%= f.like %> 	
+	report : <%= f.report %> 	
+	design_id : <%= f.design_id %> 
+	created_at : <%= f.created_at %> 
+	design_id : <%= f.design_id %> 
+	user_id : <%= f.user_id %> <br>	
+
+<% end %>
+
+
+<%= @ftot %>
+
+
+

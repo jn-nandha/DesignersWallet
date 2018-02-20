@@ -1,0 +1,8 @@
+<h1>Chat User</h1> Login as: <%= current_user.email%>
+<% if @users.count != 0 %>
+	<div style="font-size: 25px;line-height: 40px;">
+		<% @users.each do |u| %>
+		 <%= link_to u.name, chat_path(recp: u.id) %><br />
+		<% end %>
+	</div>
+<% end %>

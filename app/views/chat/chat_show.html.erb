@@ -1,0 +1,17 @@
+<h1>Chat</h1> Login as: <%= current_user.email%>
+<% if @msgs.count != 0 %>
+	<div style="font-size: 25px;line-height: 40px;margin-right: 5%;margin-left: 5%">
+		<% @msgs.each do |m| %>
+			<% if m.receiver_id == 1 %>
+		 	<p style="text-align: right"><%=m.message%></p>
+		 	<% else %>
+		 	<p style="text-align: left"><%=m.message%></p>
+		 	<% end %>
+		<% end %>
+	</div>
+<% end %>
+<div style="width: 100%;font-size: 25px;margin-right: 5%;margin-left: 5%">
+	<%= form_for :msg  do |f| %>
+	<%= f.text_area :mg , size: "30x10"%>
+<% end %>	
+</div>

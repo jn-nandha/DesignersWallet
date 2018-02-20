@@ -1,0 +1,9 @@
+<h1>User Request</h1>
+<%= @follows.each do |f| %>
+	<%= f.user.name %>
+	<% if f.follow === "R"%>
+		<%= button_to "Accept",approved_path({from_id: f.user.id}), method: "post" %>
+	<% end %>
+	<%= button_to "cancel",delete_request_path({from_id: f.user.id}), method: "post" %>
+<!--  -->
+<% end %>

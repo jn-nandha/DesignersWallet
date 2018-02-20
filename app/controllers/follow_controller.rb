@@ -10,11 +10,8 @@ class FollowController < ApplicationController
 		@followinglist.to_id = params[:to_id]
 		@followinglist.follow = "R"
 		@followinglist.block = false
-		binding.pry
 		if @followinglist.save!
 			redirect_to follow_path
-		else
-			p "rejected."
 		end
 	end
 
@@ -22,10 +19,16 @@ class FollowController < ApplicationController
 		@follows = FollowingList.joins(:user).where(to_id: current_user.id , follow: "R" , block: false)
 	end
 
-	def acc_req
-		@u = FollowingList.where(from_id:)
+	def approved
+		@accept = FollowingList.select(:id,:follow,:block,:from_id).where("to_id = ? and follow = ? and from_id = ?",current_user.id ,"R",params[:from_id])
+		if @accept[0].block === false
+			@accept = FollowingList.where("to_id = ? and follow = ? and from_id = ?",current_user.id,"R",params[:from_id]).update(:follow => "A")  
+		end
 	end
 
-	def del_req
+	def delete_request
+		@accept = FollowingList.select(:id,:block).where("to_id = ? and from_id = ?",current_user.id,params[:from_id])
+		if @accept[0].block === false
+			@accept = FollowingList.
 	end
 end

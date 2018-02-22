@@ -6,9 +6,11 @@ class DesignController < ApplicationController
 	end
 
 	def create
+		binding.pry
 		@design = Design.new(design_params)
 		@design.user_id = current_user.id
 		if @design.save!
+
 			redirect_to design_show_path, notice: "design is uploaded"
 		else
 			p "rejected."
@@ -21,6 +23,6 @@ class DesignController < ApplicationController
 
 	private
 	def design_params
-		params.require(:design).permit(:description, :image)
+		params.require(:design).permit!
 	end
 end

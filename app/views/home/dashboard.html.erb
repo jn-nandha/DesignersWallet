@@ -1,7 +1,11 @@
-
 <%= button_to "Add Image", design_path, method: "get" %>
 <h1>Dashboard</h1>
 <% @designs.each do |design| %>
 	<%= design.user.name %><br />
-	<%= image_tag("#{design.image_url}") %><br />
+	<%= link_to(image_tag("#{design.image_url}", size: "250x250"), home_image_info_path({design_id: design}))%><br />
+	<% if  design.favourites.where(user_id: current_user.id ).count == 0 %>
+			<%= button_to "Add to favourites", favourite_add_to_fav_path({design_id: design}), method: "post" %>
+	<% else %>
+			<%= button_to "Remove from Favourites", favourite_del_from_fav_path({design_id: design}), method: "post" %>
+	<% end %>
 <% end %>

@@ -17,6 +17,13 @@
       <%= f.file_field :image %>
       <%= f.label :Description %>
       <%= f.text_area :description %>
+      <% for category in Category.all %>
+         <div>
+            <%= check_box_tag :category, category.id, false %>
+            <%= category.cat_name %>
+         </div>
+      <% end %>
+
       <%= f.submit "Save", class: "btn btn-primary" %>
    <% end %>
 </div>

@@ -9,4 +9,14 @@ class User < ApplicationRecord
   has_many :feedbacks
   has_many :followinglists
   belongs_to :city 
+<<<<<<< HEAD
+=======
+
+   has_secure_password
+ 
+  has_many :assignments
+  has_many :roles, through: :assignments
+
+  
+>>>>>>> f76ffd52b579afa948ebecdf93edaa51ee39b8f5
 end

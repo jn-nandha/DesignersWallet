@@ -1,4 +1,5 @@
 class ManageController < ApplicationController
+<<<<<<< HEAD
 	before_action :authenticate_admin!
 	
 	  #load_and_authorize_resource
@@ -67,3 +68,10 @@ end
     params[:user].permit(:email, :password, :name, :city_id , :activation)
   end
 end
+=======
+
+def manage_user
+	@user = User.all
+end	
+end
+>>>>>>> f76ffd52b579afa948ebecdf93edaa51ee39b8f5

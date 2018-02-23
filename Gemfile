@@ -7,6 +7,12 @@ end
 
 
 gem 'pry'
+<<<<<<< HEAD
+=======
+  
+gem "pundit"
+
+>>>>>>> f76ffd52b579afa948ebecdf93edaa51ee39b8f5
 gem 'carrierwave', '~> 1.0'
 gem 'bootstrap-sass'
 gem 'devise'

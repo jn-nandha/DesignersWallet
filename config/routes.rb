@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :admins
    devise_for :users, controllers: {
         registrations: 'users/registrations'
+<<<<<<< HEAD
        }
      devise_scope :user do
     get '/login' => 'devise/sessions#new'
@@ -36,3 +37,17 @@ end
 
 
 #https://github.com/plataformatec/devise/wiki/How-To:-Manage-Users-with-an-Admin-Role-(CanCan-method)
+=======
+      }
+      get 'design/new' ,to: 'design#new'
+      post 'design/new' , to: 'design#create'
+      get 'design/show'
+      get 'follow/index'
+      get 'follow/request' , to: 'follow#request'
+    #resources :designs, only: [:new,:create,:show]
+        root  to: 'dashboard#index'
+        get '/manage', to: 'dashboard#index'
+        post '/manage_user', to: 'dashboard#index'
+        get '/manage_user', to: 'manage#manage_user'
+end
+>>>>>>> f76ffd52b579afa948ebecdf93edaa51ee39b8f5

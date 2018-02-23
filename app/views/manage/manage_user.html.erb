@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p><%= link_to "<<BACK>>" , root_path %></p>
 <p>
   <%= link_to  "ADD User" , new_user_registration_path %>,
@@ -20,3 +21,10 @@
   <% end %>
 
 </table>
+=======
+<div>
+	<%= @user.each do |a| %>
+	<%= a.name %>
+	<% end %>
+</div>
+>>>>>>> f76ffd52b579afa948ebecdf93edaa51ee39b8f5

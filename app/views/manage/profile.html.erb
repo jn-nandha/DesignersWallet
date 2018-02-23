@@ -1,0 +1,26 @@
+<div class="header-div">
+<%= link_to "<<Back>>" ,   manage_user_path %>
+  
+</div>
+<div>
+<table>
+
+<th>User Design:</th> 
+<th>User Description:</th>
+
+
+
+<tr>
+<% @design.each do |d| %>
+
+  <td> <%= d.image %> </td><br>
+    <td> <%= d.description %> </td><br>
+
+</tr>
+
+ <% end %>
+</table>
+</div>
+
+<%= link_to "insert design" , design_new_path %>
+

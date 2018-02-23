@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: MyText
+  sender_status: false
+  receiver_status: false
+
+two:
+  message: MyText
+  sender_status: false
+  receiver_status: false

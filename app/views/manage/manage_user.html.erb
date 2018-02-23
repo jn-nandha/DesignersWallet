@@ -1,0 +1,22 @@
+<p><%= link_to "<<BACK>>" , root_path %></p>
+<p>
+  <%= link_to  "ADD User" , new_user_registration_path %>,
+</p>
+
+<table border="1" >
+  <tr>
+  <th>USER___MANAGEMENT</th>
+
+  </tr><% @user.each do |a| %><tr>
+    <td>
+      <%= link_to  a.name , profile_path  %><br>
+    </td>
+    <td>
+      <%= link_to  "DELETE " , delete_path %>|,
+      
+      <%= link_to  "UPDATE " , edit_user_registration_path %><br>
+    </td>
+    </tr>
+  <% end %>
+
+</table>

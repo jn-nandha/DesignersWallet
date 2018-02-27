@@ -2,17 +2,15 @@ class AdminController < ApplicationController
 	def addashboard
 		@user = User.all
 		@city = City.all
-		 @feedback = Feedback.order("design_id")
-
-
-
-
-
-		 @ftot = Feedback.where(design_id: 3).count(:id)
-		# @feedback = Feedback.orde.select("Feedback.*, count(design_id)")
-			
-		# @feedback = feedback1.sort_by(&:design_id)
+		@feedback = Feedback.order("design_id")
+		#@ftot = Feedback.where(design_id: 1).uniq.count(:id)
+		@total_repoart = Feedback.select(:design_id).map(&:design_id).uniq
+	end
+	def show
+		@Feedbackid = Feedback.find(params[:id])
+	end
+	def allrepoarts
+		@feedback = Feedback.order("design_id")
+		@cc = User.joins(:feedback)
 	end
 end
-
-

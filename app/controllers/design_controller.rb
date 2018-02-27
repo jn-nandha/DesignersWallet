@@ -1,12 +1,9 @@
 class DesignController < ApplicationController
-
 	def index
   	end
-
 	def new
 		@design = Design.new
 	end
-
 	def create
 		@design = Design.new(design_params)
 		@design.user_id = 1
@@ -16,14 +13,9 @@ class DesignController < ApplicationController
 			p "rejected."
 		end
 	end
-
-
-
-
 	def show
 		@designs = Design.all
 	end
-
 	private
 	def design_params
 		params.require(:design).permit(:description, :image)

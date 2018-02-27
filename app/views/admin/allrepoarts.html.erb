@@ -1,0 +1,27 @@
+	Data From feedback Table :<br>
+	<b>Total Feedback : <%= @feedback.count(:report) %></b> <br><br>
+
+<!-- 
+	<% @feedback.each do |f| %>
+			like : <%= f.like %> 	
+			report : <%= f.report %> 	
+			design_id : <%= f.design_id %>
+			user_id : <%= f.user_id %> <br>	
+	<% end %> -->
+<br> 
+	<table border="1">
+  <tr>
+    <th>design_id</th> 
+    <th>user_id</th> 
+    <th>like</th>
+    <th>report</th> 
+  </tr>
+	<% @feedback.each do |f| %>
+  <tr>
+      <td><%= f.design_id %></td>
+        <td><%= f.user_id %></td>
+    <td><%= f.like %> </td>
+    <td><%= f.report %> </td>
+  </tr>
+   	<% end %>
+</table>

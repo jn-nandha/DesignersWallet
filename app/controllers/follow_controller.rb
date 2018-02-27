@@ -1,34 +1,66 @@
 class FollowController < ApplicationController
 
-	def index
-		@users = User.select(:name,:id).where('id != ?', current_user)
+	#show all the User name except you
+	def index 
+		@users = User.where('id != ? and activation = ?',current_user.id , true)
+		@requested = FollowingList.where('follow = ? and block = ? and from_id = ?',"R",false,current_user.id).map(&:to)
+		@accepted = FollowingList.where('follow = ? and block = ? and from_id = ?',"A",false,current_user.id).map(&:to)
 	end
 
-	def req	
-		@followinglist = FollowingList.new
-		@followinglist.from_id = current_user.id
-		@followinglist.to_id = params[:to_id]
-		@followinglist.follow = "R"
-		@followinglist.block = false
-		if @followinglist.save!
-			redirect_to follow_path
+	#from sending request to other user
+	def follow_req	
+		@checkcount = FollowingList.where(to_id: params[:to_id], from_id: current_user.id )
+		if @checkcount.length == 0			
+			@followinglist = FollowingList.new
+			@followinglist.from_id = current_user.id
+			@followinglist.to_id = params[:to_id]
+			@followinglist.follow = "R"
+			@followinglist.block = false
+			if @followinglist.save!
+				redirect_to follow_path
+			end
+		else
+			render html: 'you already requested'
 		end
 	end
 
+	#respond 
 	def respond_to_req
-		@follows = FollowingList.joins(:user).where(to_id: current_user.id , follow: "R" , block: false)
+		@follows = FollowingList.joins(:to).where(to_id: current_user.id , follow: "R" , block: false)
 	end
 
+	#approved the request
 	def approved
-		@accept = FollowingList.select(:id,:follow,:block,:from_id).where("to_id = ? and follow = ? and from_id = ?",current_user.id ,"R",params[:from_id])
-		if @accept[0].block === false
-			@accept = FollowingList.where("to_id = ? and follow = ? and from_id = ?",current_user.id,"R",params[:from_id]).update(:follow => "A")  
+		@accept = FollowingList.select(:id,:block,:follow).where("to_id = ? and follow = ? and from_id = ?",current_user.id,"R",params[:from_id])
+		if @accept[0].block == false
+			@accept = FollowingList.where("to_id = ? and follow = ? and from_id = ?",current_user.id,"R",params[:from_id]).update(:follow => "A")
+			redirect_to follow_path 
 		end
 	end
-
+	#cancel the request
 	def delete_request
-		@accept = FollowingList.select(:id,:block).where("to_id = ? and from_id = ?",current_user.id,params[:from_id])
-		if @accept[0].block === false
-			@accept = FollowingList.
+		@cancelreq = FollowingList.find_by("to_id = ? and from_id = ?",current_user.id, params[:from_id])
+		FollowingList.destroy(@cancelreq.id)
+		redirect_to follow_path
+	end
+	#unfollow the user
+	def unfollow
+		@unfollowreq = FollowingList.find_by("to_id = ? and from_id = ?",params[:to_id],current_user.id)
+		FollowingList.destroy(@unfollowreq.id)
+		redirect_to follow_path  
+	end
+	#block the user
+	def blockusers
+		@bluser = FollowingList.where(to_id: current_user.id , from_id: params[:id]).or(FollowingList.where(to_id: params[:id] , from_id: current_user.id)).update(block: "true")
+	end
+	#followers details
+	def followers
+		followerscount = FollowingList.joins(:to).where(to_id: current_user.id,follow: "A",block: false).map(&:from_id)
+		@follower = User.where(id: followerscount, activation: true)
+	end
+	#followings details
+	def followings
+		followingscount = FollowingList.joins(:to).where(from_id: current_user.id,follow: "A",block: false).map(&:to_id)
+		@following = User.where(id: followingscount, activation: true)
 	end
 end

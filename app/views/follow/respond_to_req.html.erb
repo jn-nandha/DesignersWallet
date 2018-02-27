@@ -1,9 +1,16 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <h1>User Request</h1>
+<table>
 <%= @follows.each do |f| %>
-	<%= f.user.name %>
-	<% if f.follow === "R"%>
-		<%= button_to "Accept",approved_path({from_id: f.user.id}), method: "post" %>
+	<tr>	
+		<td><%= f.from.name %></td>
+		<% if f.follow == "R" and f.to.activation == true %>
+		<td><%= button_to "Accept",approved_path({from_id: f.from.id}), method: "put" %><br /></td>
+		<td><%= button_to "delete",delete_path({from_id: f.from.id}), method: "delete" %><br /></td>
+		<td><%= button_to "block",block_path({id: f.from.id}), method: "put" %></td>
+	</tr>
 	<% end %>
-	<%= button_to "cancel",delete_request_path({from_id: f.user.id}), method: "post" %>
-<!--  -->
 <% end %>
+</table>

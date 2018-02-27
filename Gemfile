@@ -7,7 +7,6 @@ end
 
 
 gem 'pry'
-
 gem 'carrierwave', '~> 1.0'
 gem 'bootstrap-sass'
 gem 'devise'
@@ -44,6 +43,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rails-erd'
 end
 
 group :development do

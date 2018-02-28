@@ -6,6 +6,32 @@ class HomeController < ApplicationController
 	end
 
 	def image_info
-		@design = Design.find(params[:design_id])
+		if current_user.activation
+			@design = Design.find(params[:design_id])
+		end
 	end
+
+	# def search
+	# 	if params[:search] != ""
+	# 		users = User.where('name LIKE ?', "%#{params[:search]}%")
+	# 	end
+	# end
+
+
+
+
+	def search
+	if params[:search] == nil
+	elsif params[:search][:user] == ""
+			p "please enter name of user"
+		else
+			txt = params[:search][:user]
+			@users = User.where('name LIKE ?',txt.capitalize + '%')
+	end
+	
+	respond_to do |format|
+   		format.js
+   		format.html
+   	end
+  end	
 end

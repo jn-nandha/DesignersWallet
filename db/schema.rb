@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180216055030) do
+ActiveRecord::Schema.define(version: 20180223045615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,15 +53,21 @@ ActiveRecord::Schema.define(version: 20180216055030) do
   end
 
   create_table "chats", force: :cascade do |t|
-    t.text "message"
-    t.string "sender_status"
-    t.string "receiver_status"
     t.bigint "sender_id"
     t.bigint "receiver_id"
+    t.integer "message_status"
+    t.integer "message_type"
+    t.text "body"
+    t.text "designs_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["receiver_id"], name: "index_chats_on_receiver_id"
     t.index ["sender_id"], name: "index_chats_on_sender_id"
+  end
+
+  create_table "chats_designs", id: false, force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.bigint "design_id", null: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -100,7 +106,7 @@ ActiveRecord::Schema.define(version: 20180216055030) do
   end
 
   create_table "following_lists", force: :cascade do |t|
-    t.string "follow"
+    t.integer "follow_status"
     t.boolean "block"
     t.bigint "to_id"
     t.bigint "from_id"

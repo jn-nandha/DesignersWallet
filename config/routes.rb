@@ -5,9 +5,10 @@ Rails.application.routes.draw do
         registrations: 'users/registrations'
       }
       get 'home/dashboard'
-      post 'home/search'
-      get 'home/search'
+      post 'home/search', to: 'home#search'
+      get 'home/error'
       get 'home/:design_id', to: 'home#image_info' , as: 'home'
+
 
       resources :designs, only: [:index,:new,:create]
       get 'designs/show_uploaded_design'

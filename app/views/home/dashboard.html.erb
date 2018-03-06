@@ -1,9 +1,47 @@
-<%= button_to "All Designs", designs_path, method: "get" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+
 <div class = "container">
-<div class = "col-md-4">
-<%= render partial: 'home/des' %>
-</div>
+
 <div class = "col-md-8">
-<%= render partial: 'home/des' %>
+	<div id="search" >
+	  	
+		<%= select_tag "design_selection", options_for_select([  "Following's Designs", "All Designs" ],"Following's Designs") %>
+		
+		<div id= "design_select">
+			<%= render partial: 'home/des', locals: { designs: @designs } %>
+		</div>
+	
 </div>
+	
+
+
 </div>
+<div class = "col-md-4">
+<%= render partial: 'home/search' %>
+</div>
+
+</div>
+
+
+
+
+<script>
+	$('#design_selection').on('change',function(){
+
+						$.ajax({
+							url:'/home/dashboard/',
+							type: 'GET',
+							data: {
+								'design_selection': $('#design_selection').val()
+							},
+							success:function(response){
+
+								$("#design_selection").attr('value',$('#design_selection').val());
+								console.log(response);
+							}
+						});
+					});
+  </script>

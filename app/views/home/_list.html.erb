@@ -1,5 +1,24 @@
+
+<%= button_to "Back", home_dashboard_path, method: "get" %>
 <% if  !users.nil? %>
-	<% users.each do |user| %>
-		<%= user.name %>
+	<% if designs.nil? %>
+		<h2>Search Result:</h2><br>
+			<% users.each do |user| %>
+				<%= user.name %><br />
+			<% end %>
+	<% else %>
+		<h2>Search Result:</h2><br>
+			<% designs.each do |design| %>
+				<%= link_to(image_tag("#{design.image_url}", size: "250x250"), home_path({design_id: design})) %><br />
+			<% end %>
+	<% end %>
+<% else %>
+	<% if !designs.nil? %>
+		<h2>Search Result:</h2><br>
+		<% designs.each do |design| %>
+			<%= link_to(image_tag("#{design.image_url}", size: "250x250"), home_path({design_id: design})) %><br />
+		<% end %>
+	<% else %>
+	<h2>Search Result:</h2><br>
 	<% end %>
 <% end %>

@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <div id = "navigation">
+		<h1>Search by User Name: </h1>
+
+		<div >
+		   <%= form_tag home_search_path, remote: true do %>
+					<%= label_tag 'seacrh_by_name :' %>
+					<%= text_field_tag "search[user]" %>
+					<div class="dropdown">
+					    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Category
+					    <span class="caret"></span></button>
+					    <ul class="dropdown-menu">
+					    
+						     <% for category in Category.all %>
+						         <div>
+						          <%= check_box_tag "categories[]",  category.id %>
+						          <%= category.cat_name %>
+						         </div>
+	      					 <% end %>
+					    </ul>
+					</div>
+					<%= button_to 'Search'  %>
+			<% end %>	
+		</div>
+		<br>
+		
+</div>

@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20180216055030) do
   end
 
   create_table "following_lists", force: :cascade do |t|
-    t.string "follow"
+    t.integer "follow_status"
     t.boolean "block"
     t.bigint "to_id"
     t.bigint "from_id"

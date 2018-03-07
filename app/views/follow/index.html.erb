@@ -1,7 +1,18 @@
-<h1>Users</h1>
-<% @users.each do |user| %>
-	<%= user.name %>
-	<%= button_to "Request", follow_path({to_id: user.id}), method: "post" %><br />
+<h2>Explore Users</h2>
+<% @users.each do |u| %>
+	<div class="ibox float-e-margins">
+		<p>
+		<div class="ibox-content">
+			
+			<h3 class="font-bold"><%= u.name %></h3>
+				<% if @accepted.include?(u)%>
+					<%= button_to "Unfollow", unfollow_path({to_id: u.id}) , method: "delete"%><br />
+				<% elsif @requested.include?(u)%>
+					<%= button_to "cancel request",unfollow_path({to_id: u.id}) , method: "delete"%><br />
+				<%else %>
+					<%= button_to "Follow", follow_path({to_id: u.id}), method: "post" %><br />
+				<% end %>
+		</div>
+		</p>
+	</div>
 <% end %>
-
-

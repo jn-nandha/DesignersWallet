@@ -4,8 +4,8 @@ class FollowController < ApplicationController
 	#show all the User name except you
 	def index 
 		@users = User.where('id != ? and activation = ?',current_user.id , true)
-		@requested = FollowingList.where('follow = ? and block = ? and from_id = ?',"R",false,current_user.id).map(&:to)
-		@accepted = FollowingList.where('follow = ? and block = ? and from_id = ?',"A",false,current_user.id).map(&:to)
+		@requested = FollowingList.requested.where('block = ? and from_id = ?',false,current_user.id).map(&:to)
+		@accepted = FollowingList.accepted.where('block = ? and from_id = ?',false,current_user.id).map(&:to)
 	end
 
 	#from sending request to other user
@@ -15,7 +15,7 @@ class FollowController < ApplicationController
 			@followinglist = FollowingList.new
 			@followinglist.from_id = current_user.id
 			@followinglist.to_id = params[:to_id]
-			@followinglist.follow = "R"
+			@followinglist.follow_status = "requested"
 			@followinglist.block = false
 			if @followinglist.save!
 				redirect_to follow_path
@@ -27,14 +27,14 @@ class FollowController < ApplicationController
 
 	#respond 
 	def respond_to_req
-		@follows = FollowingList.joins(:to).where(to_id: current_user.id , follow: "R" , block: false)
+		@follows = FollowingList.joins(:to).where(to_id: current_user.id , follow_status: "requested" , block: false)
 	end
 
 	#approved the request
 	def approved
-		@accept = FollowingList.select(:id,:block,:follow).where("to_id = ? and follow = ? and from_id = ?",current_user.id,"R",params[:from_id])
+		@accept = FollowingList.select(:id,:block,:follow_status).where("to_id = ? and follow_status = ? and from_id = ?",current_user.id,"requested",params[:from_id])
 		if @accept[0].block == false
-			@accept = FollowingList.where("to_id = ? and follow = ? and from_id = ?",current_user.id,"R",params[:from_id]).update(:follow => "A")
+			@accept = FollowingList.where("to_id = ? and follow_status = ? and from_id = ?",current_user.id,"requested",params[:from_id]).update(:follow_status => "accepted")
 			redirect_to follow_path 
 		end
 	end
@@ -56,12 +56,12 @@ class FollowController < ApplicationController
 	end
 	#followers details
 	def followers
-		followerscount = FollowingList.joins(:to).where(to_id: current_user.id,follow: "A",block: false).map(&:from_id)
+		followerscount = FollowingList.joins(:to).where(to_id: current_user.id,follow_status: "accepted",block: false).map(&:from_id)
 		@follower = User.where(id: followerscount, activation: true)
 	end
 	#followings details
 	def followings
-		followingscount = FollowingList.joins(:to).where(from_id: current_user.id,follow: "A",block: false).map(&:to_id)
+		followingscount = FollowingList.joins(:to).where(from_id: current_user.id,follow_status: "accepted",block: false).map(&:to_id)
 		@following = User.where(id: followingscount, activation: true)
 	end
 end

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script>
   $( function() {
-    var city = <%= @cty.inspect.html_safe %>;
+    var city = <%= $cty.inspect.html_safe %>;
     $( "#user_city_id" ).autocomplete({
       source: city
     });

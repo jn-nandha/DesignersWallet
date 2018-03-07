@@ -1,4 +1,5 @@
 class FollowingList < ApplicationRecord
+
 	enum follow_status: [:accepted, :requested]
 
 	belongs_to :to , class_name: "User"

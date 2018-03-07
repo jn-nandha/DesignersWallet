@@ -1,5 +1,6 @@
 class FollowController < ApplicationController
-
+	def dashboard
+	end
 	#show all the User name except you
 	def index 
 		@users = User.where('id != ? and activation = ?',current_user.id , true)

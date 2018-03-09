@@ -2,9 +2,9 @@
     <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
         <div class="nav navbar-top-links navbar-left">
             <li>
-                <a href="#">
+                <%= link_to home_dashboard_path(design_selection: "All Designs") do %>
                     Designer's Wallet
-                </a>
+                <% end %>
             </li>
         </div>
         <% if user_signed_in? %>
@@ -18,7 +18,7 @@
 
         <ul class="nav navbar-top-links navbar-right">
             <li>
-            <%= link_to destroy_user_session_path, method: :delete do %>
+            <%= link_to destroy_user_session_path do %>
                 <i class="fa fa-sign-out"></i><span>Log out</span>
             <% end %> 
             </li>
@@ -26,45 +26,38 @@
         <ul class="nav navbar-top-links navbar-right">
             
             <li>
-                <a href="follow">
-                    <i class="fa fa-child"></i>
-                </a>
+                <%= link_to follow_path do%> 
+                    <i class="fa fa-child"></i> 
+                <% end %>
             </li>
         </ul>       
+        
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <a href="#">
-                    <i class='fa fa-bars'></i>
-                </a>
+             <%= link_to show_path,:class => "count-info" do%> 
+                <i class="fa fa-envelope"></i>
+                <span class="label label-warning"></span>
+             <% end %>
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-            <a class="count-info" href="#">
-                    <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
-                </a>
+             <%= link_to responds_path ,:class => "count-info" do%>
+                <i class="fa fa-user"></i>
+                <span class="label label-warning"></span>
+             <% end %>
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-            <a class="count-info" href="responds">
-                    <i class='fa fa-user'></i>
-                    <span class = 'label label-primary'>8</span>
-                </a>
+                <%= link_to show_path do %> <i class="fa fa-user-circle"></i><span>Profile</span> <% end %>
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <a href="show">
-                    <i class='fa fa-user-circle'></i>Profile
-                </a>
-            </li>
-        </ul>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <a href="#">
-                    <i></i>Home
-                </a>
+               <%= link_to home_dashboard_path(design_selection: "Following's Designs")do %>
+                    Home
+                <% end %>
             </li>
         </ul>
         <% end %>

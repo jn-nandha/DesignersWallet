@@ -8,6 +8,7 @@ class DesignsController < ApplicationController
 
 	def new
 		@design = Design.new
+		@cat = Category.all
 	end
 
 	def create
@@ -16,7 +17,7 @@ class DesignsController < ApplicationController
 				@design = Design.new(design_params)
 				@design.user_id = current_user.id
 				if @design.save!
-					@design.categories << Category.where(id: params[:design][:categories]) 
+					@design.categories << Category.where(id: params[:categories]) 
 					redirect_to designs_show_uploaded_design_path, notice: "design is uploaded"
 				else
 					p "rejected."
@@ -35,14 +36,16 @@ class DesignsController < ApplicationController
 	end
 
 	def del_design
+		@did = params[:design_id]
 		des = Design.find(params[:design_id])
 		if des.user == current_user
 			usr = des.user
 			if usr.activation
 				des.destroy
-				redirect_to designs_show_uploaded_design_path 
+				
 			end
 		end
+		
 	end
 
 	private

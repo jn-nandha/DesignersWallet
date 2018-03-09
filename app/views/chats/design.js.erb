@@ -1,0 +1,17 @@
+$('#designs').html("<%= j render partial: 'chats/design', locals: { designs: @designs} %>");
+$(".select_img").on('click', function() {
+
+	if ($(this).attr('tag_check') == "false") {
+		$(this).attr('tag_check', "true");
+		old_val = $('#chat_designs_id').val();
+		$('#chat_designs_id').val(old_val+" "+$(this).attr('id'));
+	}
+	else {
+		$(this).attr('tag_check', "false");
+		old_val = $('#chat_designs_id').val();
+		ids = old_val.split(' ');
+		ids = remove(ids,$(this).attr('id'));
+		$('#chat_designs_id').val(ids.join(" "));
+	}
+});
+

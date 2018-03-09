@@ -1,0 +1,42 @@
+	<div class="recipient">
+		<%= @user.name %>
+	</div>
+	<div class="chats" id="msg">
+		<ul>
+			<% msgs.each do |message| %>
+			<li>
+				<% if message.sender_id == current_user.id %>
+
+				<% Design.find(message.designs_id).each do |design| %>
+				<div class="send">
+					<div class="image-r">
+						<%= image_tag("#{design.image_url}") %> 
+					</div>
+				</div>
+				<% end %>
+				<div class="send">
+					<div class="text-r">
+						<%= message.body %>	
+					</div>
+				</div>
+
+				<% else %>
+
+				<% Design.find(message.designs_id).each do |design| %>
+				<div class="receiver">
+					<div class="image-l"> 
+						<%= image_tag("#{design.image_url}") %> 
+					</div>
+				</div>
+				<% end %>
+				<div class="receiver">
+					<div class="text-l">
+						<%= message.body %>	
+					</div>
+				</div>
+				<% end %>	
+
+				<% end %>
+			</li>
+		</ul>
+	</div>

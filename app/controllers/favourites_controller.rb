@@ -1,10 +1,7 @@
 class FavouritesController < ApplicationController
 
-
 	def change_fav
-		
 		@did = params[:design_id]
-
 		if current_user.activation
 			a= Favourite.where(user_id: current_user.id, design_id: params[:design_id])
 			if a[0].nil?
@@ -17,6 +14,9 @@ class FavouritesController < ApplicationController
 				favourite.destroy
 			end
 		end
+
 		
 	end
+
+
 end

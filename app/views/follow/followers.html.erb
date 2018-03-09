@@ -1,10 +1,11 @@
 <h2>Followers</h2> 
 <div class="ibox float-e-margins"> 
 	<div class="ibox-content">
-		<% if @totalfollower != nil %>
+		<% if @follower.count != 0 %>
+
 	 	 <% @follower.each do |f|%>
 	    	<%= link_to user_profile_path(id: f.id) do %>
-	    		<%= f.name %>
+	    		<%= f.name %><br />
 	   		<% end %>
 	     <% end %>
 		<% else %>

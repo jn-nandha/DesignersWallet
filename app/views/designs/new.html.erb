@@ -12,11 +12,20 @@
 <% end %>
 
 <div class = "well">
-   <%= form_for (:design), html: { multipart: true } do |f| %>
+   <%= form_for @design, html: { multipart: true } do |f| %>
       <%= f.label :Image %>
       <%= f.file_field :image %>
       <%= f.label :Description %>
       <%= f.text_area :description %>
+
+      <div>
+                  <% @cat.each do |cat| %>
+                           <div>
+                            <%= check_box_tag "categories[]",  cat.id %>
+                            <%= cat.cat_name %>
+                           </div>
+                        <% end %>
+                    </div>
       <%= f.submit "Save", class: "btn btn-primary" %>
    <% end %>
 </div>

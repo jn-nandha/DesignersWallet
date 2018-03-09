@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
 
-	root 'follow#dashboard'
+	root 'home#dashboard'
     devise_for :admins
     devise_for :users, controllers: 
     {
       registrations: 'users/registrations'
     }
-    get 'design/new' ,to: 'design#new'
-    post 'design/new' , to: 'design#create'
-    get 'design/show'
+      get 'home/dashboard'
+      post 'home/search', to: 'home#search'
+      get 'home/error'
+      get 'show' , to: 'profile#show'
+      get 'home/:design_id', to: 'home#image_info' , as: 'home'
+
+      get 'user_profile',to: 'profile#user_profile'
+      resources :designs, only: [:index,:new,:create]
+    get 'designs/show_uploaded_design'
+    delete 'designs/del_design'
+    post 'favourites/change_fav'
     
     get 'follow', to: 'follow#index'
     get 'responds', to: 'follow#respond_to_req'
@@ -17,7 +25,8 @@ Rails.application.routes.draw do
     delete 'delete', to: 'follow#delete_request'
     delete 'unfollow' , to: 'follow#unfollow'
     put 'block' , to: 'follow#blockusers'
-    get 'show' , to: 'profile#show'
+    get 'follow/search', to: 'follow#search'
+   
     get 'followings',to: 'follow#followings'
     get 'followers',to: 'follow#followers'
 

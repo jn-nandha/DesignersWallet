@@ -1,0 +1,8 @@
+<h1><%= @design.user.name %></h1>
+<h3>Email:</h3>
+<h5><%= @design.user.email %></h5>
+<h3>City:</h3>
+<h5><%= @design.user.city.city_name %></h5>
+<%= image_tag("#{@design.image_url}") %>
+<h3>Description:</h3>
+<h5> <%= @design.description %></h5>

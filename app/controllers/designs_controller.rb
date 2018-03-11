@@ -13,17 +13,21 @@ class DesignsController < ApplicationController
 
 	def create
 		if current_user.activation
-			if design_params[:description] != "" && design_params[:image]
-				@design = Design.new(design_params)
-				@design.user_id = current_user.id
-				if @design.save!
-					@design.categories << Category.where(id: params[:categories]) 
-					redirect_to designs_show_uploaded_design_path, notice: "design is uploaded"
-				else
-					p "rejected."
-				end
+			if params[:categories] == nil
+				p "Please select category.if you dont want to put your image in any category you can select Other from given options."
 			else
-				p "please choose image and give description"
+				if design_params[:description] != "" && design_params[:image]
+					@design = Design.new(design_params)
+					@design.user_id = current_user.id
+					if @design.save!
+						@design.categories << Category.where(id: params[:categories]) 
+						redirect_to designs_show_uploaded_design_path, notice: "design is uploaded"
+					else
+						p "rejected."
+					end
+				else
+					p "please choose image and give description"
+				end
 			end
 		end
 	end

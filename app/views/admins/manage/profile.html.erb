@@ -1,0 +1,33 @@
+<div class="header-div">
+<%= link_to "<<Back>>" ,   manage_user_path %>
+ </div>
+<div>
+<table border="">
+<th>User name:</th> 
+<th>User Email:</th>
+<th>User Status:</th>
+<th>User City:</th>
+<th>User Create-Date:</th>
+<tr>
+  <td> <%= @user.name %> </td><br>
+    <td> <%= @user.email %> </td><br>
+    <td> <%= @user.activation %> </td><br>
+    <td> <%= @user.city.city_name %> </td><br>
+    <td> <%= @user.created_at.strftime('%C-%m-%Y') %> </td><br>
+</tr>
+</table>
+</div>
+
+<div>
+<table border="">
+<th>IMAGE</th>
+<th>DESCRIPTION</th>
+<tr>
+<% if @design.present? %>
+<td></td>
+<td><%= @design.description %><td>
+
+</tr>
+<% end %>
+</table>
+</div>

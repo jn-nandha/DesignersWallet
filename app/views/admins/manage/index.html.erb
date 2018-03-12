@@ -1,0 +1,12 @@
+Admin Pannel<br><br>
+<% if admin_signed_in? %>
+<%= link_to "HOME" , root_path %><br><br>
+<%= link_to "Admin-pass-reset" , new_admin_password_path %><br><br><br>
+<br><br><br>
+<%= link_to "Add-New-User" , new_user_invitation_path %><br><br>
+<%= link_to "manage user" , manage_user_path %><br><br>
+<%= link_to  "ALL USER DESIGN" ,show_all_design_path %><br><br>
+<%= link_to "Log Out", destroy_admin_session_path %><br><br>
+
+<% end %>
+

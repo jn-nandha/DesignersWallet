@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DesignersWallet</title>
+		<%= csrf_meta_tags %>
+
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	</head>
+
+	<body>
+	<%= link_to "Admin-logout" , destroy_admin_session_path %><br><br>
+	<%= link_to "DashBoard" , manage_path %><br><br>
+		<% if notice %>
+			<%= notice %>
+		<% end %>
+		<% if alert %>
+			<%= alert %>
+		<% end %>
+		<%= yield %>
+	</body>
+</html>

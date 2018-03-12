@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Designer's wallet</title>
@@ -10,7 +10,6 @@
     <!-- Main javascript files -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-
 </head>
 <body>
 	<!-- Wrapper-->
@@ -19,13 +18,18 @@
         <div class="wrapper wrapper-content gray-bg">        
             <!-- Page wrapper --> 
             <div class="container top-margin">
-            <%= render 'layouts/topnavigation' %>
+              <%= render 'layouts/topnavigation' %>
+            <% if notice %>
+              <%= notice %>
+            <% end %>
+            <% if alert %>
+              <%= alert %>
+            <% end %>
             <!-- Main view  -->
             <%= yield %>
         </div>
         </div>
         <!-- End page wrapper-->
-
     </div>
     <!-- End wrapper-->
 </body>

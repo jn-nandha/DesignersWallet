@@ -1,0 +1,17 @@
+
+<h1>Uploaded Designs </h1>
+<%= button_to "Add Image", new_design_path, method: "get" %>
+<table class = "table table-bordered table-striped">
+   <tbody>
+      <% @designs.each do |design| %>
+         
+         <tr id = 'tr<%=design.id%>' >
+         <td><%= link_to(image_tag("#{design.image_url}", size: "100x100"), home_path({design_id: design}))%></td>
+
+         <td><%= button_to "Delete image",designs_del_design_path({design_id: design}),remote:true , method: "delete" ,id: "btn#{design.id}" %>
+         </td>
+            <td><%= design.description %></td>
+         </tr>
+      <% end %>
+   </tbody>
+</table>

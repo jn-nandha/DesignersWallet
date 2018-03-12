@@ -1,0 +1,21 @@
+
+  <div >
+		<h1>Search by Category: </h1>
+
+		<div >
+		   <%= form_tag home_search_path, remote: true do %>
+					
+					<div>
+           				<% @cat.each do |cat| %>
+                           <div>
+                            <%= check_box_tag "categories[]",  cat.id %>
+                            <%= cat.cat_name %>
+                           </div>
+                        <% end %>
+                    </div>
+			<%= button_to 'Search'  %>
+			<% end %>	
+		</div>
+		<br>
+		
+</div>

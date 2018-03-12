@@ -1,4 +1,4 @@
-<h1><%= @design.user.name %></h1>
+<div><h1><%= @design.user.name %></h1>
 <h3>Email:</h3>
 <h5><%= @design.user.email %></h5>
 <h3>City:</h3>
@@ -6,3 +6,10 @@
 <%= image_tag("#{@design.image_url}") %>
 <h3>Description:</h3>
 <h5> <%= @design.description %></h5>
+</div>
+<div>
+	<%= form_tag feedbacks_complain_path(design_id: @design.id) do %>
+		<%= text_area_tag "feedback[complain]", nil , style: "width:70%" %>
+		<%= submit_tag "Submit" %>
+	<% end %>
+</div>

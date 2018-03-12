@@ -9,6 +9,15 @@
 			<% else %>
 				<%= button_to "Remove from favourites", favourites_change_fav_path(design_id: design), remote: true , method: "post" , id: "btn#{design.id}" %>
 			<% end %>
+			<% if  design.feedbacks.where(user_id: current_user.id ).count == 0 %>
+				<%= button_to "Like", feedbacks_like_path(design_id: design), remote: true , method: "post" , id: "likebtn#{design.id}" %>
+			<% else %>
+				<% if  design.feedbacks.where(user_id: current_user.id , like: true).count == 0 %>
+					<%= button_to "Like", feedbacks_like_path(design_id: design), remote: true,method: "post" , id: "likebtn#{design.id}" %>
+				<% else %>
+					<%= button_to "Dislike",feedbacks_like_path(design_id: design), remote: true,method: "post" , id: "likebtn#{design.id}"%>
+				<% end %>
+			<% end %>
 			
 		<% end %>
 </div>

@@ -5,10 +5,10 @@ class FavouritesController < ApplicationController
 		if current_user.activation
 			a= Favourite.where(user_id: current_user.id, design_id: params[:design_id])
 			if a[0].nil?
-				@fav = Favourite.new
-				@fav.user_id = current_user.id
-				@fav.design_id = params[:design_id]
-				@fav.save!
+				fav = Favourite.new
+				fav.user_id = current_user.id
+				fav.design_id = params[:design_id]
+				fav.save!
 			else
 				favourite = Favourite.find(a[0].id)
 				favourite.destroy

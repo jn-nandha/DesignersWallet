@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get 'designs/show_uploaded_design'
     delete 'designs/del_design'
     post 'favourites/change_fav'
-    
+   
     get 'follow', to: 'follow#index'
     get 'responds', to: 'follow#respond_to_req'
     post 'follow', to: 'follow#follow_req'
@@ -36,6 +36,12 @@ Rails.application.routes.draw do
     get  'chats/search', to: 'chats#search'
     get 'chats/design', to: 'chats#design'
 
+
+
+     post 'feedbacks/like'
+     post 'feedbacks/complain'
+
+     
     #resources :designs, only: [:new,:create,:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

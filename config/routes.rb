@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 	root 'follow#dashboard'
+
     devise_for :admins
     devise_for :users, controllers: 
     {

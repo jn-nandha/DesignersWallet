@@ -4,9 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
  
-  $cty = City.all.collect do |c|
-      c.city_name
-  end
+  $cty = City.all.pluck(:city_name)
 
   # GET /resource/sign_up
   def new

@@ -1,5 +1,8 @@
+<div class="recipient">
+	Design's
+</div>
 <% designs.each do |design| %>
-<div class="select_img" id=<%=design.id%> style="cursor: pointer;height: 120px;width: 120px;background-color: black;margin: 2px; float: left;" tag_check= "false">
+<div class="select_img" id=<%=design.id%> tag_check= "false">
 	<%= image_tag("#{design.image_url}") %>
 </div>
 <% end %>

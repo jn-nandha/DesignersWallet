@@ -18,3 +18,26 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+	
+ //    $('#user_search').on('keyup', function(e){
+	// 	if (e.keyCode == 13)
+	// 	{
+	// 		 $.ajax({
+ //            type: 'get',
+ //            url: 'chats/search',
+ //            dataType: 'script',
+ //            data:{
+ //                name : $(this).val()
+ //            },
+ //            success:function (msg) {
+ //            }
+ //    });
+	// 	}
+	// });
+	$.ajax({
+		type: 'get',
+		url: 'application/count'
+	})
+});

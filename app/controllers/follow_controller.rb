@@ -1,5 +1,6 @@
 class FollowController < ApplicationController
 	def dashboard
+		
 	end
 	#show all the User name except you
 	def index 
@@ -32,12 +33,11 @@ class FollowController < ApplicationController
 
 	#approved the request
 	def approved
-		@accept = FollowingList.select(:id,:block,:follow_status).where("to_id = ? and follow_status = ? and from_id = ?",current_user.id,"requested",params[:from_id])
-		if @accept[0].block == false
-			@accept = FollowingList.where("to_id = ? and follow_status = ? and from_id = ?",current_user.id,"requested",params[:from_id]).update(:follow_status => "accepted")
-			redirect_to follow_path 
-		end
+		@accept = FollowingList.requested.where("to_id = ? and from_id = ? and block = ?",current_user.id,params[:from_id],false)
+		@accept[0].accepted!
+		redirect_to follow_path 		
 	end
+
 	#cancel the request
 	def delete_request
 		@cancelreq = FollowingList.find_by("to_id = ? and from_id = ?",current_user.id, params[:from_id])

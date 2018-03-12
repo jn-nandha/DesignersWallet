@@ -5,7 +5,7 @@
 	<div class="recipients-search">
 		<%= render partial: 'chats/search',locals: { allusers: @all_users } %>
 	</div>
-	<div class="recipients" id="recp" style="overflow-y: auto;height: 400px">
+	<div class="recipients" id="recp">
 		<%= render partial: 'chats/recipients', locals: { allusers: @all_users, notifiedusers: @notified_users, followedusers: @followed_users} %>
 	</div>
 </div>
@@ -21,18 +21,14 @@
 
 
 <div class="col-md-2 side-right">
-	<div id="designs" style="height: 400px;overflow-y: auto">
+	<div id="designs" class="designs">
 		
 	</div>
 </div>
 
 
-
-
-
-
 <script type="text/javascript">
-	$(function() {
-		$("#msg").animate({ scrollTop: $('#msg').height() }, "fast");
+	$(document).ready(function(argument) {
+		$('#msg').scrollTop($('#msg').prop("scrollHeight"));
 	});
 </script>

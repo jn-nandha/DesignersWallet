@@ -1,4 +1,4 @@
 $('#recp-msgs').html("<%= j render partial: 'chats/messages', locals: { msgs: @msgs} %>");
 $('#recp').html("<%= j render partial: 'chats/recipients', locals: { allusers: @all_users, notifiedusers: @notified_users, followedusers: @followed_users} %>");
 $('#chat_receiver_id').val("<%= @user.id%>");
-$("#msg").animate({ scrollTop: $('#msg').height() }, "fast");
+$('#msg').scrollTop($('#msg').prop("scrollHeight"));

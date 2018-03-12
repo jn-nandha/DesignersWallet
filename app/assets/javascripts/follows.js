@@ -4,7 +4,7 @@ $(document).ready(function(){
 		{
 			 $.ajax({
             type: 'get',
-            url: 'follow/search',
+            url: 'follows/search',
             dataType: 'script',
             data:{
                 name : $(this).val()

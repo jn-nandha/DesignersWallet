@@ -54,7 +54,6 @@ class FollowsController < ApplicationController
 	def followers
 		followerscount = FollowingList.joins(:to).where(to_id: current_user.id,follow_status: "accepted",block: false).map(&:from_id)
 		@follower = User.where(id: followerscount, activation: true)
-		binding.pry
 	end
 	#followings details
 	def followings

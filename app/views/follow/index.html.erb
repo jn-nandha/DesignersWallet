@@ -1,10 +1,11 @@
 <h2>Explore Users</h2>
 <% @users.each do |u| %>
 	<div class="ibox float-e-margins">
-		<p>
+		
 		<div class="ibox-content">
-			
-			<h3 class="font-bold"><%= u.name %></h3>
+			<%= link_to user_profile_path(id: u.id) do %>
+				<h3 class="font-bold"><%= u.name %></h3>
+			<% end %>
 				<% if @accepted.include?(u)%>
 					<%= button_to "Unfollow", unfollow_path({to_id: u.id}) , method: "delete"%><br />
 				<% elsif @requested.include?(u)%>
@@ -13,6 +14,6 @@
 					<%= button_to "Follow", follow_path({to_id: u.id}), method: "post" %><br />
 				<% end %>
 		</div>
-		</p>
+		
 	</div>
 <% end %>

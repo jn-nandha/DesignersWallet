@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Designer's wallet</title>
-
     <!-- Main css styles -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-
     <!-- Main javascript files -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -18,13 +16,13 @@
 	<!-- Wrapper-->
     <div id="wrapper">
         <!-- Page wraper -->
-        <div id="page-wrapper" class="gray-bg">
-
-            <!-- Page wrapper -->
+        <div class="wrapper wrapper-content gray-bg">        
+            <!-- Page wrapper --> 
+            <div class="container top-margin">
             <%= render 'layouts/topnavigation' %>
-
             <!-- Main view  -->
             <%= yield %>
+        </div>
         </div>
         <!-- End page wrapper-->
 

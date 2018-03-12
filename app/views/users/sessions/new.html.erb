@@ -1,5 +1,12 @@
-<h2>Log in</h2>
-<div class= 'm-t'>
+
+<div class="middle-box text-center loginscreen  animated fadeInDown ">
+  <div class="col-md-6">
+    <div class="ibox-content">
+  <div>
+    <h1 class="logo-name">DW+</h1>
+  </div>
+  <h2>Log in</h2>
+
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|  %>
   <div class="form-group">
     <%= f.label :email %><br />
@@ -22,5 +29,7 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
-
 <%= render "users/shared/links" %>
+</div>
+</div>
+</div>

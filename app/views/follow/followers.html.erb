@@ -1,7 +1,17 @@
-<% @follower.each do |f|%>
-<div class="ibox float-e-margins">
-	<div class="ibox-content">
-		<%= f.name %>
-	</div>
-</div>
+<h2>Followers</h2>
+<%= binding.pry%>
+<% if @follower != nil %>
+	<div class="ibox float-e-margins">
+		<div class="ibox-content">
+			<% @follower.each do |f|%>
+			<%= binding.pry%>
+	  		<%= link_to user_profile_path(id: f.id) do %>
+				<%= f.name %>
+			<% end %>
+	 		<% end %>
+<% else %>
+	<h3>NO Followers</h3>
 <% end %>
+		</div>
+	</div>
+

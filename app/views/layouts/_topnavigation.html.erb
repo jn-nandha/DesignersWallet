@@ -1,5 +1,5 @@
 <div class="row border-bottom">
-    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-fixed-top white-bg" role="navigation" style="margin-bottom: 0">
         <div class="nav navbar-top-links navbar-left">
             <li>
                 <a href="#">
@@ -26,45 +26,37 @@
         <ul class="nav navbar-top-links navbar-right">
             
             <li>
-                <a href="follow">
+                <%= link_to follow_path do%>
                     <i class="fa fa-child"></i>
-                </a>
+                <% end %>
             </li>
         </ul>       
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <a href="#">
-                    <i class='fa fa-bars'></i>
-                </a>
+                <%= link_to show_path,:class => "count-info" do%>
+                    <i class="fa fa-envelope"></i><span class="label label-warning">19</span>
+                <% end %>
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-            <a class="count-info" href="#">
-                    <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
-                </a>
+                <%= link_to responds_path ,:class => "count-info" do%>
+                    <i class="fa fa-user"></i><span class="label label-warning"><%= @reqcount %></span>
+                <% end %>
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-            <a class="count-info" href="responds">
-                    <i class='fa fa-user'></i>
-                    <span class = 'label label-primary'>8</span>
-                </a>
+                <%= link_to show_path do %>
+                <i class="fa fa-user-circle"></i><span>Profile</span>
+                <% end %> 
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <a href="show">
-                    <i class='fa fa-user-circle'></i>Profile
-                </a>
-            </li>
-        </ul>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <a href="#">
-                    <i></i>Home
-                </a>
+                <%= link_to do %>
+                <span>Home</span>
+                <% end %> 
             </li>
         </ul>
         <% end %>

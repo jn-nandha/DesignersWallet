@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     delete 'unfollow' , to: 'follow#unfollow'
     put 'block' , to: 'follow#blockusers'
     get 'show' , to: 'profile#show'
+    get 'user_profile',to: 'profile#user_profile'
     get 'followings',to: 'follow#followings'
     get 'followers',to: 'follow#followers'
     #resources :designs, only: [:new,:create,:show]

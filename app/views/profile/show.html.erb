@@ -1,7 +1,7 @@
    <h1 class="p">
         <%= current_user.name %>
     </h1>
-    <a href = 'followings'>
+    <%= link_to followings_path do%>
     <div class="col-md-3">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -13,8 +13,8 @@
                 </div>
             </div>
     </div>
-    </a>
-    <a href= 'followers'>
+    <% end %>
+    <%= link_to followers_path do %>
     <div class="col-md-3">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -22,20 +22,19 @@
                 </div>
                 <div class="ibox-content">
                     <h4 class="no-margins">
-                        <%= @totalfollower %></h4>
+                    <%= @totalfollower %></h4>
                 </div>
             </div>
     </div>
-    </a>
-
+    <% end %>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Designs</h5>
-                    <a class="ibox-tools" href="#">
+                    <%= link_to responds_path,:class =>"ibox-tools" do %>
                         <button class="btn btn-success " type="button"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">Upload</span></button>
-                    </a>
+                    <% end %>
                 </div>
                 <div class="ibox-content">
                     <div class="carousel-inner">
@@ -59,6 +58,3 @@
             </div>
         </div>
     </div>
-
-
-

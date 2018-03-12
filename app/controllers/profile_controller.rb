@@ -6,6 +6,8 @@ class ProfileController < ApplicationController
 	#count the numbers of followings
 		@followingscount = FollowingList.joins(:to).where(from_id: current_user.id,follow_status: "accepted",block: false).map(&:to_id)
 		@totalfollowing = @followingscount.count 
+
+		@designs = Design.where(user_id: current_user.id)
 	end
 	def user_profile
 	  @user = User.find(params[:id])

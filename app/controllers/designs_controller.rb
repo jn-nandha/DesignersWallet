@@ -33,11 +33,7 @@ class DesignsController < ApplicationController
 	end
 
 
-	def show_uploaded_design
-		if current_user.activation
-			@designs = Design.where(user_id: current_user.id)
-		end
-	end
+	
 
 	def del_design
 		@did = params[:design_id]

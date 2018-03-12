@@ -1,5 +1,5 @@
 <div class="row border-bottom">
-    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-fixed-top white-bg" role="navigation" style="margin-bottom: 0">
         <div class="nav navbar-top-links navbar-left">
             <li>
                 <%= link_to home_dashboard_path(design_selection: "All Designs") do %>
@@ -26,40 +26,42 @@
         <ul class="nav navbar-top-links navbar-right">
 
             <li>
-                <%= link_to follow_path do%> 
-                <i class="fa fa-child"></i> 
+                <%= link_to follows_path do%>
+                    <i class="fa fa-child"></i>
                 <% end %>
             </li>
         </ul>       
         
         <ul class="nav navbar-top-links navbar-right">
-            <li> <%= link_to chats_path, class: "count-info" do %> 
+            <li>
+                <%= link_to chats_path, class: "count-info" do %> 
                 <i class="fa fa-envelope"></i>
                 <span class="label label-warning"><%= @noti_count_chat if @noti_count_chat != 0 %></span>
-                 <% end %> 
+                <% end %>
+            </li>
+        </ul> 
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <%= link_to responds_path ,:class => "count-info" do%>
+                    <i class="fa fa-user"></i><span class="label label-warning">18 </span>
+                <% end %>
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-               <%= link_to responds_path ,:class => "count-info" do%>
-               <i class="fa fa-user"></i>
-               <span class="label label-warning"></span>
-               <% end %>
-           </li>
-       </ul>
-       <ul class="nav navbar-top-links navbar-right">
-        <li>
-            <%= link_to show_path do %> <i class="fa fa-user-circle"></i><span>Profile</span> <% end %>
-        </li>
-    </ul>
-    <ul class="nav navbar-top-links navbar-right">
-        <li>
-         <%= link_to home_dashboard_path(design_selection: "Following's Designs")do %>
-         Home
-         <% end %>
-     </li>
- </ul>
- <% end %>
+                <%= link_to show_path do %>
+                <i class="fa fa-user-circle"></i><span>Profile</span>
+                <% end %> 
+            </li>
+        </ul>
+       
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+            <%= link_to home_dashboard_path(design_selection: "Following's Designs")do %>Home
+            <% end %>
+            </li>
+        </ul>
+<% end %>
 </nav>
 </div>
 

@@ -1,0 +1,19 @@
+<% users.each do |u| %>
+	<div class="ibox float-e-margins">
+		<p>
+		<div class="ibox-content">
+			<%= link_to user_profile_path(id: u.id) do %>
+			<h3 class="font-bold"><%= u.name %></h3>
+			<% end %>
+				<% if @accepted.include?(u)%>
+					<%= link_to "Unfollow", unfollow_path({to_id: u.id}) , method: "delete ",class: "btn btn-outline btn-default"%><br />
+				<% elsif @requested.include?(u)%>
+					<%= link_to "cancel request",unfollow_path({to_id: u.id}) , method: "delete" , class: "btn btn-outline btn-default"%><br />
+				<%else %>
+					<%= link_to "Follow", follows_path({to_id: u.id}), method: "post" ,class: "btn btn-outline btn-default"%><br />
+				<% end %>
+				
+		</div>
+		</p>
+	</div>
+<% end %>

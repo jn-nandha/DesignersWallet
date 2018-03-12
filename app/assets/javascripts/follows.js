@@ -2,9 +2,10 @@ $(document).ready(function(){
 	$('#user_search').on('keyup', function(e){
 		if (e.keyCode == 13)
 		{
-			 $.ajax({
+		  $.ajax({
+                alert("hi");
             type: 'get',
-            url: 'follow/search',
+            url: 'follows/search',
             dataType: 'script',
             data:{
                 name : $(this).val()

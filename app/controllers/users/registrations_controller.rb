@@ -7,10 +7,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   $cty = City.all.pluck(:city_name)
 
   # GET /resource/sign_up
-  def new
-    
-    super
-  end
+  # def new
+  #    super
+  # end
 
   # POST /resource
   # def create
@@ -53,6 +52,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     ctnm = params[:user][:city_id]
     ct = City.select(:id).where(city_name: ctnm.upcase) 
     params[:user][:city_id] = ct[0].id
+    name = params[:user][:name]
+    params[:user][:name] = name.capitalize
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :city_id, :activation])
   end
 
@@ -61,6 +62,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     ctnm = params[:user][:city_id]
     ct = City.select(:id).where(city_name: ctnm.upcase) 
     params[:user][:city_id] = ct[0].id
+
+    name = params[:user][:name]
+    params[:user][:name] = name.capitalize
     devise_parameter_sanitizer.permit(:account_update, keys: [:name,:city_id, :activation])
   end
 

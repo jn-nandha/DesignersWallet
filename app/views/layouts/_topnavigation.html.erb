@@ -2,9 +2,9 @@
     <nav class="navbar navbar-fixed-top white-bg" role="navigation" style="margin-bottom: 0">
         <div class="nav navbar-top-links navbar-left">
             <li>
-                <a href="#">
-                    Designer's Wallet
-                </a>
+                <%= link_to home_dashboard_path(design_selection: "All Designs") do %>
+                Designer's Wallet
+                <% end %>
             </li>
         </div>
         <% if user_signed_in? %>
@@ -26,11 +26,12 @@
         <ul class="nav navbar-top-links navbar-right">
 
             <li>
-                <a href="follow">
-                    <i class="fa fa-child"></i>
-                </a>
+                <%= link_to follows_path do%>
+                <i class="fa fa-child"></i>
+                <% end %>
             </li>
         </ul>       
+        
         <ul class="nav navbar-top-links navbar-right">
             <li>
                 <a href="#">
@@ -42,30 +43,34 @@
             <li>
                 <%= link_to chats_path, class: "count-info" do %>
                 <i class="fa fa-envelope"></i>
-                <span class="label label-warning"><%= @noti_count_chat if @noti_count_chat != 0 %></span>
+                    <% if @noti_count_chat > 0 %>
+                        <span class="label label-info"><%=@noti_count_chat%></span>
+                    <% end %>
+                <% end %>
+            </li>
+        </ul> 
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <%= link_to responds_path ,class: "count-info" do%>
+                <i class="fa fa-user"></i>
+                    <% if @noti_count_follow > 0 %>
+                        <span class="label label-warning"><%=@noti_count_follow%></span>
+                    <% end %>
                 <% end %>
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to "responds", class: "count-info" do %>
-                    <i class='fa fa-user'></i>
-                    <span class = 'label label-primary'><%=@noti_count_follow if @noti_count_follow != 0%></span>
+                <%= link_to show_path do %>
+                <i class="fa fa-user-circle"></i><span>Profile</span>
+                <% end %> 
+            </li>
+        </ul>
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <%= link_to home_dashboard_path(design_selection: "Following's Designs")do %>Home
                 <% end %>
-            </li>
-        </ul>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <a href="show">
-                    <i class='fa fa-user-circle'></i>Profile
-                </a>
-            </li>
-        </ul>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <a href="#">
-                    <i></i>Home
-                </a>
             </li>
         </ul>
         <% end %>

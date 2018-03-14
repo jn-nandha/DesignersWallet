@@ -10,8 +10,8 @@ class ChatsController < ApplicationController
 		else
 			@user = @all_users.first
 		end
-			@msgs = get_messages(@user)
-			get_read(@msgs)
+		@msgs = get_messages(@user)
+		get_read(@msgs)
 	end
 
 	def msg
@@ -35,8 +35,10 @@ class ChatsController < ApplicationController
 		else
 			chat.message_type = "text"
 		end
-		
-		chat.save!
+
+		if (FollowingList.where(from_id: params[:chat][:receiver_id], to_id: current_user, block: true).count == 0) && (params[:chat][:body] != "" || params[:chat][:designs_id] != "")
+			chat.save!
+		end
 		@msgs = get_messages(@user)
 	end
 
@@ -44,7 +46,9 @@ class ChatsController < ApplicationController
 		if params[:name].blank?
 			@search_users = []
 		else
-			@search_users = User.where("name LIKE ?","%#{params[:name]}%")
+			all = User.where("name LIKE ?","%#{params[:name]}%").pluck(:id).sort - [current_user.id]
+			blocked = FollowingList.where(to_id: current_user, block: true).pluck(:from_id).sort
+			@search_users = User.where(id: (all - blocked))
 		end
 	end
 
@@ -73,8 +77,16 @@ class ChatsController < ApplicationController
 	end
 
 	def all_recipients
-		@all_users = User.where.not(id: current_user.id).order("created_at ASC")
-		followed = FollowingList.where(from_id: current_user.id, follow_status: "accepted").map(&:to).uniq
+		all = User.where.not(id: current_user.id).pluck(:id).sort
+		blocked = FollowingList.where(to_id: current_user, block: true).pluck(:from_id).sort
+
+		@all_users = User.where(id: (all - blocked))
+
+		# followed = FollowingList.where(from_id: current_user.id, follow_status: "accepted").map(&:to).uniq
+		from = Chat.where(sender_id: current_user.id).pluck(:receiver_id).uniq
+		to = Chat.where(receiver_id: current_user.id).pluck(:sender_id).uniq
+		followed = User.where(id: (from + to).uniq)
+
 		@notified_users = Chat.where(receiver_id: current_user.id,message_status: "unread").order('created_at DESC').map(&:sender).uniq
 		@followed_users = (followed - @notified_users).uniq
 	end

@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Designer's wallet</title>
     <!-- Main css styles -->
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <!-- Main javascript files -->
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <!-- Main Java Script -->
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
 </head>
 <body>
@@ -17,7 +17,7 @@
         <!-- Page wraper -->
         <div class="wrapper wrapper-content gray-bg">        
             <!-- Page wrapper --> 
-            <div class="container top-margin">
+            <div class="container top-margin" id="topnav">
               <%= render 'layouts/topnavigation' %>
             <% if notice %>
               <%= notice %>

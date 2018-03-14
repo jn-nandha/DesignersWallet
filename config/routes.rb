@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
 	root 'home#dashboard'
+
     devise_for :admins
     devise_for :users, controllers: 
     {
       registrations: 'users/registrations'
     }
+      get 'application/count', to: 'application#count'
+
       get 'home/dashboard'
       post 'home/search', to: 'home#search'
       get 'home/error'

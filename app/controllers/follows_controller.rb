@@ -38,6 +38,7 @@ class FollowsController < ApplicationController
 		@accept[0].accepted!
 		redirect_to follows_path 
 	end
+
 	#cancel the request
 	def delete_request
 		@cancelreq = FollowingList.find_by("to_id = ? and from_id = ?",current_user.id, params[:from_id])

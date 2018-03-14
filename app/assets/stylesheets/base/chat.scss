@@ -1,28 +1,28 @@
 .side-left
 {
   background-color: #2F4050;
-  height: 600px;
+  height: 550px;
 }
 .current-user
 {
   background-color: #263B4B;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   color: #DFE4ED;
   padding: 5px;
 }
 .recipients-search
 {
-  font-size: 17px;
+  font-size: 15px;
   color: black;
-  height: 20px;
+  height: 17px;
   margin-top: 10%;
 }
 .recipients
 {
-  font-size: 17px;
+  font-size: 12px;
   color: #A7B1C2;
-  height: 400px;
+  height: 430px;
   margin-top: 10%;
   .person
   {
@@ -45,27 +45,24 @@
 .side-center
 {
   background-color: #EEEEEE;
-  height: 600px;
+  height: 550px;
 }
 .messages
 {
   color: #797C7D;
-  font-size: 15px;
 }
 .recipient
 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
-  height: 20px;
   color: #528EC2;
   padding: 5px;
 }
 .chats
 {
-  font-size: 17px;
   color: #797C7D;
   height: 450px;
-  margin-top: 5%;
+  margin-top: 1%;
   overflow-y: auto;
   li
   {
@@ -79,13 +76,13 @@
       .image-r
       {
         float: right;
-        background-color: #1AB394;
-        border-radius: 10px;
         padding: 1%;
         img
         {
           height: 100px;
-          width: 100px;   
+          width: 100px;
+          border:2px solid #1AB394;
+          border-radius: 10px; 
         }
       }
       .text-r
@@ -106,13 +103,13 @@
       .image-l
       {
         float: left;
-        background-color: #1AB394;
-        border-radius: 10px;
         padding: 1%;
         img
         {
           height: 100px;
-          width: 100px;   
+          width: 100px;
+          border:2px solid #1AB394;
+          border-radius: 10px;  
         }
       }
       .text-l
@@ -128,7 +125,7 @@
 }
 .write
 {
-  margin-top: 3%;
+  margin-top: 1%;
   color: black;
 }
 
@@ -139,6 +136,50 @@
 
 .side-right
 {
-  background-color: #EEEEEE;
-  height: 600px;
+  background-color: #FFFFFF;
+  height: 550px;
+  .designs
+  {
+    .header
+    {
+      font-size: 20px;
+      font-weight: bold;
+      color: #528EC2;
+      padding: 5px;
+    }
+    .up_fav
+    {
+      margin-top: 10px;
+      overflow-y: auto;
+      height: 500px;
+      .select_img
+      {
+        float: left;
+        margin: 1%;
+        img
+        {
+          cursor: pointer;
+          width: 100px;
+          height: 100px;
+          background-color: black;
+        }
+      }
+
+      .checked
+      {
+        img
+        {
+          border: 3px solid #1AB394;
+          border-radius: 10px;     
+        }
+      }
+      .unchecked
+      {
+        img
+        {
+          border: 3px solid #2F4050;
+        }
+      }
+    }
+  }
 }

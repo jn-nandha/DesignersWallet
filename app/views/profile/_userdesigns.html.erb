@@ -1,6 +1,6 @@
 <% @designs.each do |design| %>
 <div class= 'col-sm-4 img-responsive' id= "did<%=design.id%>" >
-	<%= link_to(image_tag("#{design.image_url}", size: "100x100"), home_path({design_id: design})) %>
+	<%= link_to(image_tag("#{design.image_url}", size: "200x200"), home_path({design_id: design})) %>
 	<%= button_to "Delete image",designs_del_design_path({design_id: design}),remote:true , method: "delete" %>
 	</div>
 <% end %>

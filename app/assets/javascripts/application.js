@@ -6,7 +6,6 @@
 // or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
 //
-//= require jquery
 //= require jquery/jquery-3.1.1.min.js
 //= require bootstrap-sprockets
 //= require pace/pace.min.js
@@ -14,5 +13,4 @@
 //= require slimscroll/jquery.slimscroll.min.js
 //= require inspinia.js
 //= require rails-ujs
-//= require turbolinks
 //= require_tree .

@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
 	root 'home#dashboard'
+
     devise_for :admins
     devise_for :users, controllers: 
     {
       registrations: 'users/registrations'
     }
+      get 'application/count', to: 'application#count'
+
       get 'home/dashboard'
       post 'home/search', to: 'home#search'
       get 'home/error'
@@ -25,7 +28,7 @@ Rails.application.routes.draw do
       put 'approved', to: 'follows#approved'
       delete 'delete', to: 'follows#delete_request'
       delete 'unfollow' , to: 'follows#unfollow'
-      put 'block' , to: 'follows#blockusers' 
+      post 'block' , to: 'follows#blockusers'
       get 'show' , to: 'profile#show'
       get 'user_profile',to: 'profile#user_profile'
       get 'follows/search', to: 'follows#search'

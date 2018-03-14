@@ -46,7 +46,6 @@ class DesignsController < ApplicationController
 			usr = des.user
 			if usr.activation
 				des.destroy
-				
 			end
 		end
 		

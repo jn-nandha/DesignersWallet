@@ -14,7 +14,7 @@
 	<% end %>	
 </div>
 <div id="followedusers">
-	<% if followedusers.count > 0 %> <strong> Followed Users </strong> <% end %>
+	<% if followedusers.count > 0 %> <strong> Chat Users </strong> <% end %>
 	<% followedusers.each do |user| %>
 
 	<%= link_to personal_msg_path(user), remote: true do %>

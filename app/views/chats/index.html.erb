@@ -5,12 +5,12 @@
 	<div class="recipients-search">
 		<%= render partial: 'chats/search',locals: { allusers: @all_users } %>
 	</div>
-	<div class="recipients" id="recp" style="overflow-y: auto;height: 400px">
+	<div class="recipients" id="recp">
 		<%= render partial: 'chats/recipients', locals: { allusers: @all_users, notifiedusers: @notified_users, followedusers: @followed_users} %>
 	</div>
 </div>
 
-<div class="col-md-7 side-center">
+<div class="col-md-6 side-center">
 	<div class="messages" id="recp-msgs">
 		<%= render partial: 'chats/messages', locals: { msgs: @msgs, recipient: @user} %>
 	</div>
@@ -20,8 +20,14 @@
 </div>
 
 
-<div class="col-md-2 side-right">
-	<div id="designs" style="height: 400px;overflow-y: auto">
+<div class="col-md-3 side-right">
+	<div id="designs" class="designs">
 		
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(argument) {
+		$('#msg').scrollTop($('#msg').prop("scrollHeight"));
+	});
+</script>

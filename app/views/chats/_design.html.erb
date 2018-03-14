@@ -3,7 +3,7 @@
 </div>
 <div class="up_fav">
 	<% designs.each do |design| %>
-	<div class="select_img" id=<%=design.id%> tag_check= "false">
+	<div class="select_img unchecked" id=<%=design.id%> tag_check= "false">
 		<%= image_tag("#{design.image_url}") %>
 	</div>
 	<% end %>	

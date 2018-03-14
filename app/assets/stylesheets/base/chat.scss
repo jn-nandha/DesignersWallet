@@ -76,13 +76,13 @@
       .image-r
       {
         float: right;
-        background-color: #1AB394;
-        border-radius: 10px;
         padding: 1%;
         img
         {
           height: 100px;
-          width: 100px;   
+          width: 100px;
+          border:2px solid #1AB394;
+          border-radius: 10px; 
         }
       }
       .text-r
@@ -103,13 +103,13 @@
       .image-l
       {
         float: left;
-        background-color: #1AB394;
-        border-radius: 10px;
         padding: 1%;
         img
         {
           height: 100px;
-          width: 100px;   
+          width: 100px;
+          border:2px solid #1AB394;
+          border-radius: 10px;  
         }
       }
       .text-l
@@ -155,7 +155,7 @@
       .select_img
       {
         float: left;
-        padding: 1%;
+        margin: 1%;
         img
         {
           cursor: pointer;
@@ -163,7 +163,23 @@
           height: 100px;
           background-color: black;
         }
-      }  
+      }
+
+      .checked
+      {
+        img
+        {
+          border: 3px solid #1AB394;
+          border-radius: 10px;     
+        }
+      }
+      .unchecked
+      {
+        img
+        {
+          border: 3px solid #2F4050;
+        }
+      }
     }
   }
 }

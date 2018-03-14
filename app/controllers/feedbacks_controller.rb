@@ -41,6 +41,7 @@ class FeedbacksController < ApplicationController
 				feedback.report = params[:feedback][:complain]
 				feedback.save!
 			end
+			@complain =  Feedback.find_by(user_id: current_user.id, design_id: params[:design_id])
 		end
 
 	end

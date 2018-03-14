@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('#user_search').on('keyup', function(e){
+	$('#usr_search').on('keyup', function(e){
 		if (e.keyCode == 13)
 		{
 		  $.ajax({

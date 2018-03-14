@@ -27,6 +27,7 @@ class HomeController < ApplicationController
 	def image_info
 		if current_user.activation
 			@design = Design.find(params[:design_id])
+			@complain =  Feedback.find_by(user_id: current_user.id, design_id: params[:design_id])
 		end
 	end
 

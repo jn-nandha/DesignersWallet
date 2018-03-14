@@ -6,10 +6,10 @@
 <script>
 	$( function() {
     var user = <%= allusers.pluck(:name).inspect.html_safe %>
-    $( "#user_search" ).autocomplete({
+    $( "#usr_search" ).autocomplete({
       source: user
     });
   } );
 </script>
 
-<%= text_field_tag "user[search]" , nil,style: "width:100%"%>
+<%= text_field_tag "usr[search]" , nil,style: "width:100%"%>

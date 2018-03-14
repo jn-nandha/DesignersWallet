@@ -35,13 +35,11 @@ class FeedbacksController < ApplicationController
 				feedback.design_id = params[:design_id]
 				feedback.report = params[:feedback][:complain]
 				feedback.save!
-				redirect_to home_path(design_id: params[:design_id])
 			else
 			
 				feedback = Feedback.find(a.id)
 				feedback.report = params[:feedback][:complain]
 				feedback.save!
-				redirect_to home_path(design_id: params[:design_id])
 			end
 		end
 

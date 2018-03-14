@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get 'home/dashboard'
       post 'home/search', to: 'home#search'
       get 'home/error'
-      get 'show' , to: 'profile#show'
+      get 'profile/show' , to: 'profile#show'
       get 'home/:design_id', to: 'home#image_info' , as: 'home'
 
       get 'user_profile',to: 'profile#user_profile'

@@ -82,7 +82,6 @@ class ChatsController < ApplicationController
 
 		@all_users = User.where(id: (all - blocked))
 
-		# followed = FollowingList.where(from_id: current_user.id, follow_status: "accepted").map(&:to).uniq
 		from = Chat.where(sender_id: current_user.id).pluck(:receiver_id).uniq
 		to = Chat.where(receiver_id: current_user.id).pluck(:sender_id).uniq
 		followed = User.where(id: (from + to).uniq)

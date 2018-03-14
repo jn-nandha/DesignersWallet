@@ -21,7 +21,7 @@ class DesignsController < ApplicationController
 					@design.user_id = current_user.id
 					if @design.save!
 						@design.categories << Category.where(id: params[:categories]) 
-						redirect_to designs_show_uploaded_design_path, notice: "design is uploaded"
+						redirect_to show_path, notice: "design is uploaded"
 					else
 						p "rejected."
 					end
@@ -33,11 +33,7 @@ class DesignsController < ApplicationController
 	end
 
 
-	def show_uploaded_design
-		if current_user.activation
-			@designs = Design.where(user_id: current_user.id)
-		end
-	end
+	
 
 	def del_design
 		@did = params[:design_id]
@@ -46,7 +42,6 @@ class DesignsController < ApplicationController
 			usr = des.user
 			if usr.activation
 				des.destroy
-				
 			end
 		end
 		

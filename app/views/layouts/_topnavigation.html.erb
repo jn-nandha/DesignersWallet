@@ -8,14 +8,6 @@
             </li>
         </div>
         <% if user_signed_in? %>
-        <div class="navbar-header">
-            <form role="search" class="navbar-form-custom" method="post" action="/">
-                <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search" />
-                </div>
-            </form>
-        </div>
-
         <ul class="nav navbar-top-links navbar-right">
             <li>
                 <%= link_to destroy_user_session_path do %>
@@ -26,7 +18,7 @@
         <ul class="nav navbar-top-links navbar-right">
 
             <li>
-                <%= link_to follow_path do%>
+                <%= link_to follows_path do%>
                     <i class="fa fa-child"></i>
                 <% end %>
             </li>
@@ -49,7 +41,7 @@
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to show_path do %>
+                <%= link_to profile_show_path do %>
                 <i class="fa fa-user-circle"></i><span>Profile</span>
                 <% end %> 
             </li>

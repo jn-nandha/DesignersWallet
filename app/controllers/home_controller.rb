@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 			end
 			if design_selection == "Following's Designs"
 
-				a= FollowingList.joins(:to).where(from_id: current_user.id,follow_status: "accepted",block: false).map(&:to_id)
+				a= FollowingList.joins(:to).where(from_id: current_user.id,follow_status: "accepted").map(&:to_id)
 				@followings = User.where(id: a, activation: true)
 				@designs = Design.joins(:user).where(user_id: @followings).order("updated_at DESC") 
 			elsif design_selection == "All Designs"

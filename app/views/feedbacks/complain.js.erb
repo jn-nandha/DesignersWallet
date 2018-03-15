@@ -1,3 +1,4 @@
 $("#reportarea").val('');
 $('#complain').html("<%= j(render partial: 'home/usercomplain' , locals: { complain: @complain }) %>");
 alert("your complain successfully registered.");
+$('#myModal').modal('hide');

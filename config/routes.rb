@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get 'home/:design_id', to: 'home#image_info' , as: 'home'
 
       get 'user_profile',to: 'profile#user_profile'
+      get 'profile/blockeduser'
       resources :designs, only: [:index,:new,:create]
 
       get 'designs/show_uploaded_design'
@@ -34,6 +35,8 @@ Rails.application.routes.draw do
       get 'follows/search', to: 'follows#search'
       get 'followings',to: 'follows#followings'
       get 'followers',to: 'follows#followers'
+      delete 'follows/unblockuser'
+
 
       get 'chats', to: 'chats#index'
       get 'chats/:id/msg', to: 'chats#msg', as: "personal_msg"

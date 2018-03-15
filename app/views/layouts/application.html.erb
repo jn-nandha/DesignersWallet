@@ -20,8 +20,7 @@
             <div class="container top-margin" id="topnav">
               <%= render 'layouts/topnavigation' %>
               <% flash.each do |key, value| %>
-              <% if value != nil %>
-                <div class="alert alert-<%= key %>"><%= value %></div><% end%>
+                <div class="alert alert-<%= key %>"><%= value %></div>
               <% end %>
            
             <!-- Main view  -->

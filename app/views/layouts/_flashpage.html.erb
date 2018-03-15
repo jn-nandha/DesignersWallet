@@ -1,0 +1,4 @@
+<% flash.each do |key, value| %>
+<% if value != nil %>
+<div class="alert alert-<%= key %>"><%= value %></div><% end%>
+<% end %>

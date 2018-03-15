@@ -1,15 +1,16 @@
 class FollowsController < ApplicationController
-  #show all the User name except you
-  def index 
-    allusers = User.where('id != ? and activation = ?',current_user.id , true).pluck(:id)
-    @requested = FollowingList.requested.where('from_id = ?',current_user.id).pluck(:to_id)
-    @accepted = FollowingList.accepted.where('from_id = ?',current_user.id).pluck(:to_id)
-    blocked = FollowingList.blocked.where('from_id = ? or to_id = ?', current_user.id,current_user.id)
-    from = blocked.pluck(:from_id).uniq
-    to = blocked.pluck(:to_id).uniq
-    blockeduser = from + to + [current_user.id]
-    @users = User.where(id: (allusers - blockeduser))
-  end
+	#show all the User name except you
+	def index 
+		allusers = User.where('id != ? and activation = ?',current_user.id , true).pluck(:id)
+		@requested = FollowingList.requested.paginate(page: params[:page],per_page: 7).where('from_id = ?',current_user.id).pluck(:to_id)
+		@accepted = FollowingList.accepted.paginate(page: params[:page],per_page: 7).where('from_id = ?',current_user.id).pluck(:to_id)
+		blocked = FollowingList.blocked.where('from_id = ? or to_id = ?', current_user.id,current_user.id)
+		from = blocked.pluck(:from_id).uniq
+		to = blocked.pluck(:to_id).uniq
+		blockeduser = from + to + [current_user.id]
+		@searchuser =  User.where(id: (allusers - blockeduser))
+		@users = User.paginate(page: params[:page],per_page: 7).where(id: (allusers - blockeduser))		
+	end
 
   #from sending request to other user
   def follow_req  
@@ -27,10 +28,10 @@ class FollowsController < ApplicationController
     end
   end
 
-  #respond 
-  def respond_to_req
-    @follows = FollowingList.joins(:to).where(to_id: current_user.id , follow_status: "requested")
-  end
+	#respond 
+	def respond_to_req
+		@follows = FollowingList.joins(:to).paginate(page: params[:page],per_page: 7).where(to_id: current_user.id , follow_status: "requested")
+	end
 
   #approved the request
   def approved
@@ -111,7 +112,7 @@ class FollowsController < ApplicationController
     followingscount = FollowingList.joins(:to).where(from_id: current_user.id,follow_status: "accepted").map(&:to_id)
     @following = User.where(id: followingscount, activation: true)
   end
-
+	
   def search
     index
     if params[:name].blank?

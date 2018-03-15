@@ -1,4 +1,5 @@
 <h2>Followers</h2> 
+<%= will_paginate @follower%>
 <% if @follower.count != 0 %>
   <% @follower.each do |f|%>
     <div class="ibox float-e-margins"> 
@@ -12,3 +13,4 @@
 <% else %>
   <h3>NO Followers</h3>
 <% end %>
+<%= will_paginate @follower%>

@@ -17,12 +17,10 @@
         <!-- Page wraper -->
         <div class="wrapper wrapper-content gray-bg">        
             <!-- Page wrapper --> 
-            <div class="container top-margin" id="topnav">
+            <div class="page-wrapper top-margin" >
               <%= render 'layouts/topnavigation' %>
-              <% flash.each do |key, value| %>
-                <div class="alert alert-<%= key %>"><%= value %></div>
-              <% end %>
-           
+              <div id="flash">  
+              </div>           
             <!-- Main view  -->
             <%= yield %>
         </div>

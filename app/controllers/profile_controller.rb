@@ -1,4 +1,5 @@
 class ProfileController < ApplicationController
+
   #shows the user profile
   def show 
     @followerscount = FollowingList.joins(:to).where(to_id: current_user.id,follow_status: "accepted").map(&:to_id)

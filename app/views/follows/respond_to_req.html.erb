@@ -1,17 +1,25 @@
 <% if @follows.count > 0 %>
+<div class="container">		
+<%= will_paginate @follows %>
+	<% @follows.each do |f| %>
+		<div class="ibox float-e-margins ">
+			<div class="ibox-content">
+			<h3 class="font-bold"><%= f.from.name %></h3>
+	       	<%= link_to "Accept",approved_path({from_id: f.from.id}),method: "put", class: "btn btn-outline btn-success" %>
+			<%= link_to "Cancel",delete_path({from_id: f.from.id}),method: "delete", class: "btn btn-outline btn-warning" %>
+			<%= link_to "Block",block_path({id: f.from.id}),method: "post", class: "btn btn-outline btn-danger" %>
+			</div>
+		</div>
+	<% end %>
+<%= will_paginate @follows%>
+<% else %>
 	<div class="ibox float-e-margins">
 		<div class="ibox-content">
-		<% @follows.each do |f| %>
-			<h3 class="font-bold"><%= f.from.name %></h3>
-		       	<%= link_to "Accept",approved_path({from_id: f.from.id}),method: "put", class: "btn btn-outline btn-success" %>
-				<%= link_to "Cancel",delete_path({from_id: f.from.id}),method: "delete", class: "btn btn-outline btn-warning" %>
-				<%= link_to "Block",block_path({id: f.from.id}),method: "post", class: "btn btn-outline btn-danger" %>
-		<% end %>
-<% else %>
-	<h3>No Result Found</h3>
+		<h3>No Result Found</h3>
 		</div>
 	</div>
+</div>
 <% end %>
-
+	
 
 		       

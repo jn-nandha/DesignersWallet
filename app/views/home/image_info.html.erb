@@ -3,13 +3,54 @@
 <h5><%= @design.user.email %></h5>
 <h3>City:</h3>
 <h5><%= @design.user.city.city_name %></h5>
-<%= image_tag("#{@design.image_url}") %><br />
+<%= image_tag("#{@design.image_url}", height: "300px", width: "300px") %><br />
 <h3>Categories:</h3>
 <% @design.categories.each do |category| %>
 <%= category.cat_name %><br />
 <% end %>
 <h3>Description:</h3>
 <h5> <%= @design.description %></h5>
+</div>
+
+<div class="container">
+ 
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#sharemodal">Share</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="sharemodal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button id="cls" type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Userlist</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+        <%= form_tag(share_design_path(design_id: @design.id),method: "post",remote: true) do %>
+          <div style="height: 300px;overflow-y: auto;">
+              <% @users.each do |user| %>
+                <div>
+                <%= check_box_tag "selectedusers[]",  user.id %>
+                <%= user.name %>
+                </div>
+                <% end %>
+            </div>
+          <%= submit_tag "Submit" %>
+        <% end %>
+    </div>
+
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
 </div>
 
 
@@ -25,14 +66,14 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button id="cls" type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Report</h4>
         </div>
         <div class="modal-body">
           <p>Note:You are able to register complain against this design once.If you are trying to complain again it will automatically overwrite your complain.</p>
             <div>
   			<%= form_tag(feedbacks_complain_path(design_id: @design.id),method: "post", remote: true) do %>
-  				<%= text_area_tag "feedback[complain]", nil ,id:"reportarea" ,style: "width:70%" %>
+  				<%= text_area_tag "feedback[complain]", nil ,id:"reportarea" ,style: "width:70%", value: "" %>
   				<%= submit_tag "Submit" %>
   			<% end %>
 		</div>

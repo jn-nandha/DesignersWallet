@@ -44,15 +44,16 @@
                             <% end %>
                         </div>
                 </div>
-
+                <% if @designs.count != 0 %>
                 <div class="ibox-content">
                     <div class="carousel-inner">
                         <div class="item gallery active">
-                            <%= render partial: 'profile/userdesigns', locals: { images: @designs } %>
+                            <%= render partial: 'profile/userdesigns' %>
                         </div>
                     </div>
                 </div>
+                <% end %>
             </div>
         </div>
     </div>
-</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

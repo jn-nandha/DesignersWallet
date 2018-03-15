@@ -14,8 +14,10 @@ Rails.application.routes.draw do
       get 'home/error'
       get 'profile/show' , to: 'profile#show'
       get 'home/:design_id', to: 'home#image_info' , as: 'home'
+      post 'home/:design_id', to: 'home#share_design', as: 'share_design'
 
       get 'user_profile',to: 'profile#user_profile'
+      get 'profile/blockeduser'
       resources :designs, only: [:index,:new,:create]
 
       get 'designs/show_uploaded_design'
@@ -32,6 +34,8 @@ Rails.application.routes.draw do
       get 'follows/search', to: 'follows#search'
       get 'followings',to: 'follows#followings'
       get 'followers',to: 'follows#followers'
+      delete 'follows/unblockuser'
+
       get 'show' , to: 'profile#show'
       get 'user_profile',to: 'profile#user_profile'
 

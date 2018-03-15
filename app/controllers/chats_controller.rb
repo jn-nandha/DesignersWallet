@@ -78,9 +78,10 @@ class ChatsController < ApplicationController
 
 	def all_recipients
 		all = User.where(activation: "true").where.not(id: current_user.id).pluck(:id).sort
-		blocked = FollowingList.blocked.where(to_id: current_user).pluck(:from_id).sort
+		blocked = User.where(id: block_users)
 
 		@all_users = User.where(id: (all - blocked))
+
 
 		from = Chat.where(sender_id: current_user.id).pluck(:receiver_id).uniq
 		to = Chat.where(receiver_id: current_user.id).pluck(:sender_id).uniq
@@ -90,5 +91,11 @@ class ChatsController < ApplicationController
 		#@notified_users = User.where(id: noti).where(activation: "true")
 		@notified_users = Chat.where(receiver_id: current_user.id,message_status: "unread").order('created_at DESC').map(&:sender).uniq
 		@followed_users = (followed - @notified_users).uniq
+	end
+
+	def block_users
+		to_block = FollowingList.blocked.where(from_id: current_user.id).pluck(:to_id)
+		from_block = FollowingList.blocked.where(to_id: current_user.id).pluck(:from_id)
+		return (to_block + from_block).uniq
 	end
 end

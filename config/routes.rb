@@ -29,11 +29,11 @@ Rails.application.routes.draw do
       delete 'delete', to: 'follows#delete_request'
       delete 'unfollow' , to: 'follows#unfollow'
       post 'block' , to: 'follows#blockusers'
-      get 'show' , to: 'profile#show'
-      get 'user_profile',to: 'profile#user_profile'
       get 'follows/search', to: 'follows#search'
       get 'followings',to: 'follows#followings'
       get 'followers',to: 'follows#followers'
+      get 'show' , to: 'profile#show'
+      get 'user_profile',to: 'profile#user_profile'
 
       get 'chats', to: 'chats#index'
       get 'chats/:id/msg', to: 'chats#msg', as: "personal_msg"

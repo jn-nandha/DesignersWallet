@@ -9,7 +9,7 @@
 
 				<% Design.where(id: message.designs_id).each do |design| %>
 				<div class="send">
-					<%= link_to home_path(design_id: design.id) do %>
+					<%= link_to home_path(design_id: design.id), method: "get", target: "_blank" do %>
 					<div class="image-r">
 						<%= image_tag("#{design.image_url}") %> 
 					</div>
@@ -28,7 +28,7 @@
 
 				<% Design.where(id: message.designs_id).each do |design| %>
 				<div class="receiver">
-					<%= link_to home_path(design_id: design.id) do %>
+					<%= link_to home_path(design_id: design.id), method: "get", target: "_blank" do %>
 					<div class="image-l"> 
 						<%= image_tag("#{design.image_url}") %> 
 					</div>

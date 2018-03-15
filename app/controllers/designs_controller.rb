@@ -36,9 +36,6 @@ class DesignsController < ApplicationController
 		end
 	end
 
-
-	
-
 	def del_design
 		@did = params[:design_id]
 		des = Design.find(params[:design_id])
@@ -50,6 +47,8 @@ class DesignsController < ApplicationController
 		end
 		
 	end
+
+	
 
 	private
 	def design_params

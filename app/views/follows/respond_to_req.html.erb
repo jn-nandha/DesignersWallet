@@ -6,7 +6,6 @@
 		       	<%= link_to "Accept",approved_path({from_id: f.from.id}),method: "put", class: "btn btn-outline btn-success" %>
 				<%= link_to "Cancel",delete_path({from_id: f.from.id}),method: "delete", class: "btn btn-outline btn-warning" %>
 				<%= link_to "Block",block_path({id: f.from.id}),method: "post", class: "btn btn-outline btn-danger" %>
-				<%= binding.pry%>
 		<% end %>
 <% else %>
 	<h3>No Result Found</h3>

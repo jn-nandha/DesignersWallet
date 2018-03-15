@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       get 'home/dashboard'
       post 'home/search', to: 'home#search'
       get 'home/error'
-      get 'show' , to: 'profile#show'
+      get 'profile/show' , to: 'profile#show'
       get 'home/:design_id', to: 'home#image_info' , as: 'home'
 
       get 'user_profile',to: 'profile#user_profile'
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       put 'approved', to: 'follows#approved'
       delete 'delete', to: 'follows#delete_request'
       delete 'unfollow' , to: 'follows#unfollow'
-      put 'block' , to: 'follows#blockusers' 
+      post 'block' , to: 'follows#blockusers'
       get 'show' , to: 'profile#show'
       get 'user_profile',to: 'profile#user_profile'
       get 'follows/search', to: 'follows#search'

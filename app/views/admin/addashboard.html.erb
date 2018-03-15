@@ -1,7 +1,20 @@
-<%= render 'navbar' %>
-<%= render 'sidebar' %>
+
 <h1>Welcome Admin</h1>
-All Users: <br>
+
+<br>
+
+
+----------------------
+<br>
+
+New One
+<%= form_tag addashboard_path, :method => 'get' do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search User" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+
+<br>
 <% @user.each do |u| %>
 	Name : <%= u.name %> <br>
 <% end %><br>

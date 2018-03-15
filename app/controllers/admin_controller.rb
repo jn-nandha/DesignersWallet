@@ -1,6 +1,7 @@
 class AdminController < ApplicationController
 	def addashboard
-		@user = User.all
+ 	   @user = User.where(["name LIKE ?","%#{params[:search]}%"])
+ 		# @user = User.all
 		@city = City.all
 		@feedback = Feedback.order("design_id")
 		#@ftot = Feedback.where(design_id: 1).uniq.count(:id)

@@ -11,7 +11,6 @@ class FollowsController < ApplicationController
 		@searchuser =  User.where(id: (allusers - blockeduser))
 		@users = User.paginate(page: params[:page],per_page: 7).where(id: (allusers - blockeduser))		
 	end
-
 	#from sending request to other user
 	def follow_req	
 		@checkcount = FollowingList.where(to_id: params[:to_id], from_id: current_user.id )

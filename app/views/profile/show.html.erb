@@ -5,6 +5,7 @@
    <h1 class="p">
         <%= current_user.name %>
     </h1>
+    <div class="row ">
     <%= link_to followings_path do%>
     <div class="col-md-3">
             <div class="ibox float-e-margins">
@@ -31,12 +32,13 @@
             </div>
     </div>
     <% end %>
+    </div>
     <div class="row ">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title ">
                     <h5>Designs</h5>
-                        <div class="pull-right">
+                        <div>
                             <%= link_to new_design_path, method: "get" ,:class =>"ibox-tools" do %>
                                 <button class="btn btn-success " type="button"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">Upload</span></button>
                             <% end %>
@@ -53,4 +55,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          

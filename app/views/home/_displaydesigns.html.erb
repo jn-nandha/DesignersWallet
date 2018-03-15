@@ -7,20 +7,22 @@
 					<% images.each do |design| %>
 						<div class= 'col-sm-4 img-responsive'>
 						<%= link_to(image_tag("#{design.image_url}", size: "250x250"), home_path({design_id: design})) %><br />
+						<div class="btn-group">
 						<% if  design.favourites.where(user_id: current_user.id ).count == 0 %>
-						<%= button_to "Add to favourites", favourites_change_fav_path(design_id: design),remote: true , method: "post" , id: "btn#{design.id}" %>
+						<%= button_to "Add to favourites", favourites_change_fav_path(design_id: design),remote: true , method: "post" , id: "btn#{design.id}" , class: "btn btn-w-m btn-default" %>
 						<% else %>
-						<%= button_to "Remove from favourites", favourites_change_fav_path(design_id: design), remote: true , method: "post" , id: "btn#{design.id}" %>
+						<%= button_to "Remove from favourites", favourites_change_fav_path(design_id: design), remote: true , method: "post" , id: "btn#{design.id}",class: "btn btn-w-m btn-default" %>
 						<% end %>
 						<% if  design.feedbacks.where(user_id: current_user.id ).count == 0 %>
-						<%= button_to "Like", feedbacks_like_path(design_id: design), remote: true , method: "post" , id: "likebtn#{design.id}" %>
+						<%= button_to "Like", feedbacks_like_path(design_id: design), remote: true , method: "post" , id: "likebtn#{design.id}",class: "btn btn-w-m btn-default" %>
 						<% else %>
 							<% if  design.feedbacks.where(user_id: current_user.id , like: true).count == 0 %>
-							<%= button_to "Like", feedbacks_like_path(design_id: design), remote: true,method: "post" , id: "likebtn#{design.id}" %>
+							<%= button_to "Like", feedbacks_like_path(design_id: design), remote: true,method: "post" , id: "likebtn#{design.id}",class: "btn btn-w-m btn-default" %>
 							<% else %>
-								<%= button_to "Dislike",feedbacks_like_path(design_id: design), remote: true,method: "post" , id: "likebtn#{design.id}"%>
+								<%= button_to "Dislike",feedbacks_like_path(design_id: design), remote: true,method: "post" , id: "likebtn#{design.id}",class: "btn btn-w-m btn-default"%>
 							<% end %>
 						<% end %>
+						</div>
 						</div>
 					<% end %>
 					</div>

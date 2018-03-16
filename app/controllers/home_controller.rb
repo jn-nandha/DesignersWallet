@@ -43,8 +43,9 @@ class HomeController < ApplicationController
 				c = Chat.new(sender_id: current_user.id,receiver_id: u.id,designs_id: [params[:design_id]],message_status: "unread",message_type: "image",body: "")
 				if c.save!
 					count += 1
-				end		 	
-			flash[:success] = "You have shared this design to #{count} user"
+				end		
+			end 	
+			@flash_js[:success] = "You have shared this design to #{count} user"
 		else
 			@flash_js[:danger] = "Please select users to share this design"
 		end

@@ -23,7 +23,7 @@ class DesignsController < ApplicationController
           if @design.save!
             @design.categories << Category.where(id: params[:categories]) 
             flash[:success] = 'design is uploaded.'
-            redirect_to profile_show_path
+            redirect_to show_path
           else
             flash[:danger] = 'Something went wrong.please try again after sometime'
             redirect_to new_design_path

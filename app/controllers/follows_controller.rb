@@ -116,7 +116,7 @@ class FollowsController < ApplicationController
     if params[:name].blank?
       @users = []
     else
-      @users = User.where("name LIKE ? and id != ?","#{params[:name].capitalize}%",current_user.id)
+      @users = User.paginate(page: params[:page],per_page: 7).where("name LIKE ? and id != ?","#{params[:name].capitalize}%",current_user.id)
     end 
   end
 end

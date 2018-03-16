@@ -9,10 +9,12 @@
 <% end %>
 <div class = "well">
    <%= form_for @design, html: { multipart: true } do |f| %>
+   <div class="form-group">
       <%= f.label :Image %>
       <%= f.file_field :image %>
       <%= f.label :Description %>
       <%= f.text_area :description %>
+    </div>
       <div>
         <% @cat.each do |cat| %>
           <div>

@@ -19,9 +19,13 @@
             <!-- Page wrapper --> 
             <div class="page-wrapper top-margin" >
               <%= render 'layouts/topnavigation' %>
-              <div id="flash">  
-              </div>           
-            <!-- Main view  -->
+              <% flash.each do |key, value| %>
+              <% if value != nil %>
+              <div class="alert alert-<%= key %>"><%= value %></div><% end%>
+              <% end %>   
+              <div id="flashjs" >
+              </div>
+              <!-- Main view  -->
             <%= yield %>
         </div>
         </div>

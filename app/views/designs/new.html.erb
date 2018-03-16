@@ -1,12 +1,4 @@
-<% if !@design.errors.empty? %>
-   <div class = "alert alert-error">  
-      <ul>
-         <% @design.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-         <% end %>
-      </ul>   
-   </div>
-<% end %>
+
 <div class = "well">
    <%= form_for @design, html: { multipart: true } do |f| %>
       <%= f.label :Image %>

@@ -44,6 +44,7 @@ class HomeController < ApplicationController
 				end		 	
 			end
 			flash[:success] = "You have shared this design to #{count} user"
+		
 		else
 			flash[:danger] = "Please select users to share this design"
 		end

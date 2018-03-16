@@ -103,12 +103,12 @@ class FollowsController < ApplicationController
   #followers details
   def followers
     followerscount = FollowingList.joins(:to).where(to_id: current_user.id,follow_status: "accepted").map(&:from_id)
-    @follower = User.where(id: followerscount, activation: true)
+    @follower = User.paginate(page: params[:page],per_page: 7).where(id: followerscount, activation: true)
   end
   #followings details
   def followings
     followingscount = FollowingList.joins(:to).where(from_id: current_user.id,follow_status: "accepted").map(&:to_id)
-    @following = User.where(id: followingscount, activation: true)
+    @following = User.paginate(page: params[:page],per_page: 7).where(id: followingscount, activation: true)
   end
 	
   def search

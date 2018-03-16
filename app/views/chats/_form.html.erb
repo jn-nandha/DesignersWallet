@@ -2,6 +2,6 @@
 	<%= text_area_tag "chat[body]", nil , style: "width:70%" %>
 	<%= hidden_field_tag "chat[receiver_id]", @all_users.first.id %>
 	<%= hidden_field_tag "chat[designs_id]" %>
-	<%= link_to "Attach Design", chats_design_path, remote: true %>
-	<%= submit_tag "Send" %>
+	<%= link_to "Attach Design", chats_design_path, remote: true , class: "btn btn-default" %>
+	<%= submit_tag "Send",class: "btn btn-default" %>
 <% end %>

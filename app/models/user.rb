@@ -1,3 +1,4 @@
+#desfine the relation of User model  to other model
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -8,5 +9,5 @@ class User < ApplicationRecord
   has_many :chats
   has_many :feedbacks
   has_many :followinglists
-  belongs_to :city 
+  belongs_to :city
 end

@@ -41,6 +41,11 @@
                                 <button class="btn btn-success " type="button"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">Upload</span></button>
                             <% end %>
                         </div>
+                        <div class="pull-right">
+                            <%= link_to favourite_images_path, method: "get" ,:class =>"ibox-tools" do %>
+                                <button class="btn btn-success " type="button"><i class="fa fa-bookmark"></i>&nbsp;&nbsp;<span class="bold">Favourite</span></button>
+                            <% end %>
+                        </div>
                 </div>
 
                 <div class="ibox-content">

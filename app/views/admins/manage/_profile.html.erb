@@ -1,0 +1,24 @@
+<div>
+<table class="table-bordered table <%= @user.activation == true ? 'success' : 'danger' %>">
+<tr>
+	<th>User name:</th>
+	<td> <%= @user.name %> </td><br>
+</tr>
+<tr>
+	<th>Email:</th>
+	 <td> <%= @user.email %> </td><br>
+</tr>
+<tr>
+<th>Status:</th>
+<td> <%= @user.activation %> </td><br>
+</tr>
+<tr>
+	<th>User City:</th>
+	<td> <%= @user.city.city_name %> </td><br>
+</tr>
+<tr>
+ <th>User Create-Date:</th>
+<td> <%= @user.created_at.strftime('%C-%m-%Y') %> </td><br>
+</tr>
+</table>
+</div>

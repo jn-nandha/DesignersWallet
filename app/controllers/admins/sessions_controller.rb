@@ -13,10 +13,12 @@ class Admins::SessionsController < Devise::SessionsController
   #   super
   # end
 
+
   def after_sign_in_path_for(resource)
-   # flash[:notice] = "WEL-COME......#{@admin.email}"
-   manage_path
- end
+  #flash[:notice] = "WEL-COME......#{@admin.email}"
+  #binding.pry
+  manage_path
+end
 
   def destroy
     super

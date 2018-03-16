@@ -1,7 +1,8 @@
 class CreateFollowingLists < ActiveRecord::Migration[5.1]
   def change
     create_table :following_lists do |t|
-      t.string :follow
+
+      t.integer :follow_status
       t.boolean :block
       t.references :to
       t.references :from
@@ -9,3 +10,4 @@ class CreateFollowingLists < ActiveRecord::Migration[5.1]
     end
   end
 end
+

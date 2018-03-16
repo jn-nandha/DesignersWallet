@@ -1,0 +1,37 @@
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+ -->
+
+ <table class="table purple-bg">
+    <thead>
+      <tr class="tr_heading" >
+        <th>User name</th>
+        <th>City</th>
+        <th>Email</th>
+        <th>Created-at</th>
+        <th>Status</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |u| %>
+        <tr class="<%= u.activation == true ? 'success' : 'danger' %>">
+        <td><%= u.name %></td>
+        <td><%= u.city_id %> </td>
+        <td><%= u.email %></td>
+        <td><%= u.created_at.strftime('%C-%m-%Y') %></td>
+        <td>
+         <% if u.activation == true %>
+  <%= link_to '<button  class="btn demoa btn-success btn-outline">UnBlocked</button>'.html_safe , update_activation_path, remote: true  %> 
+  <% else %>
+  <%= link_to '<button  class="btn demoa btn-danger btn-outline">Blocked</button>'.html_safe , update_activation_path, remote: true %> 
+  <% end %> 
+  </td>
+        
+      </tr> 
+      <% end %>
+   
+    </tbody>
+  </table>

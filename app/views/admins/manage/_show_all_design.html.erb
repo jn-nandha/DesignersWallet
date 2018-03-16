@@ -1,0 +1,13 @@
+<table class = "table table-bordered table-striped">
+   <tbody>
+      <% @designs.each do |design| %>
+         
+         <tr id = 'tr<%=design.id%>' >
+         <td><%= link_to(image_tag("#{design.image_url}", size: "100x100"), home_path({design_id: design}))%></td>
+         <td><%= design.description %></td>
+          <td><%= button_to "Delete image",designs_del_design_path({design_id: design}),remote:true , method: "delete" ,id: "btn#{design.id}" %>
+         </td>
+         </tr>
+      <% end %>
+   </tbody>
+</table>

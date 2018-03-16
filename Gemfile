@@ -4,14 +4,17 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
-
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 gem 'pry'  
 gem "pundit"
 gem 'carrierwave', '~> 1.0'
 gem 'bootstrap-sass'
-gem 'devise',           '~> 4.2'
+gem 'devise'  
 gem 'devise_invitable', '~> 1.7.0'
+gem 'jquery-ui-rails'
+gem 'jquery-rails'
+gem 'font-awesome-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
@@ -45,6 +48,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rails-erd'
 end
 
 group :development do

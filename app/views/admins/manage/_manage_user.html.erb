@@ -1,0 +1,34 @@
+ <table class="table purple-bg">
+    <thead>
+      <tr class="tr_heading">
+    <th>USER_NAME</th>
+    <th>ACTION</th>
+    <th>USER_STATUS</th>
+  </tr>
+   </thead>
+    <tbody>
+  <% @user.each do |a| %><tr>
+   <tr class="<%= a.activation == true ? 'success' : 'danger' %>"> 
+   <td><%= link_to a.name, profile_path(id: a.id), remote: true  %><br>
+    </td>
+  <td>
+    <%= link_to  "DELETE " , delete_path(id: a.id),data: {confirm: "Are you sure?"} %>|
+
+    <%= link_to  "UPDATE " , edit_user_registration_path(id: a.id) %><br>
+  </td>
+  <td>
+  <% if a.activation == true %>
+  <%= link_to '<button  class="btn demoa btn-success btn-outline">UnBlocked</button>'.html_safe %> 
+  <% else %>
+  <%= link_to '<button  class="btn demoa btn-danger btn-outline">Blocked</button>'.html_safe  %> 
+  <% end %> 
+  <br></td>
+</tr>
+<% end %>
+ <tbody>
+</table>
+
+
+<%= will_paginate @user , renderer: BootstrapPagination::Rails %>
+
+

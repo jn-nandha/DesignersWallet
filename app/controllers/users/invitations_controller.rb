@@ -1,7 +1,7 @@
 class Users::InvitationsController < DeviseController
  # prepend_before_action :authenticate_inviter!, :only => [:new, :create]
   #prepend_before_action :has_invitations_left?, :only => [:create]
-  #prepend_before_action :require_no_authentication, :only => [:edit, :update, :destroy]
+  prepend_before_action :require_no_authentication, :only => [:edit, :update, :destroy]
   prepend_before_action :resource_from_invitation_token, :only => [:edit, :destroy]
   before_action :authenticate_admin!, except: :create
 #  before_action :configure_permitted_parameters, if: :devise_controller?
@@ -16,7 +16,7 @@ class Users::InvitationsController < DeviseController
   # GET /resource/invitation/new
   def new
     #self.resource = resource_class.new
-    self.resource = User.new
+    @user = self.resource = User.new
     render :new
   end
 
@@ -119,11 +119,11 @@ def invite_params
 
  def update_resource_params
    # binding.pry
-   ctnm = params[:user][:city_id]
-    ct = City.select(:id).where(city_name: ctnm.upcase) 
-    params[:user][:city_id] = ct[0].id
-    devise_parameter_sanitizer.sanitize.permit(:accept_invitation)
-    binding.pry
+   #  ctnm = params[:user][:city_id]
+   #  ct = City.select(:id).where(city_name: ctnm.upcase) 
+   #  params[:user][:city_id] = ct[0].id
+    devise_parameter_sanitizer.permit(:accept_invitation,keys: [:city_id])
+    
    #devise_parameter_sanitizer.sanitize.permit(:accept_invitation, keys: [:name, :password,:city_id])
   end
 

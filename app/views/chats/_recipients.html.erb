@@ -1,0 +1,28 @@
+<div id="searchusers">
+
+</div>
+<div id="notifiedusers" style="font-weight: bolder;">
+	<% if notifiedusers.count > 0 %> <h5>Notified Users</h5> <% end %>
+	<% notifiedusers.each do |user| %>
+	
+	<%= link_to personal_msg_path(user), remote: true do %>
+	<div class="person">
+		<%= user.name%>
+	</div>	
+	<% end %>
+
+	<% end %>	
+</div>
+<div id="followedusers">
+	<% if followedusers.count > 0 %> <strong> Followed Users </strong> <% end %>
+	<% followedusers.each do |user| %>
+
+	<%= link_to personal_msg_path(user), remote: true do %>
+	<div class="person">
+		<%= user.name%>
+	</div>	
+	<% end %>
+
+
+	<% end %>
+</div>

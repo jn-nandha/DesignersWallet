@@ -4,8 +4,6 @@ class UserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-<<<<<<< HEAD
-=======
 
   should have_many(:assignments)
   should have_many(:roles).through(:assignments)
@@ -17,5 +15,5 @@ class UserTest < ActiveSupport::TestCase
  
   assert(@subject.role? :admin)
 end
->>>>>>> f76ffd52b579afa948ebecdf93edaa51ee39b8f5
+
 end

@@ -53,15 +53,21 @@ ActiveRecord::Schema.define(version: 20180301063333) do
   end
 
   create_table "chats", force: :cascade do |t|
-    t.text "message"
-    t.boolean "sender_status"
-    t.boolean "receiver_status"
     t.bigint "sender_id"
     t.bigint "receiver_id"
+    t.integer "message_status"
+    t.integer "message_type"
+    t.text "body"
+    t.text "designs_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["receiver_id"], name: "index_chats_on_receiver_id"
     t.index ["sender_id"], name: "index_chats_on_sender_id"
+  end
+
+  create_table "chats_designs", id: false, force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.bigint "design_id", null: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -100,7 +106,7 @@ ActiveRecord::Schema.define(version: 20180301063333) do
   end
 
   create_table "following_lists", force: :cascade do |t|
-    t.string "follow"
+    t.integer "follow_status"
     t.boolean "block"
     t.bigint "to_id"
     t.bigint "from_id"

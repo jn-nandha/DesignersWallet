@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-lg-12">
+		<div class="ibox float-e-margins">
+			<div class="ibox-content">
+				<div class="carousel-inner">
+					<div class="item gallery active">
+						<% @designs.each do |design| %>
+						<div class= 'col-sm-4 img-responsive'>
+							<%= link_to(image_tag("#{design.image_url}", size: "250x250"), home_path({design_id: design})) %>
+						</div>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

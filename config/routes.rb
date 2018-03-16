@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :designs, only: [:index,:new,:create]
 
       get 'designs/show_uploaded_design'
+      get 'designs/favourites', to: 'favourites#fav_images', as: 'favourite_images'
       delete 'designs/del_design'
       post 'favourites/change_fav'
       

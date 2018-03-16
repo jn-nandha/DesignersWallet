@@ -4,12 +4,17 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 
 <script>
-	$( function() {
-		var user = <%= allusers.pluck(:name).inspect.html_safe %>
-		$( "#follow_search" ).autocomplete({
-			source: user
+	$(document).ready(function(){
+		alert();
+		$('#follow_search').on('keyup', function(e){
+			FollowCaller.init()
+
+			var user = <%= allusers.pluck(:name).inspect.html_safe %>
+			$( "#follow_search" ).autocomplete({
+				source: user
+			});
 		});
-	} );
+	});
 </script>
 
 <%= text_field_tag "follow[search]" , nil,style: "width:100%"%>

@@ -1,10 +1,10 @@
-$(document).ready(function(){
+var FollowCaller = {
+    init: function(){
 
-	$('#follow_search').on('keyup', function(e){
-		if (e.keyCode == 13)
-		{
-		  $.ajax({
-                alert("hi");
+        if (e.keyCode == 13)
+        {
+          $.ajax({
+            alert("hi");
             type: 'get',
             url: 'follows/search',
             dataType: 'script',
@@ -14,7 +14,7 @@ $(document).ready(function(){
             success:function (msg) {
                 console.log(msg);   
             }
-    });
-		}
-	});
-});
+        });
+      }
+  });
+}

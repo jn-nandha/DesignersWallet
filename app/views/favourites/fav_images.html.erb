@@ -5,7 +5,7 @@
 				<div class="carousel-inner">
 					<div class="item gallery active">
 						<% @designs.each do |design| %>
-						<div class= 'col-sm-4 img-responsive'>
+						<div class= 'col-sm-4 img-responsive' id= "did<%=design.id%>" >
 							<%= link_to(image_tag("#{design.image_url}", size: "250x250"), home_path({design_id: design})) %>
 						</div>
 						<% end %>

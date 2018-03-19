@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       get 'user_profile',to: 'profile#user_profile'
       get 'chats', to: 'chats#index'
       get 'chats/:id/msg', to: 'chats#msg', as: "personal_msg"
-      post 'chats/send_msg', to: 'chats#send_msg', as: "send_msg"
+      post 'chats/send_message', to: 'chats#send_message', as: "send_msg"
       get  'chats/search', to: 'chats#search'
       get 'chats/design', to: 'chats#design'
       post 'feedbacks/like'

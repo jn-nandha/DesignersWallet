@@ -120,4 +120,3 @@ class FollowsController < ApplicationController
     end 
   end
 end
-

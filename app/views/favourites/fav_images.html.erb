@@ -7,6 +7,7 @@
 						<% @designs.each do |design| %>
 						<div class= 'col-sm-4 img-responsive' id= "did<%=design.id%>" >
 							<%= link_to(image_tag("#{design.image_url}", size: "250x250"), home_path({design_id: design})) %>
+							<%= button_to "Remove", favourites_change_fav_path(design_id: design), remote: true , method: "post" , id: "btn#{design.id}",class: "btn btn-w-m btn-default" %>
 						</div>
 						<% end %>
 					</div>

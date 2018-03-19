@@ -1,4 +1,5 @@
 $('#designs').html("<%= j render partial: 'chats/design', locals: { designs: @designs} %>");
+
 $(".select_img").on('click', function() {
 
 	if ($(this).attr('tag_check') == "false") {

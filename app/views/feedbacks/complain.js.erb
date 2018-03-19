@@ -1,4 +1,4 @@
 $("#reportarea").val('');
 $('#complain').html("<%= j(render partial: 'home/usercomplain' , locals: { complain: @complain }) %>");
-alert("your complain successfully registered.");
-$('#cls').click();
+$('#cls2').click();
+$('#flashjs').html('<%= j render "layouts/flashpage" %>');

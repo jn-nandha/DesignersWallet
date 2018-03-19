@@ -1,5 +1,6 @@
 class FavouritesController < ApplicationController
 
+
 	def change_fav
 		@did = params[:design_id]
 		if current_user.activation
@@ -14,9 +15,16 @@ class FavouritesController < ApplicationController
 				favourite.destroy
 			end
 		end
-
-		
 	end
 
+	def fav_images
+		@designs = fav_designs
+	end
+
+	private
+	def fav_designs
+		d = Favourite.where(user_id: current_user.id).pluck(:design_id)
+		return Design.where(id: d)
+	end
 
 end

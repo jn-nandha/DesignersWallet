@@ -1,3 +1,4 @@
+#desfine the relation of User model  to other model
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -55,5 +56,5 @@ class User < ApplicationRecord
   def followings
     User.where(id: FollowingList.where(to_id: self.id).accepted.pluck(:from_id))
   end  
-
+  
 end

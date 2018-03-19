@@ -1,16 +1,20 @@
-<h2>Followers</h2> 
-<%= will_paginate @follower%>
+<div class="container" >
+<h2 class="font-bold">Followers</h2> 
 <% if @follower.count != 0 %>
- 	<% @follower.each do |f|%>
-	 	<div class="ibox float-e-margins"> 
-			<div class="ibox-content">
-	    	<%= link_to user_profile_path(id: f.id) do %>
-	    		<%= f.name %><br />
-	   		<% end %>
-	   		</div>
-		</div>
-	<% end %>
+  <% @follower.each do |f|%>
+    <div class="ibox float-e-margins"> 
+      <div class="ibox-content">
+        <%= link_to user_profile_path(id: f.id) do %>
+          <%= f.name %><br />
+        <% end %>
+        </div>
+    </div>
+  <% end %>
 <% else %>
-	<h3>NO Followers</h3>
+  <div class="ibox float-e-margins"> 
+    <div class="ibox-content">
+      <h3>NO Followers</h3>
+      </div></div>
 <% end %>
 <%= will_paginate @follower%>
+</div>

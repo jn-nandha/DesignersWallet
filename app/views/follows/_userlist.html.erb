@@ -1,5 +1,6 @@
 <%= will_paginate users%>
 <% users.each do |u| %>
+
 	<div class="ibox float-e-margins container">
 		<div class="ibox-content">
 			<%= link_to user_profile_path(id: u.id) do %>
@@ -16,10 +17,8 @@
 		</div>
 	</div>
 <% end %>
+
 <%= will_paginate users%>
-
-
-
 
 
 

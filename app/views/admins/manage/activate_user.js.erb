@@ -1,1 +1,9 @@
 $('#right_div').html(" <%= j render partial: 'admins/manage/activate_user', locals: { actv: @users} %>");
+
+jQuery('#right_div').html,(" 'admins/manage/activate_user' )");
+$('.pagination a').attr('data-remote', 'true');
+
+if($('#btn<%=@uid%>').val() == 'UnBlocked')
+	  $("#btn<%=@uid%>").attr('value','Blocked');
+else
+  	  $("#btn<%=@uid%>").attr('value','UnBlocked');

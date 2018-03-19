@@ -1,5 +1,6 @@
-.unblocked{
-	background-color: #53F77F;
+.demob{
+	margin-top: 100px !important;
+	margin-bottom: 100px;
 }
 .blocked{
 	background-color: #FB9696;
@@ -15,15 +16,10 @@ max-width: 200px;
 text-align: center;
 border-radius: $btn-border-radius 20px;
 }
+
 .demoa{
-min-width: 100px;
-max-width: 100px;
-text-align: center;
-border-radius: $btn-border-radius 20px;
-}
-.demoa{
-min-width: 120px;
-max-width: 120px;
+min-width: 150px;
+
 text-align: center;
 border-radius: $btn-border-radius 20px;
 }

@@ -1,24 +1,25 @@
 <div>
-<table class="table-bordered table <%= @user.activation == true ? 'success' : 'danger' %>">
-<tr>
-	<th>User name:</th>
-	<td> <%= @user.name %> </td><br>
-</tr>
-<tr>
-	<th>Email:</th>
-	 <td> <%= @user.email %> </td><br>
-</tr>
-<tr>
-<th>Status:</th>
-<td> <%= @user.activation %> </td><br>
-</tr>
-<tr>
-	<th>User City:</th>
-	<td> <%= @user.city.city_name %> </td><br>
-</tr>
-<tr>
- <th>User Create-Date:</th>
-<td> <%= @user.created_at.strftime('%C-%m-%Y') %> </td><br>
-</tr>
-</table>
+	<table class="table-bordered table ">
+		<tr class="success">
+			<th>User name:</th>
+			<td> <%= @user.name %> </td><br>
+		</tr>
+		<tr class="success">
+			<th>Email:</th>
+			<td> <%= @user.email %> </td><br>
+		</tr>
+		<tr class="success">
+			<th>Status:</th>
+			<td> <%= @user.activation == true ? 'UnBlock' : 'Block' %> </td><br>
+			
+		</tr>
+		<tr class="success">
+			<th>User City:</th>
+			<td> <%= @user.city.city_name %> </td><br>
+		</tr>
+		<tr class="success">
+			<th>User Create-Date:</th>
+			<td> <%= @user.created_at.strftime('%C-%m-%Y') %> </td><br>
+		</tr>
+	</table>
 </div>

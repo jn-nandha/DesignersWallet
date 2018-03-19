@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
   root 'home#dashboard'
 
   devise_for :users,path: 'users',:controllers => { 
@@ -63,10 +63,10 @@ Rails.application.routes.draw do
     get         '/update_user',      to: 'users/registrations#edit'
     post        '/update_user',      to:  'users/registrations#edit'
     get     'manage/activate_user', to: 'manage#activate_user' 
-    get     '/update_activation', to: 'manage#update_activation' 
-    post     '/update_activation', to: 'manage#update_activation'
-    get     '/search', to: 'manage#search'
-    post     '/search', to: 'manage#search'
+    get     '/update_activation', to: 'admins/manage#update_activation' 
+    post     '/update_activation', to: 'admins/manage#update_activation'
+    get     '/search', to: 'admins/manage#search'
+    post     '/search', to: 'admins/manage#search'
     #delete '/users' to: 'users/registrations#destroy'
   end
  # namespace :admin do

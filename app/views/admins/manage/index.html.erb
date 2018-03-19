@@ -1,41 +1,55 @@
 <div class="col-sm-3 purple-bg" align="center">
+	<% if admin_signed_in? %>
+		<b class="tr_heading ">Admin Pannel</b><br><br>
+			<div class="row">
+				<%= form_tag(search_path, :method => "get", id: "search-form", remote: true) do %>
+				<%= text_field_tag :search, params[:search], placeholder: "Search User By name" %><br><br>
 
-
-<% if admin_signed_in? %>
-	<b class="tr_heading ">Admin Pannel</b><br><br>
-<%= form_tag search_path, :method => 'get' do %>
- <%= text_field_tag :search, params[:search], placeholder: "Search User" %> 
- <br> <br>
- <%= submit_tag  "Search" %> 
- <% end %>
+				<%= submit_tag "Search" %>
+	<% end %>	
+			</div>
 
 	<br><br>
 	
-	<% if @users.blank? %>
+<% if @users.blank? %>
 	<h4>There are no Users You want to search..!! <%= params[:search] %>.</h4>
-	<% end %>
+<% end %>
 	<button class="btn btn-primary demo">
-	<%= link_to "Add-New-User" , new_user_invitation_path,remote: true %></button><br><br><br>
+		<%= link_to "Add-New-User" , new_user_invitation_path,remote: true %>
+	</button>
+	<br><br><br>
+	
 	<button class="btn btn-primary demo">
-	<%= link_to "manage user" , manage_user_path,remote: true %></button><br><br><br>
+		<%= link_to "manage user" , manage_user_path,remote: true %>
+	</button>
+	<br><br><br>
+		
 	<button class="btn btn-primary demo">
-	<%= link_to  "ALL USER DESIGN", show_all_design_path, remote: true %></button><br><br><br>
+		<%= link_to  "ALL USER DESIGN", show_all_design_path, remote: true %>
+	</button>
+	<br><br><br>
+	
 	<button class="btn btn-primary demo">
-	<%= link_to  "BLOCKED/UNBLOCK LIST", activate_user_path, remote: true %></button><br><br><br>
+		<%= link_to  "BLOCKED/UNBLOCK LIST", activate_user_path, remote: true %>
+	</button>
+	<br><br><br>
+		
 	<button class="btn btn-primary demo">
-	<%= link_to "REPORT"  %></button><br><br><br>
+		<%= link_to "REPORT"  %>
+	</button>
+	<br><br><br>
+	
 	<button class="btn btn-primary demo">
-	<%= link_to "Log Out", destroy_admin_session_path %></button>
-
+		<%= link_to "Log Out", destroy_admin_session_path %>
+	</button>
 	<br><br><br><br><br><br><br><br>
+
 	<% end %>
-	</div>
-
-
-	<div id="right_div" class="col-sm-9">
-	<!--  <%= j render partial: 'admins/manage/show_all_design', locals: { actv: @designs,remote: true } %> -->
-
-	</div>
+						
+</div>
+<div id="right_div" class="col-sm-9">
+	<%#= render "admins/manage/manage_user" %>
+</div>
 
 
 

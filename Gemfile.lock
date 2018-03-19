@@ -245,6 +245,7 @@ DEPENDENCIES
   pundit
   rails (~> 5.1.4)
   rails-erd
+  responders
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

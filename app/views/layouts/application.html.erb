@@ -19,7 +19,11 @@
         <div class="wrapper wrapper-content gray-bg">        
             <!-- Page wrapper --> 
             <div class="top-margin">
+            <% if user_signed_in? %>
               <%= render 'layouts/topnavigation' %>
+              <% else %>
+              <%= render 'layouts/admintopnavigation' %>
+              <% end %>
             <% if notice %>
               <%= notice %>
             <% end %>

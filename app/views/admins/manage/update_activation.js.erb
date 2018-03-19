@@ -1,1 +1,4 @@
-$('#right_div').html(" <%= j render partial: 'admins/manage/update_activation', locals: { actv: @status} %>");
+if($('#btn<%=@uid%>').val() == 'UnBlocked')
+ 	$("#btn<%=@uid%>").attr('value','Blocked');
+ else
+ 	  $("#btn<%=@uid%>").attr('value','UnBlocked');

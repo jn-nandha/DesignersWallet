@@ -17,14 +17,17 @@
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to follows_path do%>
+                <%= link_to follows_path ,class: "count-info" do%>
                 <i class="fa fa-child"></i>
+                    <% if @noti_count_follow > 0 %>
+                        <span class="label label-warning"><%=@noti_count_follow%></span>
+                    <% end %>
                 <% end %>
             </li>
         </ul>       
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to  profile_blockeduser_path do %>
+                <%= link_to  profile_blockeduser_list_path do %>
                 <i class="fa fa-sign-out"></i><span>Blocked Users</span>
                 <% end %> 
             </li>
@@ -41,17 +44,7 @@
         </ul> 
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to responds_path ,class: "count-info" do%>
-                <i class="fa fa-user"></i>
-                    <% if @noti_count_follow > 0 %>
-                        <span class="label label-warning"><%=@noti_count_follow%></span>
-                    <% end %>
-                <% end %>
-            </li>
-        </ul>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <%= link_to profile_show_path do %>
+                <%= link_to user_profile_path(id: current_user.id) do %>
                 <i class="fa fa-user-circle"></i><span>Profile</span>
                 <% end %> 
             </li>

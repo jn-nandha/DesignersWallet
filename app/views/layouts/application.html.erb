@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Designer's wallet</title>
-    <!-- Main css styles -->
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <!-- Main Java Script -->
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Designer's wallet</title>
+  <!-- Main css styles -->
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <!-- Main Java Script -->
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
 </head>
 <body>
 	<!-- Wrapper-->
-    <div id="wrapper">
-        <!-- Page wraper -->
-        <div class="wrapper wrapper-content gray-bg">        
-            <!-- Page wrapper --> 
-            <div class="page-wrapper top-margin" >
-              <%= render 'layouts/topnavigation' %>
-              <div id="flash">  
-              </div>           
-            <!-- Main view  -->
-            <%= yield %>
+
+  <div id="wrapper">
+    <!-- Page wraper -->
+    <div class="wrapper wrapper-content gray-bg">        
+      <!-- Page wrapper --> 
+      <div class="page-wrapper top-margin" >
+        <%= render 'layouts/topnavigation' %>
+        <% flash.each do |key, value| %>
+        <% if value != nil %>
+        <div class="alert alert-<%= key %>"><%= value %></div><% end%>
+        <% end %>
+        <div id="flashjs">
         </div>
-        </div>
-        <!-- End page wrapper-->
+        <!-- Main view  -->
+        <%= yield %>
+      </div>
     </div>
-    <!-- End wrapper-->
+    <!-- End page wrapper-->
+  </div>
+  <!-- End wrapper-->
 </body>
 </html>

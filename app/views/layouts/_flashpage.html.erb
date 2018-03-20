@@ -1,4 +1,6 @@
-<% flash.each do |key, value| %>
+<% if @flash_js != nil %>
+<% @flash_js.each do |key, value| %>
 <% if value != nil %>
 <div class="alert alert-<%= key %>"><%= value %></div><% end%>
+<% end %>
 <% end %>

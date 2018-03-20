@@ -1,20 +1,5 @@
 class ProfileController < ApplicationController
-  # shows the user profile
-  def show
-    @total_follower = FollowingList.joins(:to)
-                                   .where(to_id: current_user.id).accepted
-                                   .map(&:from_id).count
-    # count the numbers of followings
-    @total_following = FollowingList.joins(:to)
-                                    .where(from_id: current_user.id).accepted
-                                    .map(&:to_id).count
-
-    # current user uploaded design
-    @designs = Design.where(user_id: current_user.id)
-    @user = current_user
-  end
-
-  # other user profile
+  # show user profile
   def user_profile
     @user = User.find(params[:id])
     @designs = @user.designs
@@ -23,8 +8,7 @@ class ProfileController < ApplicationController
   end
 
   # blocked user list
-  def blockeduser
-    a = FollowingList.joins(:to).where(from_id: current_user.id).blocked.map(&:to_id)
-    @blockedusers = User.where(id: a, activation: true)
+  def blockeduser_list
+    @blockedusers = current_user.blocked_by_me
   end
 end

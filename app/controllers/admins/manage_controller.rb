@@ -3,20 +3,21 @@ class Admins::ManageController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @users = User.all.paginate(:page => params[:page], :per_page => 4)
+   @users = User.all.paginate(:page => params[:page], :per_page => 5)
    # @designs =Design.find(params[:id]).paginate(:page => params[:page], :per_page => 3)
   end
 
-  def self.search(search)
-      if params[:search]
-             @search = User.search(params[:search]).order("created_at DESC")
-      else
-             @search = User.all.order('created_at DESC')
-      end
-        where("name LIKE ?", "%#{search}%") 
+  def search
+   if params[:search].blank?
+      @users = []
+   else
+      @users = User.where("name LIKE ?","#{params[:search]}%")
+      respond_to do |format|
+      format.js
+      format.html
+    end
+  end
 
-       User.where(["name LIKE ?","%#{params[:search]}%"])
-     # where("content LIKE ?", "%#{search}%")
   end
 
   def manage_user
@@ -39,8 +40,8 @@ class Admins::ManageController < ApplicationController
   end
 
   def profile
-    @user = User.find(params[:id])
-    @designs =Design.find(params[:id])
+       @users = User.find(params[:id])
+       #.paginate(:page => params[:page], :per_page => 4).order('created_at DESC')
   end
 
   def edit
@@ -76,7 +77,7 @@ class Admins::ManageController < ApplicationController
   def show_all_design
     @designs = Design.all.paginate(:page => params[:page], :per_page => 4)
   end
-
+  
   def update_activation
     @uid = params[:id]
        @status = User.find(params[:id])

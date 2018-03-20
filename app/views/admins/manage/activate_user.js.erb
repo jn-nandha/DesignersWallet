@@ -4,6 +4,14 @@ jQuery('#right_div').html,(" 'admins/manage/activate_user' )");
 $('.pagination a').attr('data-remote', 'true');
 
 if($('#btn<%=@uid%>').val() == 'UnBlocked')
-	  $("#btn<%=@uid%>").attr('value','Blocked');
+{
+	$("#btn<%=@uid%>").attr('value','Blocked');
+	$("#tr<%=@uid%>").attr("class","success");
+
+}
 else
-  	  $("#btn<%=@uid%>").attr('value','UnBlocked');
+{
+	$("#btn<%=@uid%>").attr('value','UnBlocked');
+	$("#tr<%=@uid%>").attr("class","danger");
+
+}

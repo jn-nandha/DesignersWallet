@@ -11,20 +11,27 @@
   
   <tbody>
     <% @users.each do |u| %>
-      <tr class="<%= u.activation == true ? 'success' : 'danger' %>">
-        <td><%= u.name %></td>
-        <td><%= u.city.city_name %> </td>
-        <td><%= u.email %></td>
-        <td><%= u.created_at.strftime('%C-%m-%Y') %></td>
-        <td>
-            <% if u.activation == true %>
-                <%= button_to "UnBlocked", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-success btn-outline" %>
-            <% else %>
-                <%= button_to "Blocked", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-danger  btn-outline" %>
-        </td>
-        <br>
-            <% end %> 
-      </tr> 
+    <% if u.activation == true %>
+    <tr id="tr<%=u.id%>" class="success">
+      <td><%= u.name %></td>
+      <td><%= u.city.city_name %> </td>
+      <td><%= u.email %></td>
+      <td><%= u.created_at.strftime('%C-%m-%Y') %></td>
+      <td>
+        <%= button_to "Blocked", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-success btn-outline" %>         
+      </td>
+    </tr> 
+    <% else %>
+    <tr id="tr<%=u.id%>" class="danger">
+      <td><%= u.name %></td>
+      <td><%= u.city.city_name %> </td>
+      <td><%= u.email %></td>
+      <td><%= u.created_at.strftime('%C-%m-%Y') %></td>
+      <td>
+        <%= button_to "UnBlocked", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-danger  btn-outline" %>
+      </td>         
+    </tr>
+    <% end %> 
     <% end %>
   </tbody>
 </table>

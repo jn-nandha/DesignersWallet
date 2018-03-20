@@ -12,7 +12,7 @@ class User < ApplicationRecord
   belongs_to :city 
 
 
-  def self.inactive_id_list
+  def self.inactive_users
     User.where(activation: "false").pluck(:id)
   end
 
@@ -45,16 +45,16 @@ class User < ApplicationRecord
     User.where(id: FollowingList.blocked.where(to_id: self.id).pluck(:from_id))
   end
 
-  def blocked_ids
-    (self.blocked_to.pluck(:id) + self.blocked_by.pluck(:id)).uniq
+  def blocked_users
+    (self.blocked_to + self.blocked_by).uniq
   end
 
   def followers
-    User.where(id: FollowingList.where(from_id: self.id).accepted.pluck(:to_id))
+    User.where(id: FollowingList.where(to_id: self.id).accepted.pluck(:from_id))
   end
 
   def followings
-    User.where(id: FollowingList.where(to_id: self.id).accepted.pluck(:from_id))
+    User.where(id: FollowingList.where(from_id: self.id).accepted.pluck(:to_id))
   end  
   
 end

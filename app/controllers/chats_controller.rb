@@ -33,7 +33,7 @@ class ChatsController < ApplicationController
       new_chat_params.merge!({message_type: "text"})
     end
     chat = Chat.new(new_chat_params)
-    if (current_user.blocked_ids.exclude?(params[:chat][:receiver_id])) && (params[:chat][:body] != "" || params[:chat][:designs_id] != "")
+    if (current_user.blocked_users.pluck(:id).exclude?(params[:chat][:receiver_id])) && (params[:chat][:body] != "" || params[:chat][:designs_id] != "")
       chat.save!
     end
     @msgs = @user.messages_with(current_user)

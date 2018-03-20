@@ -13,12 +13,12 @@ class User < ApplicationRecord
 
 
   def self.inactive_users
-    User.where(activation: "false").pluck(:id)
+    User.where(activation: "false")
   end
 
 
   def search_users(name)
-    User.where("name LIKE ?","%#{name}%") - (User.where(id: self.blocked_ids) + User.where(id: User.inactive_id_list) + [self])
+    User.where("name LIKE ?","%#{name}%") - (User.where(id: self.blocked_users) + User.where(id: User.inactive_users.pluck(:id)) + [self])
   end
 
   def uploaded_designs
@@ -37,16 +37,16 @@ class User < ApplicationRecord
     Chat.where("(sender_id =? and receiver_id= ?) or (sender_id =? and receiver_id=?)", self.id, user.id, user.id, self.id).order('created_at ASC')
   end
 
-  def blocked_to
+  def blocked_by_me
     User.where(id: FollowingList.blocked.where(from_id: self.id).pluck(:to_id))
   end
 
-  def blocked_by
+  def blocked_by_whom
     User.where(id: FollowingList.blocked.where(to_id: self.id).pluck(:from_id))
   end
 
   def blocked_users
-    (self.blocked_to + self.blocked_by).uniq
+    (self.blocked_by_me + self.blocked_by_whom).uniq
   end
 
   def followers
@@ -55,6 +55,19 @@ class User < ApplicationRecord
 
   def followings
     User.where(id: FollowingList.where(from_id: self.id).accepted.pluck(:to_id))
-  end  
+  end
+
+  def all_designs
+    Design.where(user_id: self.search_users("").pluck(:id))
+  end
+
+  def requested_users
+    User.where(id: FollowingList.where(from_id: self.id).requested.pluck(:to_id)) - self.blocked_by_me
+  end
+
+
+  def favourite?(design_id)
+    Favourite.where(user_id: self.id, design_id: design_id).present?
+  end
   
 end

@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   
       post 'follows', to: 'follows#follow_req'
       put 'approved', to: 'follows#approved'
-      delete 'delete', to: 'follows#delete_request'
+      delete 'cancel', to: 'follows#cancel_request'
+      delete 'revert', to: 'follows#revert_request'
       delete 'unfollow' , to: 'follows#unfollow'
       post 'block' , to: 'follows#blockuser'
       get 'follows/search', to: 'follows#search'

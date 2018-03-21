@@ -6,6 +6,8 @@
 			<% end %>
 			<% if @accepted.include?(u)%>
 				<%= link_to 'UnFollow',unfollow_path({to_id: u.id}),remote: true,method: "delete", class: "btn btn-outline btn-default"%>
+			<% elsif current_user.requested_by_me?(u) %>
+				<%= link_to "Revert Request", revert_path({to_id: u.id}),remote: true,method: "delete",class: "btn btn-outline btn-default"%>
 			<% else %>
 				<%= link_to "Follow", follows_path({to_id: u.id}),remote: true,method: "post",class: "btn btn-outline btn-default"%>
 			<% end %>

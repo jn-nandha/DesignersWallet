@@ -28,17 +28,26 @@ class FollowsController < ApplicationController
   end
 
   # cancel the request
-  def delete_request
+  def cancel_request
     @id = params[:from_id]
     cancel_req = FollowingList.find_by('to_id = ? and from_id = ?', current_user.id, params[:from_id])
-    FollowingList.destroy(cancel_req.id)
+    FollowingList.delete(cancel_req.id)
+    fetch_records
+    binding.pry
+  end
+
+  # Revert the request
+  def revert_request
+    @id = params[:to_id]
+    cancel_req = FollowingList.find_by('from_id = ? and to_id = ?', current_user.id, params[:to_id])
+    FollowingList.delete(cancel_req.id)
     fetch_records
   end
 
   # unfollow the block_to_me
   def unfollow
     unfollow_req = FollowingList.find_by('to_id = ? and from_id = ?', params[:to_id], current_user.id)
-    FollowingList.destroy(unfollow_req.id)
+    FollowingList.delete(unfollow_req.id)
     redirect_to follows_path
     fetch_records
   end
@@ -56,6 +65,7 @@ class FollowsController < ApplicationController
     any_user = FollowingList.where(to_id: current_user.id, from_id: params[:id])
                             .or(FollowingList.where(to_id: params[:id], from_id: current_user.id))
     FollowingList.delete(any_user) if any_user.present?
+    @userid = params[:id]
   end
 
   # followers details

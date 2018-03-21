@@ -1,12 +1,12 @@
 <div class="container page-wrapper">
 <h2>Explore Users</h2>
 <div>
-	<%= render partial: 'follows/search', locals: { alluser: @allusers } %>
+	<%= render partial: "follows/search", locals: { alluser: @allusers } %>
 </div>
 <div id= "userrequest">
-	<%= render partial: 'follows/requests', locals: { requests: @requested }%>
+	<%= render partial: "follows/requests", locals: { requests: @requested }%>
 </div>
 <div id = "userlist">
-  <%= render partial: 'follows/userlist', locals: { users: @users } %>
+  <%= render partial: "follows/userlist", locals: { users: @users } %>
 </div>
 </div>

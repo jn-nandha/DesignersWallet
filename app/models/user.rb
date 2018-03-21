@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
 
   def search_users(name)
-    User.where("name LIKE ?","%#{name}%") - (User.where(id: self.blocked_ids) + User.where(id: User.inactive_id_list) + [self])
+    User.where("name LIKE ?","%#{name}%") - (User.where(id: self.blocked_users) + User.where(id: User.inactive_users) + [self])
   end
 
   def uploaded_designs

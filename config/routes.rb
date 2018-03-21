@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       post 'favourites/change_fav'
       
       get 'follows', to: 'follows#index'
-      
+  
       post 'follows', to: 'follows#follow_req'
       put 'approved', to: 'follows#approved'
       delete 'delete', to: 'follows#delete_request'
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       get 'followings',to: 'follows#followings_list'
       get 'followers',to: 'follows#followers_list'
       delete 'follows/unblockuser'
-
+      
       get 'user_profile',to: 'profile#user_profile'
 
       get 'chats', to: 'chats#index'

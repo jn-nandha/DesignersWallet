@@ -5,7 +5,7 @@
 			<h3 class="font-bold"><%= u.name %></h3>
 			<% end %>
 			<% if @accepted.include?(u.id)%>
-				<%= link_to 'UnFollow',unfollow_path({to_id: u.id}),method: "delete", class: "btn btn-outline btn-default"%>
+				<%= link_to 'UnFollow',unfollow_path({to_id: u.id}),remote: true,method: "delete", class: "btn btn-outline btn-default"%>
 			<% else %>
 				<%= link_to "Follow", follows_path({to_id: u.id}),remote: true,method: "post",class: "btn btn-outline btn-default"%>
 			<% end %>

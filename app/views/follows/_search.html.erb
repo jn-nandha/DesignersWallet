@@ -8,7 +8,7 @@
 
 <script>
   $( function() {
-    var user = <%= allusers.pluck(:name).inspect.html_safe %>
+    var user = <%= alluser.pluck(:name).inspect.html_safe %>
     $( "#follow_search" ).autocomplete({
       source: user
     });

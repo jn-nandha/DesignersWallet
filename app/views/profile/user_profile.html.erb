@@ -1,8 +1,8 @@
 <% if @user == current_user %>
     <div class="container">
-       <h1 class="p font-bold">
+       <h3 class="p font-bold">
             <%= @user.name %>
-        </h1>
+        </h3>
         <div class="row">
         <%= link_to followings_path do%>
         <div class="col-md-3">
@@ -61,10 +61,12 @@
             </div>
         </div>
     </div>
-<% else %>                                                 
-   <h1 class="p">
+<% else %>
+<div class="container">                                               
+   <h3 class="p font-bold">
         <%= @user.name %>
-    </h1>
+    </h3>
+    <div class="row">
     <div class="col-md-3">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -87,7 +89,7 @@
                 </div>
             </div>
     </div>
-
+    </div>
     <div class="row ">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
@@ -106,4 +108,5 @@
             </div>
         </div>
     </div>
+</div>
 <% end %>

@@ -1,6 +1,6 @@
 class Design < ApplicationRecord
 
-	has_and_belongs_to_many :categories , dependent: :destroy
+	has_and_belongs_to_many :categories
 	belongs_to :user 
 	has_many :favourites , dependent: :destroy
 	has_many :feedbacks , dependent: :destroy
@@ -16,7 +16,7 @@ class Design < ApplicationRecord
 	end
 
 	def complained_by
-		User.where(id: Feedback.where('design_id = ? and report != ?',self.id,nil).pluck(:user_id))
+		User.where(id: Feedback.where('design_id = ? and report != ?',self.id,"NULL").pluck(:user_id))
 	end
 
 end

@@ -40,6 +40,7 @@ class ChatsController < ApplicationController
   end
 
   def search
+    binding.pry
     if params[:name].blank?
       @search_users = []
     else
@@ -64,10 +65,7 @@ class ChatsController < ApplicationController
 
   def all_recipients
     @all_users = current_user.search_users("")
-    from = Chat.where(sender_id: current_user.id).pluck(:receiver_id).uniq
-    to = Chat.where(receiver_id: current_user.id).pluck(:sender_id).uniq
-    followed = User.where(id: (from + to).uniq).where(activation: "true")
-    @notified_users = Chat.where(receiver_id: current_user.id,message_status: "unread").order('created_at DESC').map(&:sender).uniq
-    @followed_users = (followed - @notified_users).uniq
+    @notified_users = current_user.notified_users
+    @followed_users = (current_user.chated_users - @notified_users).uniq
   end
 end

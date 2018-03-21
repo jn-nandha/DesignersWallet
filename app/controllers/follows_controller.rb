@@ -95,3 +95,4 @@ class FollowsController < ApplicationController
     @users = @allusers - @requested
   end
 end
+

@@ -13,4 +13,4 @@
 //= require peity/jquery.peity.min.js
 //= require slimscroll/jquery.slimscroll.min.js
 //= require inspinia.js
-//= require_tree .
+//= require_tree 

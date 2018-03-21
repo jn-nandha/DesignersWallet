@@ -1,4 +1,4 @@
-#desfine the relation of User model  to other model
+# defines the relation of User model  to other model
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

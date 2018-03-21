@@ -1,3 +1,4 @@
+<div class="middle-box center animated ">
 <% if !@design.errors.empty? %>
    <div class = "alert alert-error">  
       <ul>
@@ -9,10 +10,10 @@
 <% end %>
 <div class = "well">
    <%= form_for @design, html: { multipart: true } do |f| %>
-      <%= f.label :Image %>
+      <h2><%= f.label :Image %></h2>
       <%= f.file_field :image %>
       <%= f.label :Description %>
-      <%= f.text_area :description %>
+      <%= f.text_area :description%>
       <div>
         <% @cat.each do |cat| %>
           <div>
@@ -23,4 +24,5 @@
       </div>
       <%= f.submit "Save", class: "btn btn-primary" %>
    <% end %>
+</div>
 </div>

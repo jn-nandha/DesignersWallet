@@ -1,19 +1,22 @@
 <% users.each do |u| %>
-	<div class="ibox float-e-margins">
-		<p>
-		<div class="ibox-content">
+	<div id="div<%=u.id%>" class="ibox float-e-margins container">
+		<div  class="ibox-content">
 			<%= link_to user_profile_path(id: u.id) do %>
 			<h3 class="font-bold"><%= u.name %></h3>
 			<% end %>
-				<% if @accepted.include?(u)%>
-					<%= link_to "Unfollow", unfollow_path({to_id: u.id}) , method: "delete ",class: "btn btn-outline btn-default"%><br />
-				<% elsif @requested.include?(u)%>
-					<%= link_to "cancel request",unfollow_path({to_id: u.id}) , method: "delete" , class: "btn btn-outline btn-default"%><br />
-				<%else %>
-					<%= link_to "Follow", follow_path({to_id: u.id}), method: "post" ,class: "btn btn-outline btn-default"%><br />
-				<% end %>
-				
+			<% if @accepted.include?(u)%>
+				<%= link_to 'UnFollow',unfollow_path({to_id: u.id}),remote: true,method: "delete", class: "btn btn-outline btn-default"%>
+			<% elsif current_user.requested_by_me?(u) %>
+				<%= link_to "Revert Request", revert_path({to_id: u.id}),remote: true,method: "delete",class: "btn btn-outline btn-default"%>
+			<% else %>
+				<%= link_to "Follow", follows_path({to_id: u.id}),remote: true,method: "post",class: "btn btn-outline btn-default"%>
+			<% end %>
+			<%= link_to "Block" , block_path({to_id: u.id}),remote: true,method: "post", class: "btn btn-outline btn-default" %>
 		</div>
-		</p>
 	</div>
 <% end %>
+
+
+
+
+

@@ -1,9 +1,9 @@
 class CreateFavourites < ActiveRecord::Migration[5.1]
   def change
-    create_table :favourites do |t|
-    	t.references :user
-    	t.references :design
-      t.timestamps
-    end
-  end
+  	create_table :favourites do |t|
+			t.references :user
+			t.references :design
+			t.timestamps
+		end
+	end
 end

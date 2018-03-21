@@ -1,11 +1,9 @@
 
 <%= button_to "Back", home_dashboard_path, method: "get" %>
 
-	<% if !designs.nil? %>
+	<% if designs.count != 0 %>
 		<h2>Search Result:</h2><br>
-		<% designs.each do |design| %>
-			<%= link_to(image_tag("#{design.image_url}", size: "250x250"), home_path({design_id: design})) %><br />
-		<% end %>
+		<%= render partial: 'home/displaydesigns' ,locals: { images: @designs } %>
 	<% else %>
 	<h2>Search Result:</h2><br>
 	<% end %>

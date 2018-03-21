@@ -1,4 +1,4 @@
-<div class="row border-bottom ">
+<div class="row border-bottom">
     <nav class="navbar navbar-fixed-top purple-bg" role="navigation" style="margin-bottom: 0">
         <div class="nav navbar-top-links navbar-left">
             <li>
@@ -9,14 +9,6 @@
         </div>
 
         <% if user_signed_in? %>
-        <div class="navbar-header">
-            <form role="search" class="navbar-form-custom" method="post" action="/">
-                <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search" />
-                </div>
-            </form>
-        </div>
-
         <ul class="nav navbar-top-links navbar-right">
             <li>
                 <%= link_to destroy_user_session_path do %>
@@ -25,43 +17,46 @@
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
-
             <li>
-                <%= link_to follow_path do%>
-                    <i class="fa fa-child"></i>
+                <%= link_to follows_path ,class: "count-info" do%>
+                <i class="fa fa-child"></i>
+                    <% if @noti_count_follow > 0 %>
+                        <span class="label label-warning"><%=@noti_count_follow%></span>
+                    <% end %>
                 <% end %>
             </li>
         </ul>       
-        
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to chats_path, class: "count-info" do %> 
+                <%= link_to  profile_blockeduser_list_path do %>
+                <i class="fa fa-sign-out"></i><span>Blocked Users</span>
+                <% end %> 
+            </li>
+        </ul> 
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <%= link_to chats_path, class: "count-info" do %>
                 <i class="fa fa-envelope"></i>
-                <span class="label label-warning"><%= @noti_count_chat if @noti_count_chat != 0 %></span>
+                    <% if @noti_count_chat > 0 %>
+                        <span class="label label-info"><%=@noti_count_chat%></span>
+                    <% end %>
                 <% end %>
             </li>
         </ul> 
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to responds_path ,:class => "count-info" do%>
-                    <i class="fa fa-user"></i><span class="label label-warning">18 </span>
-                <% end %>
-            </li>
-        </ul>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <%= link_to show_path do %>
+                <%= link_to user_profile_path(id: current_user.id) do %>
                 <i class="fa fa-user-circle"></i><span>Profile</span>
                 <% end %> 
             </li>
         </ul>
-       
+
         <ul class="nav navbar-top-links navbar-right">
             <li>
-            <%= link_to home_dashboard_path(design_selection: "Following's Designs")do %>Home
-            <% end %>
+                <%= link_to home_dashboard_path(design_selection: "Following's Designs")do %>Home
+                <% end %>
             </li>
         </ul>
-<% end %>
-</nav>
+        <% end %>
+    </nav>
 </div>

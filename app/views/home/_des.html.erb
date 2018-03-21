@@ -1,14 +1,3 @@
 <div >
-		<h1>Dashboard</h1>
-		<% designs.each do |design| %>
-
-			<%= link_to(image_tag("#{design.image_url}", size: "250x250"), home_path({design_id: design})) %><br />
-			<% if  design.favourites.where(user_id: current_user.id ).count == 0 %>
-				<%= button_to "Add to favourites", favourites_change_fav_path(design_id: design),remote: true , method: "post" , id: "btn#{design.id}" %>
-
-			<% else %>
-				<%= button_to "Remove from favourites", favourites_change_fav_path(design_id: design), remote: true , method: "post" , id: "btn#{design.id}" %>
-			<% end %>
-			
-		<% end %>
+		<%= render partial: 'home/displaydesigns', locals: { images: @designs } %>
 </div>

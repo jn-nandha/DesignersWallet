@@ -15,7 +15,7 @@
           <% else %>
              <%= link_to u.name, profile_path(id: u.id), remote: true  %>
              <% end %>
-             <br>
+            
           </td>
 
           <td align="right">
@@ -27,7 +27,7 @@
             <% else %>
                 <%= link_to "Blocked", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-danger  btn-outline" %>
           </td>
-          <br>
+          
             <% end %>
          </tr>
       <% end %>

@@ -53,6 +53,7 @@ class Users::InvitationsController < DeviseController
 
   # PUT /resource/invitation
   def update
+    
     raw_invitation_token = update_resource_params[:invitation_token]
     self.resource = accept_resource
     invitation_accepted = resource.errors.empty?

@@ -3,15 +3,11 @@ $('#right_div').html(" <%= j render partial: 'admins/manage/activate_user', loca
 jQuery('#right_div').html,(" 'admins/manage/activate_user' )");
 $('.pagination a').attr('data-remote', 'true');
 
-if($('#btn<%=@uid%>').val() == 'UnBlocked')
+if($('#btn<%=@uid%>').html() == "UnBlocked")
 {
-	$("#btn<%=@uid%>").attr('value','Blocked');
-	$("#tr<%=@uid%>").attr("class","success");
-
+	$("#btn<%=@uid%>").html("Blocked");
 }
 else
 {
-	$("#btn<%=@uid%>").attr('value','UnBlocked');
-	$("#tr<%=@uid%>").attr("class","danger");
-
+	$("#btn<%=@uid%>").html("UnBlocked");
 }

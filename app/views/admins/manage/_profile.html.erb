@@ -1,29 +1,31 @@
 	<table class="table">
 		<tr class="success">
 			<th>User name:</th>
-			<td> <%= @users.name %> </td><br>
+			<td> <%= @users.name %> </td>
 		</tr>
 		<tr class="success">
 			<th>Email:</th>
-			<td> <%= @users.email %> </td><br>
+			<td> <%= @users.email %> </td>
 		</tr>
 		<tr class="success">
 			<th>Status:</th>
-			<td> <%= @users.activation == true ? 'UnBlock' : 'Block' %> </td><br>
+			<td> <%= @users.activation == true ? 'UnBlock' : 'Block' %> </td>
 			
 		</tr>
 		<tr class="success">
 			<th>User City:</th>
-			<td> <%= @users.city.city_name %> </td><br>
+			<td> <%= @users.city.city_name %> </td>
 		</tr>
 		<tr class="success">
 			<th>User Create-Date:</th>
-			<td> <%= @users.created_at.strftime('%C-%m-%Y') %> </td><br>
+			<td> <%= @users.created_at.strftime('%C-%m-%Y') %> </td>
 		</tr>
 </table>
 <% if @users.designs.blank? %>
 <div class="fontsize">
+ <marquee behaviour="slide" width = "100%">
 <p>The Current User has no designs......!</p>
+</marquee>
 </div>
 <% else %>
 <table class = "table table-bordered table-striped">

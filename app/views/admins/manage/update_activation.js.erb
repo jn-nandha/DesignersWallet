@@ -1,4 +1,9 @@
-if($('#btn<%=@uid%>').val() == 'UnBlocked')
- 	$("#btn<%=@uid%>").attr('value','Blocked');
- else
- 	  $("#btn<%=@uid%>").attr('value','UnBlocked');
+
+if($('#btn<%=@uid%>').html() == "UnBlocked")
+{
+	$("#btn<%=@uid%>").html("Blocked");
+}
+else
+{
+	$("#btn<%=@uid%>").html("UnBlocked");
+}

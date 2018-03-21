@@ -2,16 +2,18 @@
 
 	<h2><%= t "devise.invitations.new.header" %></h2>
 
-<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
-  <%= devise_error_messages! %>
+	<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
+	<%= devise_error_messages! %>
 
-<% resource.class.invite_key_fields.each do |field| -%>
-<br />
- <span><i class="glyphicon glyphicon-user"></i>
-  <%= f.text_field :email, placeholder: "Email Adddress..." %></p>
+	<% resource.class.invite_key_fields.each do |field| -%>
+	<br />
+	<div class="input-control ">
+	<span><i class="glyphicon"></i>
+	<p align="left">Email:</p>
+	<%= f.text_field :email, placeholder: "Email Adddress..." , class: 'form-control' %></p><br><br><br>
+</div>
+		<% end -%>
 
-<% end -%>
-
-  <p><%= f.submit t("devise.invitations.new.submit_button") ,class: 'btn btn-primary' %></p>
-  </span>
-<% end %>
+		<p><%= f.submit t("devise.invitations.new.submit_button") ,class: 'btn btn-primary' %></p>
+	</span>
+	<% end %>

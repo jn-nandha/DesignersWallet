@@ -1,5 +1,5 @@
 class DesignsController < ApplicationController
-	
+	skip_before_action :authenticate_user! , only: :del_design
 	def index
 		if current_user.activation
 			@designs = Design.all
@@ -42,7 +42,7 @@ class DesignsController < ApplicationController
 	def del_design
 		@did = params[:design_id]
 		des = Design.find(params[:design_id])
-		if des.user == current_user
+		if des.user == current_user 
 			usr = des.user
 			if usr.activation
 				des.destroy

@@ -1,34 +1,35 @@
  <table class="table purple-bg">
     <thead>
       <tr class="tr_heading">
-        <th>USER_NAME</th>
-        <th>ACTION</th>
-        <th>USER_STATUS</th>
+        <td><b>USER NAME</b></td>
+        <td align="center"><b>ACTION</b></td>
+        
       </tr>
     </thead>
     <tbody>
-   
        <% @users.each do |u| %>
          <tr class="<%= u.activation == true ? 'success' : 'danger' %>"> 
-          <td >
+          <td width="40%">
+          <% if u.name.blank? %>
+          <%= link_to u.email %>
+          <% else %>
              <%= link_to u.name, profile_path(id: u.id), remote: true  %>
+             <% end %>
              <br>
           </td>
 
-          <td>
-             <%= link_to  "DELETE " , delete_path(id: u.id),data: {confirm: "Are you sure?"} %>|
-             <%= link_to  "UPDATE " , edit_user_registration_path(id: u.id) %><br>
-          </td>
-          <td>
+          <td align="right">
+             <%= link_to  "DELETE " , delete_path(id: u.id),data: {confirm: "Are you sure?"}, class: "btn demoa btn-warning btn-outline" %>
+             <%= link_to  "UPDATE " , edit_user_registration_path(id: u.id) , class: "btn demoa btn-info btn-outline"%>
+          
             <% if u.activation == true %>
-                <%= button_to "UnBlocked", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-success btn-outline" %>
+                <%= link_to "UnBlocked", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-success btn-outline" %>
             <% else %>
-                <%= button_to "Blocked", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-danger  btn-outline" %>
+                <%= link_to "Blocked", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-danger  btn-outline" %>
           </td>
           <br>
             <% end %>
          </tr>
-
       <% end %>
     <tbody>
 </table>

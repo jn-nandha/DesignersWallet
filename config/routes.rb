@@ -10,10 +10,8 @@
   devise_for :admins, path: 'admins',controllers:{ 
     sessions: "admins/sessions"
   }
-
   
   devise_scope :admin do
-
 
     get 'home/dashboard'
     post 'home/search', to: 'home#search'
@@ -48,8 +46,6 @@
     #  ...............................................................
 
     get         "/admin"     =>   "admins/sessions#index"
-    get         '/sign_out', to: 'admins/sessions#destroy'
-    post        '/sign_out', to: 'admins/sessions#destroy'
     get         '/manage',   to: 'admins/manage#index', as: :admin_root
     post        '/manage',   to: 'admins/manage#index'
     get         '/manage_user', to: 'admins/manage#manage_user'
@@ -67,32 +63,14 @@
     post     '/update_activation', to: 'admins/manage#update_activation'
     get     '/search', to: 'admins/manage#search'
     post     '/search', to: 'admins/manage#search'
-    #delete '/users' to: 'users/registrations#destroy'
-  end
- # namespace :admin do
- #    resources :users
- #  end
-
- devise_scope :user  do
-  resources :design
-  get '/users/:id', to: 'manage#profile', as: 'user'
-     # get "/users/sign_in", to: "users/sessions#new"
-     # post '/users/sign_in', to: 'users/sessions#create'
-     # get '/logout', to: 'users/sessions#destroy'
-     # post '/logout', to: 'users/sessions#destroy'
-
-   end  
-
-   get    '/insert',      to: 'design#index'
-   get    '/design_new',   to: 'design#new'
-   get    '/profile',     to: 'admins/manage#profile'
-   post   'design_new',   to: 'design#new'
-   get   '/show_all_design', to: 'admins/manage#show_all_design'
-   post   '/show_all_design', to: 'admins/manage#show_all_design'
-   post   '/insert',      to: 'design#index' 
-   post   '/profile',     to: 'admins/manage#profile'
-   get   '/activate_user',      to: 'admins/manage#activate_user' 
-   post   '/activate_user',     to: 'admins/manage#activate_user'
+    get    '/profile',     to: 'admins/manage#profile'
+    post   '/profile',     to: 'admins/manage#profile'
+    get   '/activate_user',      to: 'admins/manage#activate_user' 
+    post   '/activate_user',     to: 'admins/manage#activate_user'
+    get   '/show_all_design', to: 'admins/manage#show_all_design'
+    post   '/show_all_design', to: 'admins/manage#show_all_design'
  
- end
+  end
+
+end
 

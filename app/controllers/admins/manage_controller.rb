@@ -1,12 +1,12 @@
 class Admins::ManageController < ApplicationController
-  before_action :authenticate_admin!
-  skip_before_action :authenticate_user!
+  before_action :authenticate_admin! # here authenticate admin before action
+  skip_before_action :authenticate_user! # here skip authenticate user in all methods
 
   def index
    @users = User.all.paginate(:page => params[:page], :per_page => 5)
-   # @designs =Design.find(params[:id]).paginate(:page => params[:page], :per_page => 3)
+   #@designs =Design.find(params[:id]).paginate(:page => params[:page], :per_page => 3)
   end
-
+#--> search the User By name 
   def search
    if params[:search].blank?
       @users = []
@@ -17,10 +17,11 @@ class Admins::ManageController < ApplicationController
       format.html
     end
   end
-
   end
 
+#--> Shows the index page with side navigation
   def manage_user
+     @uid = params[:id]
           @users = User.all.paginate(:page => params[:page], :per_page => 4).order('created_at DESC')
             respond_to do |format|
               format.html # index.html.erb
@@ -28,28 +29,16 @@ class Admins::ManageController < ApplicationController
               format.js
             end
   end
-
-  def create
-    @user = User.new(params[:user])
-      if @user.save
-        flash[:notice] = "Successfully created User." 
-        redirect_to root_path
-      else
-        render :action => 'new'
-      end
-  end
-
+#--> Shows the user profile with his designs
   def profile
        @users = User.find(params[:id])
        #.paginate(:page => params[:page], :per_page => 4).order('created_at DESC')
   end
-
+#--> edit the user
   def edit
-    if admin_logged_in?
-      @user = User.find(params[:id])      
-    end
+       @user = User.find(params[:id])      
   end
-
+#--> update the user details
   def update
     if admin_logged_in?
       @user = User.find(params[:id])
@@ -63,21 +52,19 @@ class Admins::ManageController < ApplicationController
       end
     end
   end
-
+#--> delete the user
   def delete_user
-    if admin_logged_in?
-      @user = User.find(params[:id])
+         @user = User.find(params[:id])
       if @user.destroy
         flash[:notice] = "Successfully deleted User."
         redirect_to manage_user_path
       end
-    end
   end
-
+#--> show all design in the index page
   def show_all_design
     @designs = Design.all.paginate(:page => params[:page], :per_page => 4)
   end
-  
+#--> update the users activation status
   def update_activation
     @uid = params[:id]
        @status = User.find(params[:id])
@@ -89,7 +76,7 @@ class Admins::ManageController < ApplicationController
     @status.save!
   
   end
-
+#--> shows the all block / unblock list of users
   def activate_user
     @users = User.all.paginate(:page => params[:page], :per_page => 4).order("created_at DESC")
   end

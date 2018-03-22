@@ -1,0 +1,13 @@
+<div class = "container">
+	<div class = "col-md-2 left">
+		<%= render partial: 'home/search' %>
+	</div>
+	<div class = "col-md-9">
+		<div id="search" >
+		  		<div id= "design_select">
+				<%= render partial: 'home/des', locals: { designs: @designs } %>
+			</div>
+		</div>
+	</div>
+	
+</div>

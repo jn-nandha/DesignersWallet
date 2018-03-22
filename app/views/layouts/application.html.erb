@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>DesignersWallet</title>
-		<%= csrf_meta_tags %>
 
-		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-	</head>
-
-	<body>
-		<% if notice %>
-			<%= notice %>
-		<% end %>
-		<% if alert %>
-			<%= alert %>
-		<% end %>
-		<%= yield %>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Designer's wallet</title>
+    <!-- Main css styles -->
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <!-- Main Java Script -->
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+</head>
+<body>
+	<!-- Wrapper-->
+    <div id="wrapper">
+        <!-- Page wraper -->
+        <div class="wrapper wrapper-content gray-bg">        
+            <!-- Page wrapper --> 
+            <div class="container top-margin" id="topnav">
+              <%= render 'layouts/topnavigation' %>
+              <% flash.each do |key, value| %>
+              <% if value != nil %>
+                <div class="alert alert-<%= key %>"><%= value %></div><% end%>
+              <% end %>
+           
+            <!-- Main view  -->
+            <%= yield %>
+        </div>
+        </div>
+        <!-- End page wrapper-->
+    </div>
+    <!-- End wrapper-->
+</body>
 </html>
+

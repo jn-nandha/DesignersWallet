@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180219115917) do
+ActiveRecord::Schema.define(version: 20180301063333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,14 @@ ActiveRecord::Schema.define(version: 20180219115917) do
     t.index ["sender_id"], name: "index_chats_on_sender_id"
   end
 
+  create_table "chats_designs", id: false, force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.bigint "design_id", null: false
+  end
+
+d", null: false
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string "city_name"
     t.datetime "created_at", null: false
@@ -100,8 +108,7 @@ ActiveRecord::Schema.define(version: 20180219115917) do
   end
 
   create_table "following_lists", force: :cascade do |t|
-    t.string "follow"
-    t.boolean "block"
+    t.integer "follow_status"
     t.bigint "to_id"
     t.bigint "from_id"
     t.datetime "created_at", null: false
@@ -126,23 +133,14 @@ ActiveRecord::Schema.define(version: 20180219115917) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.integer "failed_attempts", default: 0, null: false
-    t.string "unlock_token"
-    t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
     t.boolean "activation"
     t.bigint "city_id"
     t.index ["city_id"], name: "index_users_on_city_id"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
   add_foreign_key "users", "cities"

@@ -1,0 +1,31 @@
+ <div class="row">
+    <div class="col-lg-12">
+    	<div class="ibox float-e-margins">
+       		<div class="ibox-content">
+                <div class="carousel-inner">
+                    <div class="item gallery active">
+					<% images.each do |design| %>
+						<div class= 'col-sm-4 img-responsive'>
+						<%= link_to(image_tag("#{design.image_url}", size: "250x250"), home_path({design_id: design})) %><br />
+						<% if  design.favourites.where(user_id: current_user.id ).count == 0 %>
+						<%= button_to "Add to favourites", favourites_change_fav_path(design_id: design),remote: true , method: "post" , id: "btn#{design.id}" %>
+						<% else %>
+						<%= button_to "Remove from favourites", favourites_change_fav_path(design_id: design), remote: true , method: "post" , id: "btn#{design.id}" %>
+						<% end %>
+						<% if  design.feedbacks.where(user_id: current_user.id ).count == 0 %>
+						<%= button_to "Like", feedbacks_like_path(design_id: design), remote: true , method: "post" , id: "likebtn#{design.id}" %>
+						<% else %>
+							<% if  design.feedbacks.where(user_id: current_user.id , like: true).count == 0 %>
+							<%= button_to "Like", feedbacks_like_path(design_id: design), remote: true,method: "post" , id: "likebtn#{design.id}" %>
+							<% else %>
+								<%= button_to "Dislike",feedbacks_like_path(design_id: design), remote: true,method: "post" , id: "likebtn#{design.id}"%>
+							<% end %>
+						<% end %>
+						</div>
+					<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,53 @@
+<!-- <br>
+<% @user.each do |u| %>
+ID : <%= u.id %> <br>
+	Name : <%= u.name %> <br>
+		Email : <%= u.email %> <br>
+			Created : <%= u.created_at %> <br>
+				Updated : <%= u.updated_at %> <br>
+					City_ID : <%= u.city_id %> <br>
+<% end %><br>
+
+ -->
+
+<center>
+	
+<h2><b>All Users</b></h2>
+</center>
+<table class="table table-hover">
+  <thead>
+    <tr class="purple-bg">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+         <th scope="col">City</th>
+      <th scope="col">Created</th>
+      <th scope="col">Updated</th>
+   
+       <th scope="col">
+       
+       <%= form_tag showusers_path, :method => 'get' do %>
+  			<%= text_field_tag :search, params[:search], placeholder: "Search User" %>
+  			<%= submit_tag "Search" %>
+		<% end %>
+		
+		</th>
+    </tr>
+  </thead>
+  <tbody><br>
+    
+    <% @user.each do |u| %>
+      <tr>
+    <th scope="row"> <%= u.id %> </th>
+      <td> <%= u.name %> </td>
+      <td> <%= u.email %> </td>
+      <td> <%= u.city.city_name %> </td>
+      <td> <%= u.created_at.strftime('%C-%m-%Y') %> </td>
+      <td> <%= u.updated_at.strftime('%C-%m-%Y') %> </td>
+ 
+    </tr>
+    <% end %>
+   
+  </tbody>
+</table>
+

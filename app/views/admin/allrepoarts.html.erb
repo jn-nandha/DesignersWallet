@@ -1,5 +1,3 @@
-	Data From feedback Table :<br>
-	<b>Total Feedback : <%= @feedback.count(:report) %></b> <br><br>
 
 <!-- 
 	<% @feedback.each do |f| %>
@@ -8,8 +6,8 @@
 			design_id : <%= f.design_id %>
 			user_id : <%= f.user_id %> <br>	
 	<% end %> -->
-<br> 
-	<table border="1">
+
+<!-- 	<table border="1">
   <tr>
     <th>design_id</th> 
     <th>user_id</th> 
@@ -25,3 +23,67 @@
   </tr>
    	<% end %>
 </table>
+
+ -->
+
+<center><h2>Total Repoarts</h2></center>
+<b>Total Feedback : <%= @feedback.count(:report) %></b>
+<table class="table table-hover">
+  <thead>
+    <tr class="purple-bg">
+      <th scope="col">design_id</th>
+      <th scope="col">Total Repoarts</th>
+        
+    </tr>
+  </thead>
+  <tbody>
+
+  <% @total_repoart.each do |bb| %>
+      <tr>
+       <% @ftot = Feedback.where(design_id: bb).count(:id) %>
+       <td>  <%= bb %> </td>
+     </td>
+      
+      <td> <%= @ftot %> </td>
+      
+
+    </tr>
+    <% end %>
+   
+  </tbody>
+</table>
+
+
+
+<center><h2> Detail Repoarts</h2></center>
+<table class="table table-hover">
+  <thead>
+    <tr class="purple-bg">
+      <th scope="col">design_id</th>
+      <th scope="col">user_id</th>
+      <th scope="col">like</th>
+      <th scope="col">report</th>
+   
+       <th scope="col">
+      <%= form_tag reports_path, :method => 'get' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search" %>
+<% end %>
+  
+</th>
+    </tr>
+  </thead>
+  <tbody><br>
+    
+  <% @feedback.each do |f| %>
+      <tr>
+    <th scope="row"> <%= f.design_id %> </th>
+      <td> <%= f.user_id %> </td>
+      <td> <%= f.like %> </td>
+      <td> <%= f.report %></td>
+    </tr>
+    <% end %>
+   
+  </tbody>
+</table>
+

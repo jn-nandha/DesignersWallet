@@ -1,0 +1,38 @@
+<center>
+	
+<h2><b>All Users</b></h2>
+</center>
+<table class="table table-hover">
+  <thead>
+    <tr class="purple-bg">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Created</th>
+      <th scope="col">Updated</th>
+      <th scope="col">City_ID</th>
+       <th scope="col">
+       
+       <%= form_tag showusers_path, :method => 'get' do %>
+  			<%= text_field_tag :search, params[:search], placeholder: "Search User" %>
+  			<%= submit_tag "Search" %>
+		<% end %>
+		
+		</th>
+    </tr>
+  </thead>
+  <tbody><br>
+    
+    <% @user.each do |u| %>
+      <tr>
+    <th scope="row"> <%= u.id %> </th>
+      <td> <%= u.name %> </td>
+      <td> <%= u.email %> </td>
+      <td> <%= u.created_at.strftime('%F [%T]') %> </td>
+      <td> <%= u.updated_at.strftime('%F [%T]') %> </td>
+      <td> <%= u.city_id %> </td>
+    </tr>
+    <% end %>
+   
+  </tbody>
+</table>

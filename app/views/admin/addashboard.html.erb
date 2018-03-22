@@ -1,64 +1,23 @@
-
+<div class="col-md-4">	
 <h1>Welcome Admin</h1>
 
 <br>
 
 
-----------------------
-<br>
-
-New One
-<%= form_tag addashboard_path, :method => 'get' do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search User" %>
-  <%= submit_tag "Search" %>
-<% end %>
-
 
 <br>
-<% @user.each do |u| %>
-	Name : <%= u.name %> <br>
-<% end %><br>
+   <%= form_tag searchanythings_path, :method => 'get' do %>
+  			<%= text_field_tag :search, params[:search], placeholder: "Search Anythings" %>
+  			<%= submit_tag "Search" %>
+		<% end %>
 
---------------------------------------<br>
-
-<b>Total report</b> 
 <br>
-<%= link_to 'See All Repoarts', reports_path %> 
+	<button class="btn btn-primary demo">
+	<%= link_to "See All Repoarts" , reports_path %></button><br><br><br>
+
+		<button class="btn btn-primary demo">
+	<%= link_to "See All Users" , showusers_path %></button><br><br><br>
+
+	<!-- 
+<%= link_to 'See All Repoarts', reports_path %>  -->
 <br>
-
-<table style="width:20%">
-  <tr>
-    <th>design_id</th> 
-    <th>Total Repoarts</th>
-  </tr>
-		  <% @total_repoart.each do |bb| %>
-		  <% @ftot = Feedback.where(design_id: bb).count(:id) %>
-
-  <tr>
-
-    <td>--->  <%= bb %> </td>
-    <td> <%= @ftot %> </td>
-  </tr>
-  	<% end %>	
-</table>
-<br><br>
-
-User id  <br>
-<% @feedback.each do |ss| %>
-&nbsp;&nbsp;	<%= link_to ss.user_id, showss_path(ss.id) %> <br>
-<% end %>
-<br>
---------------------------------------<br>
-<br><br>
-<!-- Data From feedback Table :<br>
-	<b>Total Feedback : <%= @feedback.count(:report) %></b> <br><br>
-
-	<% @feedback.each do |f| %>
-			like : <%= f.like %> 	
-			report : <%= f.report %> 	
-			design_id : <%= f.design_id %> 
-			created_at : <%= f.created_at %> 
-			design_id : <%= f.design_id %> 
-			user_id : <%= f.user_id %> <br>	
-	<% end %>
- -->

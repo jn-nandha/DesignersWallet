@@ -1,4 +1,4 @@
-#desfine the relation of User model  to other model
+# defines the relation of User model  to other model
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -79,6 +79,10 @@ class User < ApplicationRecord
 
   def favourite?(design_id)
     Favourite.find_by(user_id: self.id, design_id: design_id).present?
+  end
+
+  def requested_by_me?(user)
+    FollowingList.where(from_id: self.id, to_id: user.id, follow_status: "requested").present?
   end
   
 end

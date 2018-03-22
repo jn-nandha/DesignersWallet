@@ -1,9 +1,28 @@
-
-<% @designs.each do |design| %>
-<div class= 'col-sm-4 img-responsive' id= "did<%=design.id%>" >
-	<%= link_to(image_tag("#{design.image_url}", size: "200x200"), home_path(design_id: design)) %>
-	<% if @user == current_user %>
-	<%= button_to "Delete image",designs_del_design_path(design_id: design.id),remote:true , method: "delete" ,class: "btn btn-default" %>
-	<% end %>
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<% @designs.each do |design| %>
+		<div class="col-md-3" id= "did<%=design.id%>">
+			<div class="ibox">
+				<div class="ibox-content product-box">
+					<div class="product-imitation image-padding-5px" >
+						<%= link_to(image_tag("#{design.image_url}", size: "230x200"), home_path(design_id: design)) %>
+					</div>
+					<div class="product-desc">
+						<!-- <small class="text-muted">Category</small>
+						<div class="small m-t-xs">
+							Description
+						</div> -->
+						<div class="m-t text-righ">
+							<% if @user == current_user %>
+							<%= link_to designs_del_design_path(design_id: design.id),remote:true , method: "delete" ,class: "btn btn-xs btn-outline btn-danger" do %>
+							Delete Image <i class="fa fa-times"></i>
+							<% end %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% end %>
 	</div>
-<% end %>
+</div>

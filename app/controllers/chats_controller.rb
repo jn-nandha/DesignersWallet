@@ -33,13 +33,14 @@ class ChatsController < ApplicationController
       new_chat_params.merge!({message_type: "text"})
     end
     chat = Chat.new(new_chat_params)
-    if (current_user.blocked_users.exclude?(params[:chat][:receiver_id])) && (params[:chat][:body] != "" || params[:chat][:designs_id] != "")
+    if (current_user.blocked_users.pluck(:id).exclude?(params[:chat][:receiver_id])) && (params[:chat][:body] != "" || params[:chat][:designs_id] != "")
       chat.save!
     end
     @msgs = @user.messages_with(current_user)
   end
 
   def search
+    binding.pry
     if params[:name].blank?
       @search_users = []
     else
@@ -64,10 +65,7 @@ class ChatsController < ApplicationController
 
   def all_recipients
     @all_users = current_user.search_users("")
-    from = Chat.where(sender_id: current_user.id).pluck(:receiver_id).uniq
-    to = Chat.where(receiver_id: current_user.id).pluck(:sender_id).uniq
-    followed = User.where(id: (from + to).uniq).where(activation: "true")
-    @notified_users = Chat.where(receiver_id: current_user.id,message_status: "unread").order('created_at DESC').map(&:sender).uniq
-    @followed_users = (followed - @notified_users).uniq
+    @notified_users = current_user.notified_users
+    @followed_users = (current_user.chated_users - @notified_users).uniq
   end
 end

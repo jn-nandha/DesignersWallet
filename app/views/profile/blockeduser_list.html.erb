@@ -1,6 +1,6 @@
 <div class="container">
 <h2 class=" row font-bold">Blocked Users</h2>
-<% if @blockedusers == nil %>
+<% if @blockedusers.present? %>
 	<% @blockedusers.each do |blockeduser| %>
 		<div class="ibox float-e-margins" id= "user<%=blockeduser.id%>">
 			<div class="ibox-content row">
@@ -21,4 +21,5 @@
     </div>    
 <% end %>
 </div>
+
 

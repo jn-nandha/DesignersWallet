@@ -39,8 +39,7 @@ class ChatsController < ApplicationController
     @msgs = @user.messages_with(current_user)
   end
 
-  def search
-    binding.pry
+  def search    
     @search_users = if params[:name].blank?
       []
     else

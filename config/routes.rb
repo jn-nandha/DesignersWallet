@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       post 'chats/send_message', to: 'chats#send_message', as: "send_msg"
       get  'chats/search', to: 'chats#search'
       get 'chats/design', to: 'chats#design'
+      
       post 'feedbacks/like'
       post 'feedbacks/complain'
     #resources :designs, only: [:new,:create,:show]

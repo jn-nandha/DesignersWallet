@@ -1,8 +1,9 @@
+<h2> All User </h2>
 <% users.each do |u| %>
 	<div id="div<%=u.id%>" class="ibox float-e-margins container">
 		<div  class="ibox-content">
 			<%= link_to user_profile_path(id: u.id) do %>
-			<h3 class="font-bold"><%= u.name %></h3>
+			<h3 class="col-sm-8 font-bold"><%= u.name %></h3>
 			<% end %>
 			<% if @accepted.include?(u)%>
 				<%= link_to 'UnFollow',unfollow_path({to_id: u.id}),remote: true,method: "delete", class: "btn btn-outline btn-default"%>

@@ -18,9 +18,9 @@
 						</div>
 						<div class="m-t text-righ">
 							<% if @user == current_user %>
-							<%= link_to designs_del_design_path(design_id: design.id),remote:true , method: "delete" ,class: "btn btn-xs btn-outline btn-danger" do %>
-							Delete Image <i class="fa fa-times"></i>
-							<% end %>
+								<%= link_to designs_del_design_path(design_id: design.id),remote:true , method: "delete" ,class: "btn btn-xs btn-outline btn-danger" do %>
+								Delete Image <i class="fa fa-times"></i>
+								<% end %>
 							<% end %>
 						</div>
 					</div>

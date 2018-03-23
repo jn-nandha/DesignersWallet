@@ -76,6 +76,13 @@ class User < ApplicationRecord
     User.where(id: (to + from).uniq)
   end
 
+  def favourited(design_id)
+    Favourite.find_by(user_id: self.id, design_id: design_id)
+  end
+
+  def feedback(design_id)
+    Feedback.find_by(user_id: self.id, design_id: design_id)
+  end
 
   def favourite?(design_id)
     Favourite.find_by(user_id: self.id, design_id: design_id).present?
@@ -84,5 +91,5 @@ class User < ApplicationRecord
   def requested_by_me?(user)
     FollowingList.where(from_id: self.id, to_id: user.id, follow_status: "requested").present?
   end
-  
+
 end

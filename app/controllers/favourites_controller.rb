@@ -2,26 +2,17 @@ class FavouritesController < ApplicationController
   def change_fav
     @did = params[:design_id]
     if current_user.activation
-      a= Favourite.where(user_id: current_user.id, design_id: params[:design_id])
-      if a[0].nil?
-        fav = Favourite.new
-        fav.user_id = current_user.id
-        fav.design_id = params[:design_id]
-        fav.save!
-      else
-        favourite = Favourite.find(a[0].id)
+      favourite = current_user.favourited(@did)
+      if favourite
         favourite.destroy
-      end
+      else
+        fav = Favourite.new(user_id: current_user.id, design_id: params[:design_id] )
+        fav.save!
+        end
     end
   end
 
   def fav_images
-    @designs = fav_designs
-  end
-
-  private
-  def fav_designs
-    d = Favourite.where(user_id: current_user.id).pluck(:design_id)
-    return Design.where(id: d)
+    @designs = current_user.favourited_designs
   end
 end

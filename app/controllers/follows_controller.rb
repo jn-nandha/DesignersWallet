@@ -33,7 +33,6 @@ class FollowsController < ApplicationController
     cancel_req = FollowingList.find_by('to_id = ? and from_id = ?', current_user.id, params[:from_id])
     FollowingList.delete(cancel_req.id)
     fetch_records
-    binding.pry
   end
 
   # Revert the request
@@ -63,7 +62,7 @@ class FollowsController < ApplicationController
   # unblock the user
   def unblockuser
     any_user = FollowingList.where(to_id: current_user.id, from_id: params[:id])
-                            .or(FollowingList.where(to_id: params[:id], from_id: current_user.id))
+    .or(FollowingList.where(to_id: params[:id], from_id: current_user.id))
     FollowingList.delete(any_user) if any_user.present?
     @userid = params[:id]
   end

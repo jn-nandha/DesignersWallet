@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :followinglists
   belongs_to :city 
 
-
+  # Give inactive users
   def self.inactive_users
     User.where(activation: "false")
   end

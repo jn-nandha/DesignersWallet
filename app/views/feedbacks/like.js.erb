@@ -1,4 +1,4 @@
-if($("#likebtn<%=@did%>").val() == 'Like')
-	$("#likebtn<%=@did%>").attr('value','Dislike');
+if($("#likebtn<%=@did%>").html() == 'Like')
+	$("#likebtn<%=@did%>").html('Dislike');
 else
-	$("#likebtn<%=@did%>").attr('value','Like');
+	$("#likebtn<%=@did%>").html('Like');

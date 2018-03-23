@@ -11,27 +11,20 @@
         <ul class="nav navbar-top-links navbar-right">
             <li>
                 <%= link_to destroy_user_session_path do %>
-                <span><i class="fa fa-sign-out"></i>Logout</span>
+                <span><i class="fa fa-sign-out"></i>logout</span>
                 <% end %> 
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
-
             <li>
-                <%= link_to follows_path do%>
-                <i class="fa fa-child"></i>
+                <%= link_to follows_path,class: "count-info tooltips" , title: '', data: { toggle: 'tooltip', placement: 'bottom', original_title: 'Explore Users'} do %>
+                  <i class="fa fa-group"></i>
+                  <% if @noti_count_follow > 0 %>
+                    <span class="label label-warning"><%=@noti_count_follow%></span>
+                  <% end %>
                 <% end %>
             </li>
         </ul>       
-
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <%= link_to  profile_blockeduser_path do %>
-                <i class="fa fa-sign-out"></i><span>Blocked Users</span>
-                <% end %> 
-            </li>
-        </ul>
-
         <ul class="nav navbar-top-links navbar-right">
             <li>
                 <%= link_to chats_path, class: "count-info" do %>
@@ -44,25 +37,15 @@
         </ul> 
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to responds_path ,class: "count-info" do%>
-                <i class="fa fa-user"></i>
-                    <% if @noti_count_follow > 0 %>
-                        <span class="label label-warning"><%=@noti_count_follow%></span>
-                    <% end %>
-                <% end %>
-            </li>
-        </ul>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <%= link_to show_path do %>
-                <i class="fa fa-user-circle"></i><span>Profile</span>
+                <%= link_to user_profile_path(id: current_user.id) do %>
+                <i class="fa fa-user-circle"> Profile</i>
                 <% end %> 
             </li>
         </ul>
-
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to home_dashboard_path(design_selection: "Following's Designs")do %>Home
+                <%= link_to home_dashboard_path(design_selection: "Following's Designs")do %>
+                <i class="fa fa-home"> Home</i>
                 <% end %>
             </li>
         </ul>

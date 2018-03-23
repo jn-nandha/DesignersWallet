@@ -83,4 +83,12 @@ class User < ApplicationRecord
   def feedback(design_id)
     Feedback.find_by(user_id: self.id, design_id: design_id)
   end
+
+  def favourite?(design_id)
+    Favourite.find_by(user_id: self.id, design_id: design_id).present?
+  end
+
+  def requested_by_me?(user)
+    FollowingList.where(from_id: self.id, to_id: user.id, follow_status: "requested").present?
+  end
 end

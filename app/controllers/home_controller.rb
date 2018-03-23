@@ -1,10 +1,8 @@
 class HomeController < ApplicationController
-  def error
-  end
-
   def dashboard
     return unless current_user.activation
     @cat = Category.all
+
       return unless current_user.activation
       design_selection = params[:design_selection]
       design_selection ||= "Following's Designs"
@@ -14,8 +12,9 @@ class HomeController < ApplicationController
         @designs = current_user.all_designs
       end 
   end
-  
+
   def image_info
+
     return unless current_user.activation
       @users = current_user.search_users("")
       @design = Design.find(params[:design_id])
@@ -28,25 +27,21 @@ class HomeController < ApplicationController
     count = 0
     if users.count > 0
       users.each do |u|
-        c = Chat.new(sender_id: current_user.id,receiver_id: u.id,designs_id: [params[:design_id]],message_status: "unread",message_type: "image",body: "")
-        if c.save!
-          count += 1
-        end   
-      end   
+        c = Chat.new(sender_id: current_user.id, receiver_id: u.id, designs_id: [params[:design_id]], message_status: 'unread', message_type: 'image', body: '')
+        count += 1 if c.save!
+      end
       @flash_js[:success] = "You have shared this design to #{count} user"
     else
-      @flash_js[:danger] = "Please select users to share this design"
+      @flash_js[:danger] = 'Please select users to share this design'
     end
   end
 
   def search
+    categories = params[:categories].split(',')
     if params[:categories].present?
-      @designs = Design.includes(:categories).where(categories: {cat_name: params[:categories]})
+      @designs = Design.includes(:categories).where(categories: {cat_name: categories})
+    else
+      @designs = current_user.all_designs
     end
-    respond_to do |format|
-      format.js
-      format.html
-    end
-  end 
-
+  end
 end

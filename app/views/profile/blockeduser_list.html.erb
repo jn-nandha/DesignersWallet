@@ -1,0 +1,25 @@
+<div class="container">
+<h2 class=" row font-bold">Blocked Users</h2>
+<% if @blockedusers.present? %>
+	<% @blockedusers.each do |blockeduser| %>
+		<div class="ibox float-e-margins" id= "user<%=blockeduser.id%>">
+			<div class="ibox-content row">
+			 <div class = "col-sm-8" >
+				<h3 class="font-bold"><%= blockeduser.name %></h3>
+			 </div>
+			 <div class= "col-sm-4" >
+			 	<%= button_to "Unblock",follows_unblockuser_path(id: blockeduser.id),method: "delete",remote: true ,class: "btn btn-default"%>
+			 </div>
+			</div>
+		</div>
+	<% end %>
+<% else %>
+  <div class="ibox float-e-margins">
+    <div class="ibox-content row">
+      <h4>No BlockedUser available</h4>
+    </div>
+    </div>    
+<% end %>
+</div>
+
+

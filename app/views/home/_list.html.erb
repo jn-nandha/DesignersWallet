@@ -1,9 +1,8 @@
 
-<%= button_to "Back", home_dashboard_path, method: "get" %>
-
-	<% if designs.count != 0 %>
-		<h2>Search Result:</h2><br>
-		<%= render partial: 'home/displaydesigns' ,locals: { images: @designs } %>
-	<% else %>
+<%= link_to "Back", home_dashboard_path, class: 'btn btn-default' %>
+<% if designs.present? %>
 	<h2>Search Result:</h2><br>
-	<% end %>
+	<%= render partial: 'home/displaydesigns' ,locals: { images: designs } %>
+<% else %>
+<h2>Search Result:</h2><br>
+<% end %>

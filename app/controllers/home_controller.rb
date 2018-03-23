@@ -40,9 +40,12 @@ class HomeController < ApplicationController
   end
 
   def search
-    if params[:categories].nil?
-    else
-      @designs = Design.includes(:categories).where(categories: {id: params[:categories]})
+    if params[:categories].present?
+      @designs = Design.includes(:categories).where(categories: {cat_name: params[:categories]})
+    end
+    respond_to do |format|
+      format.js
+      format.html
     end
   end 
 

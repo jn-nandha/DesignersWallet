@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3f73bdf-6c36-4609-adde-811cc2c0f711" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/base/spinners.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/base/spinners.scss" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/follows_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/follows_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change beforePath="$PROJECT_DIR$/app/views/chats/_search_users.html.erb" afterPath="$PROJECT_DIR$/app/views/chats/_search_users.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/chats/index.html.erb" afterPath="$PROJECT_DIR$/app/views/chats/index.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/designs/new.html.erb" afterPath="$PROJECT_DIR$/app/views/designs/new.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/favourites/fav_images.html.erb" afterPath="$PROJECT_DIR$/app/views/favourites/fav_images.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/follows/_requests.html.erb" afterPath="$PROJECT_DIR$/app/views/follows/_requests.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/follows/_userlist.html.erb" afterPath="$PROJECT_DIR$/app/views/follows/_userlist.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/follows/followers_list.html.erb" afterPath="$PROJECT_DIR$/app/views/follows/followers_list.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/follows/followings_list.html.erb" afterPath="$PROJECT_DIR$/app/views/follows/followings_list.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/home/_des.html.erb" afterPath="$PROJECT_DIR$/app/views/home/_des.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/home/_displaydesigns.html.erb" afterPath="$PROJECT_DIR$/app/views/home/_displaydesigns.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/home/_list.html.erb" afterPath="$PROJECT_DIR$/app/views/home/_list.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/home/_search.html.erb" afterPath="$PROJECT_DIR$/app/views/home/_search.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/home/dashboard.html.erb" afterPath="$PROJECT_DIR$/app/views/home/dashboard.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/home/image_info.html.erb" afterPath="$PROJECT_DIR$/app/views/home/image_info.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/profile/_userdesigns.html.erb" afterPath="$PROJECT_DIR$/app/views/profile/_userdesigns.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/registrations/new.html.erb" afterPath="$PROJECT_DIR$/app/views/users/registrations/new.html.erb" />
-      <change beforePath="$PROJECT_DIR$/config/database.yml" afterPath="$PROJECT_DIR$/config/database.yml" />
-    </list>
+    <list default="true" id="c3f73bdf-6c36-4609-adde-811cc2c0f711" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/public/system/" />
@@ -126,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/config/database.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="396">
-              <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -506,16 +483,15 @@
       <workItem from="1521465921914" duration="967000" />
       <workItem from="1521552178382" duration="1019000" />
       <workItem from="1521695456141" duration="4171000" />
-      <workItem from="1522048925361" duration="206000" />
+      <workItem from="1522048925361" duration="977000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25488000" />
+    <option name="totallyTimeSpent" value="26259000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="44" width="1368" height="780" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20497803" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -934,7 +910,7 @@
     <entry file="file://$PROJECT_DIR$/config/database.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
-          <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -11,7 +11,6 @@ Rails.application.routes.draw do
       get 'home/error'
       get 'home/:design_id', to: 'home#image_info' , as: 'home'
       post 'home/:design_id', to: 'home#share_design', as: 'share_design'
-      get 'user_profile',to: 'profile#user_profile'
       get 'profile/blockeduser_list'
       resources :designs, only: [:index,:new,:create]
       get 'designs/show_uploaded_design'

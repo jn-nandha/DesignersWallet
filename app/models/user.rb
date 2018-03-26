@@ -8,7 +8,8 @@ class User < ApplicationRecord
   has_many :favourites
   has_many :chats
   has_many :feedbacks
-  has_many :followinglists
+  has_many :followed_by_me, class_name: 'FollowingList', foreign_key: 'from_id'
+  has_many :followed_by_other, class_name: 'FollowingList', foreign_key: 'to_id'
   belongs_to :city 
 
   # Give inactive users
@@ -39,7 +40,7 @@ class User < ApplicationRecord
   end
 
   def blocked_by_me
-    User.where(id: FollowingList.blocked.where(from_id: self.id).pluck(:to_id))
+    User.where(id: followed_by_me.blocked.pluck(:to_id))
   end
 
   def blocked_by_whom

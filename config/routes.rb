@@ -5,11 +5,18 @@ Rails.application.routes.draw do
       registrations: 'users/registrations'
     }
       get 'application/count', to: 'application#count'
-      post 'home/search', to: 'home#search', as: 'search'
-      get 'home/dashboard'
-      get 'home/error'
-      get 'home/:design_id', to: 'home#image_info' , as: 'home'
-      post 'home/:design_id', to: 'home#share_design', as: 'share_design'
+      
+      resources :home do
+        collection do
+          post 'search', as: 'search'
+          get 'dashboard'
+          get 'error'
+          get ':design_id', to: 'home#image_info', as: :image_info
+          post ':design_id', to: 'home#share_design', as: :share_design
+        end
+
+      end
+
       get 'user_profile',to: 'profile#user_profile'
       get 'profile/blockeduser_list'
       resources :designs, only: [:index,:new,:create]

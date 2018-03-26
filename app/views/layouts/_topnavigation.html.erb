@@ -2,7 +2,7 @@
     <nav class="navbar navbar-fixed-top purple-bg" role="navigation" style="margin-bottom: 0">
         <div class="nav navbar-top-links navbar-left">
             <li>
-                <%= link_to home_dashboard_path(design_selection: "All Designs") do %>
+                <%= link_to dashboard_home_index_path(design_selection: "All Designs") do %>
                 Designer's Wallet
                 <% end %>
             </li>
@@ -44,7 +44,7 @@
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to home_dashboard_path(design_selection: "Following's Designs")do %>
+                <%= link_to dashboard_home_index_path(design_selection: "Following's Designs")do %>
                 <i class="fa fa-home"> Home</i>
                 <% end %>
             </li>

@@ -7,9 +7,11 @@ class HomeController < ApplicationController
       design_selection = params[:design_selection]
       design_selection ||= "Following's Designs"
       if design_selection == "Following's Designs"
-        @designs = Design.joins(:user).where(user_id: current_user.followings.pluck(:id)).order("updated_at DESC") 
+        @designs = Design.joins(:user).where(user_id: current_user.followings.pluck(:id)).order("updated_at DESC")
+        @title = "Followings Design"
       elsif design_selection == "All Designs"
         @designs = current_user.all_designs
+        @title = "All Design"
       end 
   end
 
@@ -40,8 +42,10 @@ class HomeController < ApplicationController
     categories = params[:categories].split(',')
     if params[:categories].present?
       @designs = Design.includes(:categories).where(categories: {cat_name: categories})
+      @title = "Search Result"
     else
       @designs = current_user.all_designs
+      @title = "All Design"
     end
   end
 end

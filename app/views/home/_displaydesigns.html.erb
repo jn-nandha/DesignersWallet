@@ -20,24 +20,22 @@
                       <div class="product-desc">
                         <div class="m-t text-righ">
                           <% if current_user.favourited_designs.include?(design) %>
-                          <%= link_to "Remove from favourites", favourites_change_fav_path(design_id: design),remote: true , method: "post" , id: "btn#{design.id}" , class: "btn btn-xs btn-default" %>
+                            <%= link_to favourites_change_fav_path(design_id: design),remote: true , method: "post" , id: "btn#{design.id}" , class: "btn btn-xs btn-warning" do %>
+                              <i class="fa fa-star"> Favourite</i>
+                            <% end %>
                           <% else %>
-                          <%= link_to "Add to favourites", favourites_change_fav_path(design_id: design), remote: true , method: "post" , id: "btn#{design.id}",class: "btn btn-xs btn-default" %>
+                            <%= link_to favourites_change_fav_path(design_id: design),remote: true , method: "post" , id: "btn#{design.id}" , class: "btn btn-xs btn-default" do %>
+                              <i class="fa fa-star"> Favourite</i>
+                            <% end %>
                           <% end %>
-                          <% if  design.feedbacks.where(user_id: current_user.id ).count == 0 %>
-                          <%= link_to feedbacks_like_path(design_id: design), remote: true , method: "post" , id: "likebtn#{design.id}",class: "btn btn-xs btn-default" do%>
-                          <i class="fa fa-thumbs-o-up"> Like </i>
-                          <% end %>
+                          <% if  design.feedbacks.where(user_id: current_user.id, like: true).count == 0 %>
+                            <%= link_to feedbacks_like_path(design_id: design), remote: true , method: "post" , id: "likebtn#{design.id}",class: "btn btn-xs btn-default" do%>
+                              <i class="fa fa-heart"> Like</i>
+                            <% end %>
                           <% else %>
-                          <% if  design.feedbacks.where(user_id: current_user.id , like: true).count == 0 %>
-                          <%= link_to feedbacks_like_path(design_id: design), remote: true,method: "post" , id: "likebtn#{design.id}",class: "btn btn-xs btn-default" do %>
-                          <i class="fa fa-thumbs-o-up"> Like </i>
-                          <% end%>
-                          <% else %>
-                          <%= link_to feedbacks_like_path(design_id: design), remote: true,method: "post" , id: "likebtn#{design.id}",class: "btn btn-xs btn-default" do %>
-                          <i class="fa fa-thumbs-o-down"> Dislike </i>
-                          <% end %>
-                          <% end %>
+                            <%= link_to feedbacks_like_path(design_id: design), remote: true , method: "post" , id: "likebtn#{design.id}",class: "btn btn-xs btn-danger" do%>
+                              <i class="fa fa-heart"> Like</i>
+                            <% end %>
                           <% end %>
                         </div>
                       </div>

@@ -17,9 +17,7 @@ class User < ApplicationRecord
     User.where(activation: "false")
   end
 
-
   def search_users(name)
-    blocked_users = User.where(id: self.blocked_users)
     User.where("name LIKE ?","#{name.capitalize}%") - (self.blocked_users + User.inactive_users + [self])
   end
 
@@ -29,6 +27,10 @@ class User < ApplicationRecord
 
   def favourited_designs
     Design.where(id: Favourite.where(user_id: self.id).pluck(:design_id))
+  end
+
+  def followings_designs
+    Design.where(user_id: self.followings.pluck(:id)).order("updated_at DESC")
   end
 
   def uploaded_favourited_designs
@@ -60,7 +62,7 @@ class User < ApplicationRecord
   end
 
   def all_designs
-    Design.where(user_id: self.search_users("").pluck(:id))
+    Design.where(user_id: (self.search_users("").pluck(:id) + [self.id])).order("updated_at DESC")
   end
 
   def invalid_users

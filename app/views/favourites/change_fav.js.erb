@@ -1,6 +1,1 @@
-if($("#btn<%=@did%>").html() == 'Add to favourites')
-  $("#btn<%=@did%>").html('Remove from favourites');
-else if($("#btn<%=@did%>").html() == 'Remove from favourites')
-  $("#btn<%=@did%>").html('Add to favourites');
-else if($("#btn<%=@did%>").val() == 'Remove')
-	$("#did<%=@did%>").remove();
+$("#btn<%=@did%>").toggleClass("btn-default").toggleClass("btn-warning");

@@ -47,7 +47,7 @@ class Admins::ManageController < ApplicationController
   end
 #--> delete the user
   def delete_user
-    @deleteid= params[:id]
+      @deleteid= params[:id]
          @user = User.find(params[:id])
       if @user.destroy
         flash[:notice] = "Successfully deleted User."

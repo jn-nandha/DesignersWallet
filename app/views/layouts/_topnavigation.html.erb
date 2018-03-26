@@ -17,8 +17,8 @@
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to follows_path,class: "count-info tooltips" , title: '', data: { toggle: 'tooltip', placement: 'bottom', original_title: 'Explore Users'} do %>
-                  <i class="fa fa-group"></i>
+                <%= link_to follows_path,class: "count-info tp"  do %>
+                  <i class="fa fa-group tp"><span class="tptext">explore user</span></i>
                   <% if @noti_count_follow > 0 %>
                     <span class="label label-warning"><%=@noti_count_follow%></span>
                   <% end %>
@@ -27,8 +27,8 @@
         </ul>       
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <%= link_to chats_path, class: "count-info" do %>
-                <i class="fa fa-envelope"></i>
+                <%= link_to chats_path, class: "count-info tp" do %>
+                <i class="fa fa-envelope tp"><span class="tptext">chat</span></i>
                     <% if @noti_count_chat > 0 %>
                         <span class="label label-info"><%=@noti_count_chat%></span>
                     <% end %>

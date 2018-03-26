@@ -8,10 +8,6 @@
 						<%= link_to(image_tag("#{design.image_url}", size: "230x200"), home_path(design_id: design)) %>
 					</div>
 					<div class="product-desc">
-						<!-- <small class="text-muted">Category</small>
-						<div class="small m-t-xs">
-							Description
-						</div> -->
 						<div class="m-t text-righ">
 							<% if @user == current_user %>
 								<%= link_to designs_del_design_path(design_id: design.id),remote:true , method: "delete" ,class: "btn btn-xs btn-outline btn-danger" do %>

@@ -9,7 +9,6 @@
 		<%= render partial: 'chats/recipients', locals: { allusers: @all_users, notifiedusers: @notified_users, followedusers: @followed_users} %>
 	</div>
 </div>
-
 <div class="col-md-6 side-center">
 	<div class="messages" id="recp-msgs">
 		<%= render partial: 'chats/messages', locals: { msgs: @msgs, recipient: @user} %>
@@ -18,14 +17,10 @@
 		<%= render partial: 'chats/form', locals: { recp: @recp} %>	
 	</div>
 </div>
-
-
 <div class="col-md-3 side-right">
 	<div id="designs" class="designs">
-		
 	</div>
 </div>
-
 <script type="text/javascript">
 	$(document).ready(function(argument) {
 		$('#msg').scrollTop($('#msg').prop("scrollHeight"));

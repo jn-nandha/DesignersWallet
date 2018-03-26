@@ -9,10 +9,6 @@
 						<%= link_to(image_tag("#{design.image_url}", size: "230x200"), home_path({design_id: design})) %>
 					</div>
 					<div class="product-desc">
-						<!-- <small class="text-muted">Category</small>
-						<div class="small m-t-xs">
-							Description
-						</div> -->
 						<div class="m-t text-righ">
 							<%= button_to 'Remove',favourites_change_fav_path(design_id: design), remote: true , method: "post" , id: "btn#{design.id}",class: "btn btn-xs btn-outline btn-danger fa" %>
 						</div>

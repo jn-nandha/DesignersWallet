@@ -1,15 +1,15 @@
 <h2> Requests </h2>
 <% if requests.count > 0 %>
-	<% requests.each do |f| %>
-		<div id="div<%=f.id%>" class="ibox float-e-margins conta container ">
+	<% requests.each do |req| %>
+		<div id="div<%=req.id%>" class="ibox float-e-margins conta container ">
 			<div class="ibox-content">
 			<h3 class="col-sm-8 font-bold">
-        <%= link_to user_profile_path(id: f.id) do%>
-          <%= f.name %>
-        <% end %>
-      </h3>
-	       	<%= link_to "Accept",approved_path({from_id: f.id}),remote: true,method: "put", class: "btn btn-outline btn-success" %>
-			<%= link_to "Cancel",cancel_path({from_id: f.id}),remote: true,method: "delete", class: "btn btn-outline btn-warning"%>
+		<%= link_to user_profile_path(id: req.id) do%>
+		  <%= req.name %>
+		<% end %>
+	  </h3>
+			<%= link_to "Accept",approved_path({from_id: req.id}),remote: true,method: "put", class: "btn btn-outline btn-success" %>
+			<%= link_to "Cancel",cancel_path({from_id: req.id}),remote: true,method: "delete", class: "btn btn-outline btn-warning"%>
 			</div>
 		</div>
 	<% end %>

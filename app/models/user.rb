@@ -11,12 +11,9 @@ class User < ApplicationRecord
   has_many :followinglists
   belongs_to :city 
 
-
   def self.inactive_users
-    User.where(activation: "false")
+    User.where(activation: false)
   end
-
-
 
   def search_users(name)
     User.where("name LIKE ?","#{name.capitalize}%") - (User.where(id: self.blocked_users) + User.where(id: User.inactive_users.pluck(:id)) + [self])

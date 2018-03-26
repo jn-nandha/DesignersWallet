@@ -1,6 +1,4 @@
-
 <%= button_to "Back", home_dashboard_path, method: "get" %>
-
 	<% if designs.count != 0 %>
 		<h2>Search Result:</h2><br>
 		<%= render partial: 'home/displaydesigns' ,locals: { images: @designs } %>

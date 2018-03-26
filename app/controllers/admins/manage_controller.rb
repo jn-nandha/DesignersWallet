@@ -10,13 +10,14 @@ class Admins::ManageController < ApplicationController
     if params[:search].blank?
        @users = []
     else
-       @users=User.joins(:city).where("name LIKE ? OR email LIKE ? OR city_name LIKE ? ","#{params[:search]}%","#{params[:search]}%","#{params[:search].upcase}%").paginate(:page => params[:page], :per_page => 3)
+       @users=User.joins(:city).where("name LIKE ? OR email LIKE ? OR city_name LIKE ? ","#{params[:search]}%","#{params[:search]}%","#{params[:search].upcase}%").paginate(:page => params[:page], :per_page => 6)
        respond_to do |format|
        format.js
        format.html
        end
     end
   end
+
 
 #--> Shows the index page with side navigation
   def manage_user

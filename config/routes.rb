@@ -51,7 +51,12 @@ Rails.application.routes.draw do
     post   '/activate_user',     to: 'admins/manage#activate_user'
     get   '/show_all_design', to: 'admins/manage#show_all_design'
     post   '/show_all_design', to: 'admins/manage#show_all_design'
- 
+    
+    get   '/report', to: 'reports#report'
+    post   '/report', to: 'reports#report'
+    
+    # get   '/reports', to: 'reports#report'
+    
   end
 
       get 'application/count', to: 'application#count'

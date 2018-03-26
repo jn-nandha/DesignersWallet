@@ -23,10 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: DesignersWallet_development
-  host: localhost
-  username: postgres
-  password: admin
+  database: DesignersWallet_development23
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -60,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: DesignersWallet_test
+  database: DesignersWallet_test23
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -83,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: DesignersWallet_production
+  database: DesignersWallet_production23
   username: DesignersWallet
   password: <%= ENV['DESIGNERSWALLET_DATABASE_PASSWORD'] %>

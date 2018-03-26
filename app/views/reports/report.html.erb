@@ -1,0 +1,186 @@
+<!-- 
+	<% @feedback.each do |f| %>
+			like : <%= f.like %> 	
+			report : <%= f.report %> 	
+			design_id : <%= f.design_id %>
+			user_id : <%= f.user_id %> <br>	
+	<% end %> -->
+
+<!-- 	<table border="1">
+  <tr>
+    <th>design_id</th> 
+    <th>user_id</th> 
+    <th>like</th>
+    <th>report</th> 
+  </tr>
+	<% @feedback.each do |f| %>
+  <tr>
+      <td><%= f.design_id %></td>
+        <td><%= f.user_id %></td>
+    <td><%= f.like %> </td>
+    <td><%= f.report %> </td>
+  </tr>
+   	<% end %>
+</table>
+ -->
+   <div class="row">
+                <div class="col-lg-2">
+                    <div class="widget style1 navy-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-3">
+                                <i class="fa fa-user fa-3x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <h2 class="font-bold"> <%= @ccuser.count %>
+                                	
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="widget style1 navy-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-3">
+                                <i class="fa fa-thumbs-up fa-3x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <h2 class="font-bold">400</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="widget style1 navy-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-3">
+                                <i class="fa fa-rss fa-3x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <h2 class="font-bold">10</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="widget style1 lazur-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-3">
+                                <i class="fa fa-phone fa-3x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <h2 class="font-bold">120</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="widget style1 lazur-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-3">
+                                <i class="fa fa-euro fa-3x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <h2 class="font-bold">462</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="widget style1 yellow-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-3">
+                                <i class="fa fa-shield fa-3x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                            
+                          <h3 class="font-bold">
+                          Feedbacks 
+                          <h3>
+                          <center>
+                          <%= @feedback.count(:report) %>
+                          </center>
+                          </h3>
+                          </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<center><h2></h2></center>
+<b>Total Feedback : </b>
+<br>
+
+ 
+
+<table class="table table-hover">
+  <thead>
+    <tr class="purple-bg">
+      <th scope="col">design_id</th>
+      <th scope="col">Total Repoarts</th>
+        
+    </tr>
+  </thead>
+  <tbody>
+
+  <% @total_repoart.each do |bb| %>
+      <tr>
+       <% @ftot = Feedback.where(design_id: bb).count(:id) %>
+       <td>  <%= bb %> </td>
+     </td>
+      
+      <td> <%= @ftot %> </td>
+      
+
+    </tr>
+    <% end %>
+   
+  </tbody>
+</table>
+
+
+
+<center><h2> Detail Repoarts</h2></center>
+<table class="table table-hover">
+  <thead>
+    <tr class="purple-bg">
+      <th scope="col">design_id</th>
+      <th scope="col">user_id</th>
+      <th scope="col">like</th>
+      <th scope="col">report</th>
+       
+    </tr>
+  </thead>
+  <tbody><br>
+    
+  <% @feedback.each do |f| %>
+      <tr>
+    <th scope="row"> <%= f.design_id %> </th>
+      <td> <%= f.user_id %> </td>
+      <td> <%= f.like %> </td>
+      <td> <%= f.report %></td>
+    </tr>
+    <% end %>
+   
+  </tbody>
+</table>
+<!-- 
+<div class="widget navy-bg p-lg text-center">
+                        <div class="m-b-md">
+                            <i class="fa fa-shield fa-4x"></i>
+                            <h1 class="m-xs">456</h1>
+                            <h3 class="font-bold no-margins">
+                                Shield
+                            </h3>
+                            <small>power</small>
+                        </div>
+                    </div> -->
+
+
+
+
+
+
+
+

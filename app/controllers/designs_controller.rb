@@ -15,11 +15,13 @@ class DesignsController < ApplicationController
       flash[:danger] = 'Please select category.if you dont want to put your image in any category you can select Other from given options.'
       redirect_to new_design_path
     else
-      if design_params[:description] != "" && design_params[:image]
+      if design_params[:description].present? && design_params[:image].present?
         @design = Design.new(design_params)
         @design.user_id = current_user.id
         if @design.save!
-          @design.categories << Category.where(id: params[:categories]) 
+          selected_categories = params[:categories].split(',')
+          binding.pry
+          @design.categories << Category.where(cat_name: selected_categories)
           flash[:success] = 'design is uploaded.'
           redirect_to user_profile_path(id: current_user.id)
         else

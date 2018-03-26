@@ -1,3 +1,8 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+<style>
+  .design-categories{width:100%!important}
+</style>
 <div class="middle-box center animated ">
 <% if !@design.errors.empty? %>
    <div class = "alert alert-error">  
@@ -15,14 +20,22 @@
       <%= f.label :Description %>
       <%= f.text_area :description%>
       <div>
-        <% @cat.each do |cat| %>
-          <div>
-          <%= check_box_tag "categories[]",  cat.id %>
-          <%= cat.cat_name %>
-          </div>
-        <% end %>
+        <select  multiple="multiple" data-placeholder="Select Option" class="select2 design-categories" width="100%">
+      <% @cat.each do |cat| %>  
+      <option><%= cat.cat_name %></option>
+      <% end %>
+    </select>
+     <%= hidden_field_tag "categories" %>
       </div>
-      <%= f.submit "Save", class: "btn btn-primary" %>
+      <%= f.submit "Save", class: "btn btn-primary", id: "save_design" %>
    <% end %>
 </div>
 </div>
+
+
+<script>
+  $("#save_design").click(function(){
+    cat = $('.design-categories').select2('val');
+    $("#categories").val(cat);
+  });
+</script>

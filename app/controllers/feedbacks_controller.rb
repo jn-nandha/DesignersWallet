@@ -4,27 +4,19 @@ class FeedbacksController < ApplicationController
     retutn unless current_user.activation
       feedback= current_user.feedback(@did)
       if feedback.nil?
-        feedback = Feedback.new(user_id: current_user.id, design_id: params[:design_id],like: true)
-        feedback.save!
+        feedback = Feedback.create!(user_id: current_user.id, design_id: params[:design_id],like: true)
       else
-        if feedback.like == true
-          feedback.update!(like: false)
-        else
-          feedback.update!(like: true)
-        end        
+        feedback.update_attributes!(like: !feedback.like)
       end
-      
-  end
-
+    end
 
   def complain
     @flash_js= {}
     return unless current_user.activation
     feedback = current_user.feedback(params[:design_id])
-    if params[:feedback][:complain] != ""
+    if params[:feedback][:complain].present?
       if feedback.nil?
-        feedback = Feedback.new(user_id: current_user.id, design_id: params[:design_id], report: params[:feedback][:complain])
-        feedback.save!
+        feedback = Feedback.create!(user_id: current_user.id, design_id: params[:design_id], report: params[:feedback][:complain])
         @flash_js[:success]= "complain successfully registered."
       else
         feedback.update!(report: params[:feedback][:complain])

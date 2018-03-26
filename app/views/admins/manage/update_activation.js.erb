@@ -1,9 +1,10 @@
+$('#flashmsg').html("<%= j render partial: 'admins/manage/flashmsg'%>");
+	if($('#btn<%=@uid%>').html() == "Deactivate")
+		{
+			$("#btn<%=@uid%>").html("Activate");
+		}
+	else
+		{
+			$("#btn<%=@uid%>").html("Deactivate");
+		}
 
-if($('#btn<%=@uid%>').html() == "UnBlocked")
-{
-	$("#btn<%=@uid%>").html("Blocked");
-}
-else
-{
-	$("#btn<%=@uid%>").html("UnBlocked");
-}

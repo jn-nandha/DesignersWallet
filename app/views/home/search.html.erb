@@ -2,8 +2,8 @@
   <thead>
     <tr class="tr_heading" >
       <th>User name</th>
-      <th>City</th>
       <th>Email</th>
+      <th>City</th>
       <th>Created-at</th>
       <th>Status</th>
     </tr>
@@ -17,12 +17,13 @@
       <td>
         <%= u.name if u.name.present? %>
       </td>
+       <td>
+        <%= u.email %>
+      </td>
       <td>
         <%= u.city.city_name if u.city_id.present? %>
       </td>
-      <td>
-        <%= u.email %>
-      </td>
+     
       <td>
         <%= u.created_at.strftime('%C-%m-%Y') %>
       </td>
@@ -43,6 +44,9 @@
       <p> Not Available</p>
       </td>
       <% end %>
+       <td>
+        <%= u.email %>
+      </td>
       <% if u.city_id.present? %>
       <td>
         <%= u.city.city_name %>
@@ -52,9 +56,7 @@
       <p> Not Available</p>
       </td>
       <% end %>
-      <td>
-        <%= u.email %>
-      </td>
+     
       <td>
         <%= u.created_at.strftime('%C-%m-%Y') %>
       </td>
@@ -67,5 +69,6 @@
     <% end %>
   </tbody>
 </table>
+
 
 <%= will_paginate @users , renderer: BootstrapPagination::Rails %>

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     post        '/manage',   to: 'admins/manage#index'
     get         '/manage_user', to: 'admins/manage#manage_user'
     post        '/manage_user', to: 'admins/manage#manage_user'
-    post        '/delete',      to: 'admins/manage#delete_user'
+    delete      '/delete',      to: 'admins/manage#delete_user'
     get         '/delete',      to: 'admins/manage#delete_user'
     get         '/users/invitation/new', to: 'users/invitations#new'
     patch       '/users/invitation/new', to: 'users/invitations#update'
@@ -87,7 +87,5 @@ Rails.application.routes.draw do
       post 'feedbacks/like'
       post 'feedbacks/complain'
     #resources :designs, only: [:new,:create,:show]
-    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
 end
 

@@ -1,3 +1,6 @@
+$('#flashmsg').html("<%= j render partial: 'admins/manage/flashmsg'%>");
+
 $('#right_div').html(" <%= j render partial: 'admins/manage/search', locals: { searchs: @search} %>");
-jQuery('#right_div').html,(" 'admins/manage/manage_user' )");
+
+jQuery('#right_div').html,(" 'admins/manage/search' )");
 $('.pagination a').attr('data-remote', 'true');

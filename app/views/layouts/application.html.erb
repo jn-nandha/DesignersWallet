@@ -12,18 +12,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<!-- Wrapper-->
+  <!-- Wrapper-->
 
   <div id="wrapper">
     <!-- Page wraper -->
     <div class="wrapper wrapper-content gray-bg">        
       <!-- Page wrapper --> 
       <div class="page-wrapper top-margin" >
+        <% if admin_signed_in? %>
+        <%= render 'layouts/admintopnavigation' %>
+        <% else %>
         <%= render 'layouts/topnavigation' %>
         <% flash.each do |key, value| %>
         <% if value != nil %>
-        <div class="alert alert-<%= key %>"><%= value %></div><% end%>
+        <div class="alert alert-<%= key %>">
+          <%= value %>
+          </div>
         <% end %>
+        <% end %>
+        <% end %>
+
         <div id="flashjs">
         </div>
         <!-- Main view  -->

@@ -3,12 +3,14 @@ class Users::InvitationsController < DeviseController
   #prepend_before_action :has_invitations_left?, :only => [:create]
   prepend_before_action :require_no_authentication, :only => [:edit, :update, :destroy]
   prepend_before_action :resource_from_invitation_token, :only => [:edit, :destroy]
-  before_action :authenticate_admin!, except: :create
+  before_action :authenticate_admin!, except: :create 
 #  before_action :configure_permitted_parameters, if: :devise_controller?
  # before_action :update_sanitized_params, only: :update
  
   if respond_to? :helper_method
     helper_method :after_sign_in_path_for
+
+
     
   end
   $cty = City.all.pluck(:city_name)

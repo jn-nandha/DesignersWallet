@@ -1,6 +1,6 @@
 <table class="table ">
     <thead>
-      <tr class="tr_heading purple-bg">
+      <tr class="tr_heading purple-bg spa">
             <th>Design</th>
             <th>Description</th>
             <th>Action</th>
@@ -10,12 +10,21 @@
    <tbody>
       <% @designs.each do |design| %>
         <div>
-              <tr id = 'tr<%=design.id%>' >
-             <td><%= link_to(image_tag("#{design.image_url}", size: "100x100"), home_path({design_id: design}))%></td>
-             <td><%= design.description %></td>
-             <td><%= link_to '<button  class="btn  btn-success btn-outline">Delete Image</button>'.html_safe , designs_del_design_path({design_id: design}),remote:true , method: "delete" ,id: "btn#{design.id}" %>
-             </td>
+            <tr id = 'tr<%=design.id%>' >
+
+            <td>
+                <%= link_to(image_tag("#{design.image_url}", size: "100x100"), home_path({design_id: design}))%>
+            </td>
+            
+            <td>
+                <%= design.description %>
+            </td>
+
+             <td>
+                <%= link_to '<button  class="btn  btn-success btn-outline">Delete Image</button>'.html_safe , designs_del_design_path({design_id: design}),remote:true , method: "delete" ,id: "btn#{design.id}" %>
+            </td>
          </tr>
+
         </div>
       <% end %>
    </tbody>

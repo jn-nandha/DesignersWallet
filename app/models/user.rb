@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,:recoverable, 
   :rememberable, :trackable, :validatable, :confirmable
   
-  has_many :designs
+  has_many :designs , dependent: :destroy
   has_many :favourites
   has_many :chats
   has_many :feedbacks

@@ -3,31 +3,24 @@ class Admins::ManageController < ApplicationController
   skip_before_action :authenticate_user! # here skip authenticate user in all methods
 
   def index
-   @users = User.all.paginate(:page => params[:page], :per_page => 5)
-   #@designs =Design.find(params[:id]).paginate(:page => params[:page], :per_page => 3)
+      @users = User.all.paginate(:page => params[:page], :per_page => 5)
   end
-#--> search the User By name 
+#--> search the User By name ,email,city
   def search
-   if params[:search].blank?
-      @users = []
-   else
-      @users = User.where("name LIKE ?","#{params[:search]}%")
-      respond_to do |format|
-      format.js
-      format.html
+    if params[:search].blank?
+       @users = []
+    else
+       @users=User.joins(:city).where("name LIKE ? OR email LIKE ? OR city_name LIKE ? ","#{params[:search]}%","#{params[:search]}%","#{params[:search].upcase}%").paginate(:page => params[:page], :per_page => 3)
+       respond_to do |format|
+       format.js
+       format.html
+       end
     end
-  end
   end
 
 #--> Shows the index page with side navigation
   def manage_user
-     @uid = params[:id]
-          @users = User.all.paginate(:page => params[:page], :per_page => 4).order('created_at DESC')
-            respond_to do |format|
-              format.html # index.html.erb
-              format.json { render json: @users }
-              format.js
-            end
+      @users = User.all.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
   end
 #--> Shows the user profile with his designs
   def profile
@@ -54,31 +47,30 @@ class Admins::ManageController < ApplicationController
   end
 #--> delete the user
   def delete_user
+    @deleteid= params[:id]
          @user = User.find(params[:id])
       if @user.destroy
         flash[:notice] = "Successfully deleted User."
-        redirect_to manage_user_path
       end
   end
 #--> show all design in the index page
   def show_all_design
-    @designs = Design.all.paginate(:page => params[:page], :per_page => 4)
+      @designs = Design.all.paginate(:page => params[:page], :per_page => 4)
   end
 #--> update the users activation status
   def update_activation
-    @uid = params[:id]
+        @uid = params[:id]
        @status = User.find(params[:id])
     if @status.activation == true
        @status.activation = false
     else
        @status.activation =  true
     end
-    @status.save!
-  
+       @status.save!
   end
 #--> shows the all block / unblock list of users
   def activate_user
-    @users = User.all.paginate(:page => params[:page], :per_page => 4).order("created_at DESC")
+      @users = User.all.paginate(:page => params[:page], :per_page => 9).order("created_at DESC")
   end
   
   private

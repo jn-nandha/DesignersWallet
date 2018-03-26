@@ -1,13 +1,14 @@
+$('#flashmsg').html("<%= j render partial: 'admins/manage/flashmsg'%>");
 $('#right_div').html(" <%= j render partial: 'admins/manage/activate_user', locals: { actv: @users} %>");
 
 jQuery('#right_div').html,(" 'admins/manage/activate_user' )");
 $('.pagination a').attr('data-remote', 'true');
 
-if($('#btn<%=@uid%>').html() == "UnBlocked")
-{
-	$("#btn<%=@uid%>").html("Blocked");
-}
-else
-{
-	$("#btn<%=@uid%>").html("UnBlocked");
-}
+	if($('#btn<%=@uid%>').html() == "UnBlocked")
+		{
+			$("#btn<%=@uid%>").html("Blocked");
+		}
+	else
+		{
+			$("#btn<%=@uid%>").html("UnBlocked");
+		}

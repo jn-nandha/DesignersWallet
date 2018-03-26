@@ -1,6 +1,6 @@
 # this class defines methods for design module.
 class DesignsController < ApplicationController
-	skip_before_action :authenticate_user! , only: :del_design
+	skip_before_action :authenticate_user! , only: [:del_design]
 
   def index
     @designs = Design.all if current_user.activation
@@ -38,7 +38,7 @@ class DesignsController < ApplicationController
   def del_design
     @did = params[:design_id]
     des = Design.find(params[:design_id])
-    usr = des.user if des.user == current_user
+    usr = des.user if des.user == current_user || current_admin
     des.destroy if usr.activation
   end
 

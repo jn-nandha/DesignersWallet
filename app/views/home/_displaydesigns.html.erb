@@ -15,7 +15,7 @@
                   <div class="ibox">
                     <div class="ibox-content product-box">
                       <div class="product-imitation image-padding-5px" >
-                        <%= link_to(image_tag("#{design.image_url}", size: "230x200"), home_path({design_id: design})) %>
+                        <%= link_to(image_tag("#{design.image_url}", size: "230x200"), home_path(id: design)) %>
                       </div>
                       <div class="product-desc">
                         <div class="m-t text-righ">

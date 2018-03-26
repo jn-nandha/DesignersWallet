@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+    root 'home#dashboard'
+
     devise_for :admins
     devise_for :users, controllers: 
     {
@@ -14,7 +17,6 @@ Rails.application.routes.draw do
           get ':design_id', to: 'home#image_info', as: :image_info
           post ':design_id', to: 'home#share_design', as: :share_design
         end
-
       end
 
       get 'user_profile',to: 'profile#user_profile'

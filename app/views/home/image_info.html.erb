@@ -9,7 +9,7 @@
         </div>
         <div class="modal-body">
           <div>
-            <%= form_tag(share_design_path(design_id: @design.id),method: "post",remote: true) do %>
+            <%= form_tag(share_design_home_index_path(design_id: @design.id),method: "post",remote: true) do %>
             <div style="height: 300px;overflow-y: auto;">
               <% @users.each do |user| %>
               <div>

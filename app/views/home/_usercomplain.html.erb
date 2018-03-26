@@ -1,5 +1,5 @@
-<% if complain != nil %>
-<% if complain.report != nil %>
+<% if complain.present? %>
+<% if complain.report.present? %>
 <dl class="small m-t-md">
 	<dt>Your Complain: </dt>
 	<dd><%= complain.report %></dd>

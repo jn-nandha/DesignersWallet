@@ -18,9 +18,9 @@ class User < ApplicationRecord
   end
 
 
-
   def search_users(name)
-    User.where("name LIKE ?","#{name.capitalize}%") - (User.where(id: self.blocked_users) + User.where(id: User.inactive_users.pluck(:id)) + [self])
+    blocked_users = User.where(id: self.blocked_users)
+    User.where("name LIKE ?","#{name.capitalize}%") - (self.blocked_users + User.inactive_users + [self])
   end
 
   def uploaded_designs
@@ -52,23 +52,27 @@ class User < ApplicationRecord
   end
 
   def followers
-    User.where(id: FollowingList.where(to_id: self.id).accepted.pluck(:from_id))
+    User.where(id: FollowingList.where(to_id: self.id).accepted.pluck(:from_id)) - self.invalid_users
   end
 
   def followings
-    User.where(id: FollowingList.where(from_id: self.id).accepted.pluck(:to_id))
+    User.where(id: FollowingList.where(from_id: self.id).accepted.pluck(:to_id)) - self.invalid_users
   end
 
   def all_designs
     Design.where(user_id: self.search_users("").pluck(:id))
   end
 
+  def invalid_users
+    self.blocked_users + User.inactive_users
+  end
+
   def requested_users
-    User.where(id: FollowingList.where(to_id: self.id).requested.pluck(:from_id)) - self.blocked_by_me - User.inactive_users
+    User.where(id: FollowingList.where(to_id: self.id).requested.pluck(:from_id)) - self.invalid_users
   end
 
   def notified_users
-    User.where(id: Chat.where(receiver_id: self.id).unread.pluck(:sender_id).uniq) - self.blocked_by_me - User.inactive_users
+    User.where(id: Chat.where(receiver_id: self.id).unread.pluck(:sender_id).uniq) - self.invalid_users
   end
 
   def chated_users

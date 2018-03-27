@@ -1,4 +1,1 @@
-if($("#likebtn<%=@did%>").html() == 'Like')
-	$("#likebtn<%=@did%>").html('Dislike');
-else
-	$("#likebtn<%=@did%>").html('Like');
+$("#likebtn<%=@did%>").toggleClass("btn-default").toggleClass("btn-danger");

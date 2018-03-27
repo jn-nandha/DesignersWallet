@@ -2,14 +2,16 @@ class HomeController < ApplicationController
   def dashboard
     return unless current_user.activation
     @cat = Category.all
-    return unless current_user.activation
-    design_selection = params[:design_selection]
-    design_selection ||= "Following's Designs"
-    if design_selection == "Following's Designs"
-      @designs = Design.joins(:user).where(user_id: current_user.followings.pluck(:id)).order("updated_at DESC") 
-    elsif design_selection == "All Designs"
-      @designs = current_user.all_designs
-    end 
+      return unless current_user.activation
+      design_selection = params[:design_selection]
+      design_selection ||= "Following's Designs"
+      if design_selection == "Following's Designs"
+        @designs = current_user.followings_designs
+        @title = "Followings Design"
+      elsif design_selection == "All Designs"
+        @designs = current_user.all_designs
+        @title = "All Design"
+      end 
   end
 
   def image_info
@@ -38,8 +40,10 @@ class HomeController < ApplicationController
     categories = params[:categories].split(',')
     if params[:categories].present?
       @designs = Design.includes(:categories).where(categories: {cat_name: categories})
+      @title = "Search Result"
     else
       @designs = current_user.all_designs
+      @title = "All Design"
     end
   end
 end

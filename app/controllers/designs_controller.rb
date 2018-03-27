@@ -20,7 +20,6 @@ class DesignsController < ApplicationController
         @design.user_id = current_user.id
         if @design.save!
           selected_categories = params[:categories].split(',')
-          binding.pry
           @design.categories << Category.where(cat_name: selected_categories)
           flash[:success] = 'design is uploaded.'
           redirect_to user_profile_path(id: current_user.id)

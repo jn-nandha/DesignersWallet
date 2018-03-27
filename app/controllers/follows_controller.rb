@@ -37,7 +37,6 @@ class FollowsController < ApplicationController
 
   # Revert the request
   def revert_request
-    @id = params[:to_id]
     cancel_req = FollowingList.find_by('from_id = ? and to_id = ?', current_user.id, params[:to_id])
     FollowingList.delete(cancel_req.id)
     fetch_records

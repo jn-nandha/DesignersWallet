@@ -46,7 +46,7 @@ class User < ApplicationRecord
   end
 
   def blocked_by_whom
-    User.where(id: FollowingList.blocked.where(to_id: self.id).pluck(:from_id))
+    User.where(id: followed_by_other.blocked.pluck(:from_id))
   end
 
   def blocked_users

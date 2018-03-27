@@ -1,1 +1,1 @@
-$('#search').html("<%= j(render partial: 'home/list', locals: { users: @users , designs: @designs}) %>");
+$('#search').html("<%= j(render partial: 'home/displaydesigns' ,locals: { images: @designs }) %>");

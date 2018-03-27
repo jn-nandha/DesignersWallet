@@ -13,8 +13,7 @@ $(document).ready(function(){
         dataType: 'script',
         data:{
           name : $(this).val()
-        },
-        success:function (msg) {}
+        }
       });
     }
   });

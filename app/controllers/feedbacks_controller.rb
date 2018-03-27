@@ -2,54 +2,37 @@ class FeedbacksController < ApplicationController
   def like
     @did = params[:design_id]
     retutn unless current_user.activation
-      a= Feedback.find_by(user_id: current_user.id, design_id: params[:design_id])
-      if a.nil?
-        feedback = Feedback.new
-        feedback.user_id = current_user.id
-        feedback.design_id = params[:design_id]
-        feedback.like = true
-      else
-        feedback = Feedback.find(a.id)
-        if feedback.like == true
-          feedback.like = false
-        else
-          feedback.like = true
-        end        
-      end
+    feedback= current_user.feedback(@did)
+    if feedback.nil?
+      feedback = Feedback.new(user_id: current_user.id, design_id: params[:design_id],like: true)
       feedback.save!
+    else
+      if feedback.like == true
+        feedback.update!(like: false)
+      else
+        feedback.update!(like: true)
+      end        
+    end
+
   end
 
 
   def complain
     @flash_js= {}
     return unless current_user.activation
-    if params[:feedback][:complain] != ""
-      a= Feedback.find_by(user_id: current_user.id, design_id: params[:design_id])
-      if a.nil?
-        feedback = Feedback.new
-        feedback.user_id = current_user.id
-        feedback.design_id = params[:design_id]
-        feedback.report = params[:feedback][:complain]
-        feedback.save!
-        @flash_js[:success]= "complain successfully registered."
-      else
-        feedback = Feedback.find(a.id)
-        feedback.report = params[:feedback][:complain]
-        feedback.save!
-        @flash_js[:success]= "complain successfully registered."
-      end
-      @complain =  Feedback.find_by(user_id: current_user.id, design_id: params[:design_id])
+    feedback = current_user.feedback(params[:design_id])
+    complain = params[:feedback][:complain]
+    if complain.blank?
+      @flash_js[:danger] = "write complain."
     else
-      @complain =  Feedback.find_by(user_id: current_user.id, design_id: params[:design_id])
-      if @complain != nil
-        if @complain.report != nil
-        @flash_js[:danger] = "unable to update complain."
-        else
-          @flash_js[:danger] = "write complain."
-        end
+      if feedback.present?
+        feedback.update!(report: params[:feedback][:complain])
       else
-        @flash_js[:danger] = "write complain."
+        feedback = Feedback.create!(user_id: current_user.id, design_id: params[:design_id], report: params[:feedback][:complain])
       end
+      @flash_js[:success]= "complain successfully registered."
     end
+    @complain = feedback
   end
+
 end

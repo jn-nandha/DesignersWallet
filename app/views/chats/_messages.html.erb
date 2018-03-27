@@ -1,15 +1,16 @@
 	<div class="recipient">
 		<%= @user.name %>
 	</div>
+
 	<div class="chats" id="msg">
 		<ul>
 			<% msgs.each do |message| %>
 			<li>
 				<% if message.sender_id == current_user.id %>
-
+				
 				<% message.designs.each do |design| %>
 				<div class="send">
-					<%= link_to home_path(design_id: design.id), method: "get", target: "_blank" do %>
+					<%= link_to image_info_home_index_path(design_id: design.id), method: "get", target: "_blank" do %>
 					<div class="image-r">
 						<%= image_tag("#{design.image_url}") %> 
 					</div>
@@ -26,9 +27,9 @@
 
 				<% else %>
 
-				<% Design.where(id: message.designs_id).each do |design| %>
+				<% message.designs.each do |design| %>
 				<div class="receiver">
-					<%= link_to home_path(design_id: design.id), method: "get", target: "_blank" do %>
+					<%= link_to image_info_home_index_path(design_id: design.id), method: "get", target: "_blank" do %>
 					<div class="image-l"> 
 						<%= image_tag("#{design.image_url}") %> 
 					</div>

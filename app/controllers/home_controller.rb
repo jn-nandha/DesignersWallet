@@ -1,25 +1,26 @@
 class HomeController < ApplicationController
   def dashboard
-    @cat = Category.all
     return unless current_user.activation
-    design_selection = params[:design_selection]
-    design_selection ||= "Following's Designs"
-    if design_selection == "Following's Designs"
-      a = FollowingList.joins(:to).where(from_id: current_user.id, follow_status: 'accepted').pluck(:to_id)
-      @followings = User.where(id: a, activation: true)
-      @designs = Design.joins(:user).where(user_id: @followings).order('updated_at DESC')
-    elsif design_selection == 'All Designs'
-      @designs = Design.all.order('updated_at DESC')
-    end
+    @cat = Category.all
+
+      return unless current_user.activation
+      design_selection = params[:design_selection]
+      design_selection ||= "Following's Designs"
+      if design_selection == "Following's Designs"
+        @designs = current_user.followings_designs
+        @title = "Followings Design"
+      elsif design_selection == "All Designs"
+        @designs = current_user.all_designs
+        @title = "All Design"
+      end 
   end
 
   def image_info
-    if current_user.activation
-      @users = User.where('id != ? and activation != ?', current_user.id, false)
+
+    return unless current_user.activation
+      @users = current_user.search_users("")
       @design = Design.find(params[:design_id])
-      @complain = Feedback.find_by(user_id: current_user.id, design_id: params[:design_id])
-      flash[:success]
-    end
+      @complain =  current_user.feedback(params[:design_id])
   end
 
   def share_design
@@ -38,8 +39,13 @@ class HomeController < ApplicationController
   end
 
   def search
-    unless params[:categories].nil?
-      @designs = Design.includes(:categories).where(categories: { id: params[:categories] })
+    categories = params[:categories].split(',')
+    if params[:categories].present?
+      @designs = Design.includes(:categories).where(categories: {cat_name: categories})
+      @title = "Search Result"
+    else
+      @designs = current_user.all_designs
+      @title = "All Design"
     end
   end
 end

@@ -12,8 +12,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<!-- Wrapper-->
-
   <div id="wrapper">
     <!-- Page wraper -->
     <div class="wrapper wrapper-content gray-bg">        
@@ -21,8 +19,11 @@
       <div class="page-wrapper top-margin" >
         <%= render 'layouts/topnavigation' %>
         <% flash.each do |key, value| %>
-        <% if value != nil %>
-        <div class="alert alert-<%= key %>"><%= value %></div><% end%>
+          <% if value != nil %>
+            <div class="alert alert-<%= key %>">
+              <%= value %>
+            </div>
+          <% end%>
         <% end %>
         <div id="flashjs">
         </div>

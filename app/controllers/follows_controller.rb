@@ -8,11 +8,10 @@ class FollowsController < ApplicationController
 
   def follow_req
     @request_to_id = params[:to_id]
-    @checkcount = FollowingList.where(to_id: params[:to_id], from_id: current_user.id, follow_status: 'requested')
-    if @checkcount.empty?
-      followinglist = FollowingList.create!(from_id: current_user.id, to_id: params[:to_id], follow_status: 'requested')
+    if current_user.requested_by_me?
+      flash[:success] = 'you already requested'
     else
-      render html: 'you already requested'
+      followinglist = FollowingList.create!(from_id: current_user.id, to_id: params[:to_id], follow_status: 'requested')
     end
     fetch_records
   end
@@ -29,7 +28,6 @@ class FollowsController < ApplicationController
     cancel_req = FollowingList.find_by('to_id = ? and from_id = ?', current_user.id, params[:from_id])
     FollowingList.delete(cancel_req.id)
     fetch_records
-    binding.pry
   end
 
   def revert_request
@@ -47,14 +45,13 @@ class FollowsController < ApplicationController
 
   def blockuser
     @userid = params[:to_id]
-    block = FollowingList.new(from_id: current_user.id, to_id: params[:to_id], follow_status: 'blocked')
-    block.save!
+    block = FollowingList.create!(from_id: current_user.id, to_id: params[:to_id], follow_status: 'blocked')
     fetch_records
   end
 
   def unblockuser
     any_user = FollowingList.where(to_id: current_user.id, from_id: params[:id])
-                            .or(FollowingList.where(to_id: params[:id], from_id: current_user.id))
+    .or(FollowingList.where(to_id: params[:id], from_id: current_user.id))
     FollowingList.delete(any_user) if any_user.present?
     @userid = params[:id]
   end

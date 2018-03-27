@@ -14,3 +14,7 @@
 //= require slimscroll/jquery.slimscroll.min.js
 //= require inspinia.js
 //= require_tree 
+
+$(function(){
+	$('.select2').select2();
+});

@@ -1,12 +1,10 @@
 <div class = "container">
-	<div class = "col-md-2 left">
+	<div>
 		<%= render partial: 'home/search' %>
 	</div>
-	<div class = "col-md-9">
+	<div >
 		<div id="search" >
-		  		<div id= "design_select">
-				<%= render partial: 'home/des', locals: { designs: @designs } %>
-			</div>
+			<%= render partial: 'home/displaydesigns', locals: { images: @designs } %>
 		</div>
 	</div>
 </div>

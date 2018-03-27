@@ -4,13 +4,13 @@ class ChatsController < ApplicationController
 
   def index
     @user =
-      if @notified_users.count > 0
-        @notified_users.first
-      elsif @followed_users.count > 0
-        @followed_users.first
-      else
-        @all_users.first
-      end
+    if @notified_users.count > 0
+      @notified_users.first
+    elsif @followed_users.count > 0
+      @followed_users.first
+    else
+      @all_users.first
+    end
 
     @msgs = @user.messages_with(current_user)
     mark_as_read!(@msgs)
@@ -35,18 +35,16 @@ class ChatsController < ApplicationController
       new_chat_params[:message_type] = 'text'
     end
     chat = Chat.new(new_chat_params)
-    if current_user.blocked_users.pluck(:id).exclude?(params[:chat][:receiver_id]) && (params[:chat][:body] != '' || params[:chat][:designs_id] != '')
-      chat.save!
-    end
+    chat.save! if current_user.blocked_ids.exclude?(params[:chat][:receiver_id]) && (params[:chat][:body] != '' || params[:chat][:designs_id] != '')
     @msgs = @user.messages_with(current_user)
   end
 
-  def search
+  def search    
     @search_users = if params[:name].blank?
-                      []
-                    else
-                      current_user.search_users(params[:name])
-                    end
+      []
+    else
+      current_user.search_users(params[:name])
+    end
   end
 
   def design
@@ -64,7 +62,7 @@ class ChatsController < ApplicationController
   end
 
   def all_recipients
-    @all_users = current_user.search_users('')
+    @all_users = current_user.search_users("")
     @notified_users = current_user.notified_users
     @followed_users = (current_user.chated_users - @notified_users).uniq
   end

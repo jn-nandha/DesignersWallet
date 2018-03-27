@@ -1,22 +1,41 @@
-<div class="container">
-<div class="wrapper wrapper-content animated fadeInRight">
-	<div class="row">
-		<% @designs.each do |design| %>
-		<div class= 'col-sm-3 img-responsive' id= "did<%=design.id%>">
-			<div class="ibox">
-				<div class="ibox-content product-box">
-					<div class="product-imitation image-padding-5px">
-						<%= link_to(image_tag("#{design.image_url}", size: "230x200"), home_path({design_id: design})) %>
-					</div>
-					<div class="product-desc">
-						<div class="m-t text-righ">
-							<%= button_to 'Remove',favourites_change_fav_path(design_id: design), remote: true , method: "post" , id: "btn#{design.id}",class: "btn btn-xs btn-outline btn-danger fa" %>
+<div class="col-lg-12">
+	<div class="ibox float-e-margins">
+		<div class="ibox-title ">
+			<h5>Favourited Design</h5>
+		</div>
+		<div class="ibox-content">
+			<div class="carousel-inner">
+				<div class="item gallery active">
+				<% if @designs.present? %>
+					<div class="wrapper wrapper-content animated fadeIn">
+						<div class="row">
+							<% @designs.each do |design| %>
+							<div class= 'col-sm-3 img-responsive' id= "did<%=design.id%>">
+								<div class="ibox">
+									<div class="ibox-content product-box">
+										<div class="product-imitation image-padding-5px">
+											<%= link_to(image_tag("#{design.image_url}", size: "230x200"), image_info_home_index_path({design_id: design})) %>
+										</div>
+										<div class="product-desc">
+											<div class="m-t text-righ">
+												<%= link_to favourites_change_fav_path(design_id: design), remote: true , method: "post" , id: "btn#{design.id}",class: "btn btn-xs btn-outline btn-danger" do %>
+												<i class="fa fa-trash"> Delete</i>
+												<% end %>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<% end %>
 						</div>
 					</div>
+					<% else %>
+					<div>
+              <p>You don't have any Favourite post in your Favourite list.</p>
+            </div>
+            <% end %>
 				</div>
 			</div>
 		</div>
-		<% end %>
 	</div>
-</div>
 </div>

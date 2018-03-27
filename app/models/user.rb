@@ -12,9 +12,10 @@ class User < ApplicationRecord
   has_many :followed_by_other, class_name: 'FollowingList', foreign_key: 'to_id'
   belongs_to :city 
 
+
   # Give inactive users
   def self.inactive_users
-    User.where(activation: "false")
+    User.where(activation: false)
   end
 
   def search_users(name)
@@ -54,11 +55,11 @@ class User < ApplicationRecord
   end
 
   def followers
-    User.where(id: FollowingList.where(to_id: self.id).accepted.pluck(:from_id)) - self.invalid_users
+    User.where(id: followed_by_other.accepted.pluck(:from_id)) - self.invalid_users
   end
 
   def followings
-    User.where(id: FollowingList.where(from_id: self.id).accepted.pluck(:to_id)) - self.invalid_users
+    User.where(id: followed_by_me.accepted.pluck(:to_id)) - self.invalid_users
   end
 
   def all_designs
@@ -70,7 +71,11 @@ class User < ApplicationRecord
   end
 
   def requested_users
-    User.where(id: FollowingList.where(to_id: self.id).requested.pluck(:from_id)) - self.invalid_users
+    User.where(id: followed_by_other.requested.pluck(:from_id)) - self.invalid_users
+  end
+
+  def requested_by_me
+    User.where(id: followed_by_me.requested.pluck(:to_id)) - self.invalid_users
   end
 
   def notified_users
@@ -96,7 +101,7 @@ class User < ApplicationRecord
   end
 
   def requested_by_me?(user)
-    FollowingList.where(from_id: self.id, to_id: user.id, follow_status: "requested").present?
+    FollowingList.where(from_id: self.id, to_id: user.id).requested.present?
   end
 
 end

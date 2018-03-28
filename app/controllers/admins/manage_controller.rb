@@ -1,6 +1,6 @@
 class Admins::ManageController < ApplicationController
   before_action :authenticate_admin! # here authenticate admin before action
-  skip_before_action :authenticate_user! # here skip authenticate user in all methods
+  #skip_before_action :authenticate_user! # here skip authenticate user in all methods
 
   def index
       @users = User.all.paginate(:page => params[:page], :per_page => 5)
@@ -10,7 +10,7 @@ class Admins::ManageController < ApplicationController
     if params[:search].blank?
        @users = []
     else
-       @users=User.joins(:city).where("name LIKE ? OR email LIKE ? OR city_name LIKE ? ","#{params[:search]}%","#{params[:search]}%","#{params[:search].upcase}%").paginate(:page => params[:page], :per_page => 3)
+       @users=User.joins(:city).where("name LIKE ? OR email LIKE ? OR city_name LIKE ? ","#{params[:search]}%","#{params[:search]}%","#{params[:search].upcase}%").paginate(:page => params[:page], :per_page => 9)
        respond_to do |format|
        format.js
        format.html
@@ -32,19 +32,7 @@ class Admins::ManageController < ApplicationController
        @user = User.find(params[:id])      
   end
 #--> update the user details
-  def update
-    if admin_logged_in?
-      @user = User.find(params[:id])
-      params[:user].delete(:password) if params[:user][:password].blank?
-      params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
-      if @user.update_attributes(params[:user])
-        flash[:notice] = "Successfully updated User."
-        redirect_to manage_path
-      else
-        render :action => 'edit'
-      end
-    end
-  end
+
 #--> delete the user
   def delete_user
       @deleteid= params[:id]

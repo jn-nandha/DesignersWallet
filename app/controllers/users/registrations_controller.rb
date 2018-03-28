@@ -2,8 +2,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
  before_action :configure_sign_up_params, only: [:create]
  before_action :configure_account_update_params, only: [:update]
  
- skip_before_action :authenticate_user!, only: [:update,:edit]
+
    $cty = City.all.pluck(:city_name)
+
+
 
   #GET /resource/sign_up
     # def new
@@ -16,10 +18,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  def edit
-    @ct = City.find(resource.city_id).city_name
-    super
-  end
+  # def edit
+  #   @ct = City.find(resource.city_id).city_name
+  #   super
+  # end
 
   # PUT /resource
   # def update

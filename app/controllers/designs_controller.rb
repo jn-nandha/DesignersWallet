@@ -1,6 +1,6 @@
 # this class defines methods for design module.
 class DesignsController < ApplicationController
-	skip_before_action :authenticate_user! , only: [:del_design]
+	#skip_before_action :authenticate_user!, only: [:del_design , :show]
 
   def index
     @designs = Design.all if current_user.activation

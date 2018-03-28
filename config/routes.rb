@@ -7,11 +7,52 @@ Rails.application.routes.draw do
     :invitations => 'users/invitations'
   } 
 
-  devise_for :admins, path: 'admins',controllers:{ 
+  devise_for :admins, path: 'admins',controllers:{
+  :registrations => 'admins/registrations', 
     sessions: "admins/sessions"
   }
-  
+
+
   devise_scope :admin do
+    get         "/admin"     =>   "admins/sessions#index"
+    get         '/manage',      to: 'admins/manage#index', as: :admin_root
+    post        '/manage',      to: 'admins/manage#index'
+    get         '/manage_user', to: 'admins/manage#manage_user'
+    post        '/manage_user', to: 'admins/manage#manage_user'
+    delete      '/delete',      to: 'admins/manage#delete_user'
+    get         '/delete',      to: 'admins/manage#delete_user'
+    get         '/users/invitation/new', to: 'users/invitations#new'
+    patch       '/users/invitation/new', to: 'users/invitations#update'
+    get         '/edit',        to: 'users/registrations#edit'
+    put         '/edit' ,       to: 'users/registrations#update'
+    get         '/update_user', to: 'users/registrations#edit'
+    post        '/update_user', to:  'users/registrations#edit'
+    get         'manage/activate_user', to: 'manage#activate_user' 
+    get         '/update_activation', to: 'admins/manage#update_activation' 
+    post        '/update_activation', to: 'admins/manage#update_activation'
+    get         '/search',      to: 'admins/manage#search'
+    post        '/search',      to: 'admins/manage#search'
+    get         '/profile',     to: 'admins/manage#profile'
+    post        '/profile',     to: 'admins/manage#profile'
+    get         '/activate_user',   to: 'admins/manage#activate_user' 
+    post        '/activate_user',   to: 'admins/manage#activate_user'
+    get         '/show_all_design', to: 'admins/manage#show_all_design'
+    post        '/show_all_design', to: 'admins/manage#show_all_design'
+    get         '/update', to: 'admins/manage#edit'
+    post        '/update', to: 'admins/manage#update'
+    get         '/new', to: 'category#new'
+    post        '/new', to: 'category#create'
+    get         '/show', to: 'category#show'
+    post        '/new', to: 'category#create'
+    get         '/delete_cat', to: 'category#destroy'
+    post        '/delete_cat', to: 'category#destroy'
+    resources :category , only: [:create , :edit , :update, :destroy , :new , :show]
+
+    
+    
+
+  end
+#resources :category , only: [:new , :create ,:destroy, :update ,:edit]
 
     get 'home/dashboard'
     post 'home/search', to: 'home#search'
@@ -24,35 +65,6 @@ Rails.application.routes.draw do
     get 'show' , to: 'profile#show'
     get 'followings',to: 'follows#followings'
     get 'followers',to: 'follows#followers'
-
-    #  ...............................................................
-
-    get         "/admin"     =>   "admins/sessions#index"
-    get         '/manage',   to: 'admins/manage#index', as: :admin_root
-    post        '/manage',   to: 'admins/manage#index'
-    get         '/manage_user', to: 'admins/manage#manage_user'
-    post        '/manage_user', to: 'admins/manage#manage_user'
-    delete      '/delete',      to: 'admins/manage#delete_user'
-    get         '/delete',      to: 'admins/manage#delete_user'
-    get         '/users/invitation/new', to: 'users/invitations#new'
-    patch       '/users/invitation/new', to: 'users/invitations#update'
-    get         '/edit',     to: 'users/registrations#edit'
-    put         '/edit' ,    to: 'users/registrations#update'
-    get         '/update_user',      to: 'users/registrations#edit'
-    post        '/update_user',      to:  'users/registrations#edit'
-    get     'manage/activate_user', to: 'manage#activate_user' 
-    get     '/update_activation', to: 'admins/manage#update_activation' 
-    post     '/update_activation', to: 'admins/manage#update_activation'
-    get     '/search', to: 'admins/manage#search'
-    post     '/search', to: 'admins/manage#search'
-    get    '/profile',     to: 'admins/manage#profile'
-    post   '/profile',     to: 'admins/manage#profile'
-    get   '/activate_user',      to: 'admins/manage#activate_user' 
-    post   '/activate_user',     to: 'admins/manage#activate_user'
-    get   '/show_all_design', to: 'admins/manage#show_all_design'
-    post   '/show_all_design', to: 'admins/manage#show_all_design'
- 
-  end
 
       get 'application/count', to: 'application#count'
       get 'home/:design_id', to: 'home#image_info' , as: 'home'

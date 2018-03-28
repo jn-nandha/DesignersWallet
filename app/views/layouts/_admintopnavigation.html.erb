@@ -1,0 +1,32 @@
+<div class="row border-bottom">
+    <nav class="navbar navbar-fixed-top purple-bg" role="navigation" style="margin-bottom: 0">
+    
+        <div class="nav navbar-top-links navbar-left">
+            <li>
+               <%= link_to 'Designer\'s Wallet' , manage_path %>
+            </li>
+        </div>
+        
+        <ul class="nav navbar-top-links navbar-right">
+           
+            <li>
+                <%= link_to destroy_admin_session_path do %>
+                <i class="fa fa-sign-out"></i><span>Log out</span>
+                <% end %> 
+            </li>
+            
+        </ul>
+       
+      
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+            <%= link_to 'Home' , manage_path %>
+            
+            </li>
+        </ul>
+</nav>
+</div>
+
+
+
+

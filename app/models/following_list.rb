@@ -1,4 +1,7 @@
+# followingList model with other model realtion
 class FollowingList < ApplicationRecord
-	belongs_to :user , foreign_key: "to_id"
-	belongs_to :user , foreign_key: "from_id"
+
+  enum follow_status: %i[accepted requested blocked]
+  belongs_to :to, class_name: 'User'
+  belongs_to :from, class_name: 'User'
 end

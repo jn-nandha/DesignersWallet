@@ -1,0 +1,58 @@
+	<table class="table">
+		<tr class="success">
+			<th>User name:</th>
+			<td> <%= @users.name %> </td>
+		</tr>
+		<tr class="success">
+			<th>Email:</th>
+			<td> <%= @users.email %> </td>
+		</tr>
+		<tr class="success">
+			<th>Status:</th>
+			<td> <%= @users.activation == true ? 'Activate' : 'Deactivate' %> </td>
+			
+		</tr>
+		<tr class="success">
+			<th>User City:</th>
+			<td> <%= @users.city.city_name %> </td>
+		</tr>
+		<tr class="success">
+			<th>User Create-Date:</th>
+			<td> <%= @users.created_at.strftime('%C-%m-%Y') %> </td>
+		</tr>
+</table>
+<% if @users.designs.blank? %>
+	<div class="fontsize">
+ 		<marquee behaviour="slide" width = "100%">
+			<p>The Current User has no designs......!</p>
+		</marquee>
+	</div>
+
+<% else %>
+
+<table class = "table table-bordered table-striped">
+   <tbody>
+     <% @users.designs.each do |design| %>
+        <div>
+         <tr id = 'tr<%=design.id%>' >
+             <td>
+                 <%= link_to design.image_url, target: "_blank" do %>
+                  <%= image_tag("#{design.image_url}", size: "100x100") %>
+                  <% end %>
+             </td>
+             
+             <td>
+             	<%= design.description %>
+             </td>
+             
+             <td>
+             	<%= link_to '<button  class="btn  btn-success btn-outline">Delete Image</button>'.html_safe , designs_del_design_path({design_id: design}),remote:true , method: "delete" ,id: "btn#{design.id}",data: {confirm: "Are you sure?"} %>
+             </td>
+         </tr>
+        </div>
+      <% end %>
+   </tbody>
+</table>
+<%#= will_paginate @users , renderer: BootstrapPagination::Rails %>
+<% end %>
+

@@ -1,0 +1,34 @@
+
+<% if @users.designs.blank? %>
+	<div class="fontsize">
+ 		<marquee behaviour="slide" width = "100%">
+			<p>The Current User has no designs......!</p>
+		</marquee>
+	</div>
+
+<% else %>
+
+<table class = "table table-bordered table-striped">
+   <tbody>
+     <% @users.designs.each do |design| %>
+        <div>
+         <tr id = 'tr<%=design.id%>' >
+             <td>
+             	<%= link_to(image_tag("#{design.image_url}", size: "100x100"), home_path({design_id: design}))%>
+             </td>
+             
+             <td>
+             	<%= design.description %>
+             </td>
+             
+             <td>
+             	<%= link_to '<button  class="btn  btn-success btn-outline">Delete Image</button>'.html_safe , designs_del_design_path({design_id: design}),remote:true , method: "delete" ,id: "btn#{design.id}" %>
+             </td>
+         </tr>
+        </div>
+      <% end %>
+   </tbody>
+</table>
+<% end %>
+<%= will_paginate @users , renderer: BootstrapPagination::Rails %>
+    

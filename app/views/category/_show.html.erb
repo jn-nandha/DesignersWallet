@@ -1,0 +1,35 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+<style>
+  .design-categories{width:100%!important}
+</style
+
+<div class="form-group" id="save_design">
+		<label class="font-normal">
+			Multiple Designs Select
+		</label>
+		<select data-placeholder="Select Designs" class="chosen-select" multiple style="width: 100%; display: none;" tabindex="-1">
+	
+		<div class="chosen-container chosen-container-multi chosen-container-active" style="width: 100%;" title>
+
+		<% @category.each do |cat| %>
+			<option><%= cat.cat_name %></option>
+			<% end %>
+		</select>
+			<ul class="chosen-choices">
+				<li class="search-field">
+				<input type="text" value="Choose a Category..." class="" autocomplete="off" style="width: 100%;" tabindex="4">
+				</li>
+			</ul>
+			<div class="chosen-drop">
+				<ul class="chosen-results">
+					
+				</ul>
+			</div>
+
+		</div>
+	</div>
+
+<script>
+ 
+</script>

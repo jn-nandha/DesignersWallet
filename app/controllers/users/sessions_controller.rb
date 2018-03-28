@@ -1,16 +1,22 @@
-# frozen_string_literal: true
-
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
 
+  #before_action :authenticate_admin!
+  #skip_before_action :authenticate_user!, raise: false
+ #   before_action :configure_sign_in_params, only: [:create]
+ # before_action :current_user_present?, only:[:new]
+ 
   # GET /resource/sign_in
   # def new
-  #   super
+  #    super
   # end
 
   # POST /resource/sign_in
   # def create
   #   super
+  # end
+
+  # def after_sign_in_path_for(users)
+  #   root_path
   # end
 
   # DELETE /resource/sign_out

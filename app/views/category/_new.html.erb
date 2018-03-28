@@ -1,0 +1,23 @@
+<div class="tabs-container" id="refresh">
+
+<div class="tab-content">
+    <div id="tab-1" class="tab-pane active">
+      <div class="panel-body">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Create Category</h5>
+          </div>
+
+          <div class="ibox-content">
+           <%= form_for (:category), remote: true do |f| %>
+           <%= f.text_field :cat_name ,class: 'form-basic', class: 'form-control',placeholder: "Enter Category Name" %><br><br>
+           <%= f.submit 'create category' , class: 'btn btn-primary' , remote: true , id: 'btnrefresh' %>
+
+           <% end %>
+          </div>
+        </div>   
+      </div>
+    <btnrefresh>
+         <%= render partial: 'category/category' %>
+    </div>
+

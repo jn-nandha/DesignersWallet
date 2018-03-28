@@ -1,0 +1,37 @@
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script>
+  $( function() {
+    var city = <%= $cty.inspect.html_safe %>;
+    $( "#user_city_id" ).autocomplete({
+      source: city
+    });
+  } );
+</script>
+
+
+<h2><%= t 'devise.invitations.edit.header' %></h2>
+
+<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :invitation_token, readonly: true %>
+
+  <p><%= f.label :name %><br />
+    <%= f.text_field :name, autocomplete: "off" %></p>
+
+  <p><%= f.label :city_id %><br />
+    <%= f.text_field :city_id %>
+    <%= f.hidden_field :activation, value: true %></p>
+    
+  <% if f.object.class.require_password_on_accepting %>
+  <p><%= f.label :password %><br />
+  <%= f.password_field :password %></p>
+
+  <p><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></p>
+  <% end %>
+
+  <p><%= f.submit t("devise.invitations.edit.submit_button") %></p>
+<% end %>

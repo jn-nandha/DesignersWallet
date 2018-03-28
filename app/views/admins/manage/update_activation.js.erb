@@ -1,0 +1,10 @@
+$('#flashmsg').html("<%= j render partial: 'admins/manage/flashmsg'%>");
+	if($('#btn<%=@uid%>').html() == "Deactivate")
+		{
+			$("#btn<%=@uid%>").html("Activate");
+		}
+	else
+		{
+			$("#btn<%=@uid%>").html("Deactivate");
+		}
+

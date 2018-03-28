@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
+  #skip_before_action :authenticate_user! , only: [:edit, :create],raise: false
   # GET /resource/confirmation/new
   # def new
   #   super

@@ -1,0 +1,60 @@
+<script>
+	$( function() {
+      var user = <%= @users.pluck(:name).inspect.html_safe %>
+    $( ".search" ).autocomplete({
+      source: user
+    });
+  } );
+</script>
+
+<div class="col-sm-3 purple-bg" align="center">
+	<% if admin_signed_in? %>
+		<b class="tr_heading ">Admin Pannel</b><br><br>
+			<div class="row form-group">
+				<%= form_tag(search_path, :method => "get", id: "search-form",remote: true) do %>
+   				<%= text_field_tag :search, params[:search], placeholder: "Search Users" ,class: 'form-control',required: true %><br>
+    			<%= submit_tag "Search", :name => nil,class: 'btn btn-primary' %>	
+				<% end %>	
+			</div>
+<br>
+
+<nav class="navbar navbar-inverse purple-bg">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav demob tr_heading	">
+ 		  <li>
+ 			    <%= link_to "Add New User" , new_user_invitation_path,remote: true %>
+      </li>
+      
+      <li>
+       		<%= link_to  "Manage User", manage_user_path, remote: true %>
+      </li>
+      
+      <li>
+      		<%= link_to  "All Users Design", show_all_design_path, remote: true %>
+      </li>
+      
+      <li>
+      		<%= link_to  "Activate / Deactivate List", activate_user_path, remote: true %>
+      </li>
+      
+      <li>
+     	  	<%= link_to "Report" %>
+    	</li>	
+        
+      <li>
+        <%= link_to "Manage Category" , new_path , remote: true %>
+      </li> 
+	
+    </ul>
+<% end %>
+</div>
+</nav>
+</div>
+
+<div  class="col-sm-9">
+        <div id="right_div">
+          <div id="flashmsg">
+                <%= render partial: 'admins/manage/flashmsg'%>
+          </div>
+        </div>
+</div>

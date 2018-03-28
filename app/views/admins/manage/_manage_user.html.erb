@@ -1,0 +1,42 @@
+<table class="table purple-bg">
+  <thead>
+    <tr class="tr_heading">
+      <td>
+        <b>USER NAME</b>
+      </td>
+      
+      <td align="center">
+        <b>ACTION</b>
+      </td>
+
+    </tr>
+  </thead>
+<tbody>
+
+ <% @users.each do |u| %>
+   <tr id=tr<%= u.id %> class="<%= u.activation == true ? 'success' : 'danger'  %>"> 
+    <td width="40%">
+      <% if u.name.blank? %>
+          <%= link_to u.email , profile_path(id: u.id), remote: true  %>
+      <% else %>
+          <%= link_to u.name, profile_path(id: u.id), remote: true  %>
+      <% end %>
+    </td>
+
+    <td align="right">
+      <%= link_to  "DELETE " ,delete_path(id: u.id),data: {confirm: "Are you sure?"}, class: "btn demoa btn-warning btn-outline" ,remote: true, id:"button#{u.id}" %>
+      <%= link_to  "UPDATE " , edit_user_registration_path(id: u.id) , class: "btn demoa btn-info btn-outline"%>
+ 
+      <% if u.city.present? %>
+        <%= link_to "Deactivate", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-success btn-outline" %>
+      <% else %>
+        <%= link_to "Activate", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-danger  btn-outline" %>   
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+<tbody>
+</table>
+
+
+ <%= will_paginate @users , renderer: BootstrapPagination::Rails %>

@@ -1,0 +1,37 @@
+<table class="table ">
+    <thead>
+      <tr class="tr_heading purple-bg spa">
+            <th>Design</th>
+            <th>Description</th>
+            <th>Action</th>
+      </tr>
+   </thead>
+
+   <tbody>
+      <% @designs.each do |design| %>
+        <div>
+            <tr id = 'tr<%=design.id%>' >
+
+            <td>
+            
+                 <%= link_to design.image_url, target: "_blank" do %>
+                  <%= image_tag("#{design.image_url}", size: "100x100") %>
+                  <% end %>
+            </td>
+            
+            <td>
+                <%= design.description %>
+            </td>
+
+             <td>
+                <%= link_to '<button  class="btn  btn-success btn-outline">Delete Image</button>'.html_safe , designs_del_design_path({design_id: design}),remote:true , method: "delete" ,id: "btn#{design.id}" %>
+            </td>
+         </tr>
+
+        </div>
+      <% end %>
+   </tbody>
+</table>
+
+
+<%= will_paginate @designs , renderer: BootstrapPagination::Rails %>

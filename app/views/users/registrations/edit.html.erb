@@ -11,8 +11,6 @@
   } );
 </script>
 
-
-
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -30,6 +28,7 @@
 
   <div class="field">
     <%= f.label :city_id %><br />
+
     <%= f.text_field :city_id, :value => @ct %>
     <%= f.hidden_field :activation, value: "Yes" %>
   </div>

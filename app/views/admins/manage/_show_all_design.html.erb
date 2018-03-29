@@ -24,7 +24,7 @@
             </td>
 
              <td>
-                <%= link_to '<button  class="btn  btn-success btn-outline">Delete Image</button>'.html_safe , designs_del_design_path({design_id: design}),remote:true , method: "delete" ,id: "btn#{design.id}" %>
+                <%= link_to '<button  class="btn  btn-success btn-outline">Delete Image</button>'.html_safe , designs_del_design_path({design_id: design}),remote:true ,data: {confirm: "Are you sure?"}, method: "delete" ,id: "btn#{design.id}" %>
             </td>
          </tr>
 

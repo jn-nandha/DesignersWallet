@@ -11,60 +11,74 @@
   
   <tbody>
     <% @users.each do |u| %>
-    <% if u.activation == true %>
+      <% if u.activation == true %>
 
-    <tr id="tr<%=u.id%>" class="success">
-      <td>
-        <%= u.name if u.name.present? %>
-      </td>
-      <td>
-        <%= u.city.city_name if u.city_id.present? %>
-      </td>
-      <td>
-        <%= u.email %>
-      </td>
-      <td>
-        <%= u.created_at.strftime('%C-%m-%Y') %>
-      </td>
-      <td>
-        <%= link_to "Deactivate", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-success btn-outline" %>
-      </td>
-    </tr>
+        <tr id="tr<%=u.id%>" class="success">
+          <td>
+              <%= u.name if u.name.present? %>
+          </td>
+
+          <td>
+              <%= u.city.city_name if u.city_id.present? %>
+          </td>
+      
+          <td>
+            <%= u.email %>
+          </td>
+          
+          <td>
+            <%= u.created_at.strftime('%C-%m-%Y') %>
+          </td>
+      
+          <td>
+            <%= link_to "Deactivate", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-success btn-outline" %>
+          </td>
+        </tr>
     
-    <% else %>
-
-    <tr id="tr<%=u.id%>" class="danger">
-        <% if u.name.present? %>
-      <td>
-      <%= u.name %>
-      </td>
       <% else %>
-      <td>
-      <p> Not Available</p>
-      </td>
-      <% end %>
-      <% if u.city_id.present? %>
-      <td>
-        <%= u.city.city_name %>
-      </td>
-       <% else %>
-      <td>
-      <p> Not Available</p>
-      </td>
-      <% end %>
-      <td>
-        <%= u.email %>
-      </td>
-      <td>
-        <%= u.created_at.strftime('%C-%m-%Y') %>
-      </td>
-      <td>
-      <%= link_to "Activate", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-danger btn-outline" %>
-      </td>
-    </tr>
 
-    <% end %>
-    <% end %>
+        <tr id="tr<%=u.id%>" class="danger">
+          <% if u.name.present? %>
+      
+            <td>
+               <%= u.name %>
+            </td>
+          <% else %>
+      
+            <td>
+              <p> Not Available</p>
+            </td>
+      
+          <% end %>
+      
+          <% if u.city_id.present? %>
+      
+            <td>
+             <%= u.city.city_name %>
+            </td>
+          <% else %>
+        
+            <td>
+              <p> Not Available</p>
+            </td>
+      
+          <% end %>
+            
+            <td>
+              <%= u.email %>
+            </td>
+        
+            <td>
+              <%= u.created_at.strftime('%C-%m-%Y') %>
+            </td>
+              
+            <td>
+              <%= link_to "Activate", update_activation_path(id: u.id),remote: true , method: "post" , id: "btn#{u.id}" , class: "btn demoa btn-danger btn-outline" %>
+            </td>
+        </tr>
+
+         <% end %>
+       <% end %>
   </tbody>
 </table>
 

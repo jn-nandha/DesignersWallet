@@ -5,7 +5,7 @@ class Admins::ManageController < ApplicationController
   def index
       @users = User.all.paginate(:page => params[:page], :per_page => 5)
   end
-#--> search the User By name ,email,city
+
   def search
     if params[:search].blank?
        @users = []
@@ -18,22 +18,15 @@ class Admins::ManageController < ApplicationController
     end
   end
 
-#--> Shows the index page with side navigation
+
   def manage_user
       @users = User.all.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
   end
-#--> Shows the user profile with his designs
+
   def profile
        @users = User.find(params[:id])
-       #.paginate(:page => params[:page], :per_page => 4).order('created_at DESC')
   end
-#--> edit the user
-  def edit
-       @user = User.find(params[:id])      
-  end
-#--> update the user details
 
-#--> delete the user
   def delete_user
       @deleteid= params[:id]
          @user = User.find(params[:id])
@@ -41,11 +34,11 @@ class Admins::ManageController < ApplicationController
         flash[:notice] = "Successfully deleted User."
       end
   end
-#--> show all design in the index page
+
   def show_all_design
       @designs = Design.all.paginate(:page => params[:page], :per_page => 4)
   end
-#--> update the users activation status
+
   def update_activation
         @uid = params[:id]
        @status = User.find(params[:id])
@@ -56,7 +49,7 @@ class Admins::ManageController < ApplicationController
     end
        @status.save!
   end
-#--> shows the all block / unblock list of users
+
   def activate_user
       @users = User.all.paginate(:page => params[:page], :per_page => 9).order("created_at DESC")
   end
@@ -64,6 +57,6 @@ class Admins::ManageController < ApplicationController
   private
   
   def user_params
-    params[:user].permit(:email, :password, :search,:name, :city_id ,:page, :activation)
+    params[:user].permit(:email, :password, :search,:name, :city_id ,:page,:cat_name, :activation)
   end
 end

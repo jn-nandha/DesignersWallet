@@ -1,0 +1,8 @@
+ <div class="ibox-content">
+            <h5>Create Category</h5>
+            <%= form_for (:category), remote: true do |f| %>
+            <%= f.text_field :cat_name ,class: 'form-basic', class: 'form-control',placeholder: "Enter Category Name" %><br><br>
+            <%= f.submit 'create category' , class: 'btn btn-primary' , remote: true , id: 'btnrefresh' %>
+
+            <% end %>
+          </div>

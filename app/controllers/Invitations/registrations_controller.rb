@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Users::Invitations::RegistrationsController < Devise::RegistrationsController
  
     # devise :database_authenticatable, :registerable, :confirmable, :recoverable, stretches: 12

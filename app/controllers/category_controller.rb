@@ -3,17 +3,17 @@ class CategoryController < ApplicationController
 	 #skip_before_action :authenticate_user! # here skip authenticate user in all methods
 
 
-	  def new
-        @category = Category.new
-        @cat=Category.all
-       
-    end
+  def new
+    @category = Category.new
+    @cat=Category.all
+    
+  end
 
-    def create
-      @category = Category.new(category_params)
-      @category.save!
-      
-       flash[:success] = 'Category is uploaded.'
+  def create
+    @category = Category.new(category_params)
+    @category.save!
+    
+    flash[:success] = 'Category is uploaded.'
       #redirect_to @category
       @cat=Category.all
     end
@@ -25,15 +25,19 @@ class CategoryController < ApplicationController
     def destroy
       @deletecat= params[:id]
       @category = Category.find(params[:id])
+      if @category.designs.present?
+        flash[:success] = 'Category is belongs to some users.'
+      else
       @category.destroy
-
+      flash[:danger] = 'Category is delete success.'
     end
-
-     private
+    end
+    
+    private
     
 
     def category_params
-        params.require(:category).permit(:cat_name)
+      params.require(:category).permit(:cat_name)
     end
 
-end
+  end

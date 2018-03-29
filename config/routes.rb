@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
 
   devise_scope :admin do
-    get         "/admin"     =>   "admins/sessions#index"
+   
     get         '/manage',      to: 'admins/manage#index', as: :admin_root
     post        '/manage',      to: 'admins/manage#index'
     get         '/manage_user', to: 'admins/manage#manage_user'
@@ -23,10 +23,8 @@ Rails.application.routes.draw do
     get         '/delete',      to: 'admins/manage#delete_user'
     get         '/users/invitation/new', to: 'users/invitations#new'
     patch       '/users/invitation/new', to: 'users/invitations#update'
-    get         '/edit',        to: 'users/registrations#edit'
-    put         '/edit' ,       to: 'users/registrations#update'
-    get         '/update_user', to: 'users/registrations#edit'
-    post        '/update_user', to:  'users/registrations#edit'
+    get         '/update_user', to: 'registrations#edit'
+    post        '/update_user', to: 'registrations#update_user'
     get         'manage/activate_user', to: 'manage#activate_user' 
     get         '/update_activation', to: 'admins/manage#update_activation' 
     post        '/update_activation', to: 'admins/manage#update_activation'
@@ -38,16 +36,16 @@ Rails.application.routes.draw do
     post        '/activate_user',   to: 'admins/manage#activate_user'
     get         '/show_all_design', to: 'admins/manage#show_all_design'
     post        '/show_all_design', to: 'admins/manage#show_all_design'
-    get         '/update', to: 'admins/manage#edit'
-    post        '/update', to: 'admins/manage#update'
     get         '/new', to: 'category#new'
     post        '/new', to: 'category#create'
     get         '/show', to: 'category#show'
     post        '/new', to: 'category#create'
     get         '/delete_cat', to: 'category#destroy'
     post        '/delete_cat', to: 'category#destroy'
+    get         '/cat_search',      to: 'category#cat_search'
+    post        '/cat_search',      to: 'category#cat_search'
     resources :category , only: [:create , :edit , :update, :destroy , :new , :show]
-
+    resources :users
     
     
 

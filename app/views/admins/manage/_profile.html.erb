@@ -1,17 +1,24 @@
-	<table class="table">
-		<tr class="success">
-			<th>User name:</th>
-			<td> <%= @users.name %> </td>
-		</tr>
-		<tr class="success">
-			<th>Email:</th>
-			<td> <%= @users.email %> </td>
-		</tr>
-		<tr class="success">
-			<th>Status:</th>
-			<td> <%= @users.activation == true ? 'Activate' : 'Deactivate' %> </td>
-			
-		</tr>
+<table class="table">
+	<tr class="success">
+		<th>User name:</th>
+			<td>
+				<%= @users.name %>
+			</td>
+	</tr>
+	
+	<tr class="success">
+		<th>Email:</th>
+			<td>
+				<%= @users.email %>
+			</td>
+	</tr>
+	
+	<tr class="success">
+		<th>Status:</th>
+			<td> 
+				<%= @users.activation == true ? 'Activate' : 'Deactivate' %>
+			</td>
+	</tr>
 		<tr class="success">
 			<th>User City:</th>
 			<td> <%= @users.city.city_name %> </td>

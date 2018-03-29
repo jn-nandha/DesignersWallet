@@ -3,11 +3,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
  before_action :configure_account_update_params, only: [:update]
  
 
-   $cty = City.all.pluck(:city_name)
-
-
-
-  #GET /resource/sign_up
+  $cty = City.all.pluck(:city_name)
+   #GET /resource/sign_up
     # def new
     #   super
     # end
@@ -18,10 +15,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   @ct = City.find(resource.city_id).city_name
-  #   super
-  # end
+  def edit
+      @resource = User.find(params[:id])
+  end
 
   # PUT /resource
   # def update
@@ -83,4 +79,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  def authenticate_user!(opts={})
+    
+    opts[:scope] = :user
+    if params[:action] == 'edit' && params[:controller] == 'users/registrations'
+      true
+    else
+      warden.authenticate!(opts) # if !devise_controller? || opts.delete(:force)
+    end
+  end
 end

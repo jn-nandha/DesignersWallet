@@ -19,25 +19,26 @@ Rails.application.routes.draw do
         end
       end
 
-      get 'user_profile',to: 'profile#user_profile'
+      get 'user/:id/profile',to: 'profile#user_profile', as: 'user_profile'
       get 'profile/blockeduser_list'
       resources :designs, only: [:index,:new,:create]
       get 'designs/show_uploaded_design'
       get 'designs/favourites', to: 'favourites#fav_images', as: 'favourite_images'
       delete 'designs/del_design'
       post 'favourites/change_fav'
-      get 'follows', to: 'follows#index'
   
-      post 'follows', to: 'follows#follow_req'
-      put 'approved', to: 'follows#approved'
-      delete 'cancel', to: 'follows#cancel_request'
-      delete 'revert', to: 'follows#revert_request'
-      delete 'unfollow' , to: 'follows#unfollow'
-      post 'block' , to: 'follows#blockuser'
-      get 'follows/search', to: 'follows#search'
-      get 'followings',to: 'follows#followings_list'
-      get 'followers',to: 'follows#followers_list'
-      delete 'follows/unblockuser'
+      resources :follows, only:[:index] do
+        collection do
+          post ':id/toggle', to: 'follows#follow_toggle', as: 'toggle'
+          post ':id/cancel', to: 'follows#cancel_request', as: 'cancel'
+          post ':id/accept', to: 'follows#accept_request', as: 'accept'
+          post ':id/block', to: 'follows#block_user', as: 'block'
+          delete ':id/unblock', to: 'follows#unblock_user', as: 'unblock'
+          get 'search', to: 'follows#search_users'
+          get 'followings_list'
+          get 'followers_list'
+        end
+      end
 
       get 'user_profile',to: 'profile#user_profile'
       

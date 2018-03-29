@@ -5,7 +5,7 @@ class FollowingList < ApplicationRecord
   belongs_to :from, class_name: 'User'
 
   def self.find_record(from,to)
-  	FollowingList.where(from_id: from, to_id: to)
+  	FollowingList.find_by(from_id: from, to_id: to)
   end
 
 end

@@ -1,0 +1,25 @@
+<div class="wrapper wrapper-content animated fadeIn">
+	<h2><%=@title%></h2>
+	<% allusers.each do |user| %>
+	<div class="col-lg-3" id="card<%=user.id%>">
+		<div class="contact-box">
+			<h3><%=link_to user.name, user_profile_path(id: user.id)%></h3>
+			<p><i class="fa fa-map-marker"></i>  <%=user.city.city_name%></p>
+			<div class="contact-box-footer">
+				<% if current_user.follow_requested?(user) %>
+				<%= link_to toggle_follows_path(id: user.id), method: "post",remote: true,class: "btn btn-xs btn-warning", id: "btn#{user.id}" do%>
+				<i class="fa fa-undo"> Revert Request</i>
+				<% end %>
+				<% else %>
+				<%= link_to toggle_follows_path(id: user.id), method: "post",remote: true,class: "btn btn-xs btn-success", id: "btn#{user.id}" do%>
+				<i class="fa fa-user-plus"> Follow</i>
+				<% end %>
+				<% end %>
+				<%= link_to block_follows_path(id: user.id), method: "post",remote: true,class: "btn btn-xs btn-danger" do%>
+				<i class="fa fa-times"> Block</i>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<% end %>
+</div>

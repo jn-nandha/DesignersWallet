@@ -15,7 +15,6 @@ class HomeController < ApplicationController
   end
 
   def image_info
-    return unless current_user.activation
     @users = current_user.search_users("")
     @design = Design.find(params[:design_id])
     @complain =  current_user.feedback(params[:design_id])

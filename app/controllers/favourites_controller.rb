@@ -6,9 +6,8 @@ class FavouritesController < ApplicationController
       if favourite
         favourite.destroy
       else
-        fav = Favourite.new(user_id: current_user.id, design_id: params[:design_id] )
-        fav.save!
-        end
+        fav = Favourite.create!(user_id: current_user.id, design_id: params[:design_id] )
+      end
     end
   end
 

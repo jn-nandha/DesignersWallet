@@ -58,7 +58,7 @@ class FollowsController < ApplicationController
 
   # followings details
   def followings_list
-    @following = current_user.followings.paginate(page: params[:page], per_page: 7)
+    @following = current_user.followings
   end
 
   def search

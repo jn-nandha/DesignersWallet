@@ -74,6 +74,11 @@ class User < ApplicationRecord
     User.where(id: followed_by_other.requested.pluck(:from_id)) - self.invalid_users
   end
 
+  def Requested_user(user)
+    FollowingList.where(to_id: self.id, from_id: user.id).requested.present?
+  end
+  
+
   def requested_by_me
     User.where(id: followed_by_me.requested.pluck(:to_id)) - self.invalid_users
   end

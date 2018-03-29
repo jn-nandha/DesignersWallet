@@ -1,54 +1,45 @@
-<div class="row border-bottom">
-    <nav class="navbar navbar-fixed-top purple-bg" role="navigation" style="margin-bottom: 0">
-        <div class="nav navbar-top-links navbar-left">
-            <li>
-                <%= link_to dashboard_home_index_path(design_selection: "All Designs") do %>
-                Designer's Wallet
-                <% end %>
-            </li>
-        </div>
-        <% if user_signed_in? %>
+<div class="navbar navbar-fixed-top" role="navigation" >
+    <div class="navbar-header" >
+      <%= link_to dashboard_home_index_path(design_selection: "All Designs") ,{class: "navbar-brand"} do %>
+        Designer's Wallet
+      <% end %>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" >
+      <ul class="nav navbar-nav" >
+      </ul>
+      <% if user_signed_in? %>
         <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <%= link_to destroy_user_session_path do %>
-                <span><i class="fa fa-sign-out"></i>logout</span>
-                <% end %> 
-            </li>
+          <li>
+            <%= link_to dashboard_home_index_path(design_selection: "Following's Designs")do %>Home<% end %>
+          </li>
+          <li>
+            <%= link_to user_profile_path(id: current_user.id) do %>
+              <i class="fa fa-user-circle"> <%=current_user.name%></i>
+            <% end %> 
+          </li>
+          <li>
+            <%= link_to follows_path,class: "count-info" do %>
+              <i class="fa fa-group"></i>
+              <% if @noti_count_follow != 0 %>
+                <span class="label label-warning"><%=@noti_count_follow%></span>
+              <% end %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to chats_path, class: "count-info" do %>
+              <i class="fa fa-envelope">
+                <% if @noti_count_chat != 0 %>
+                <span class="label label-info"><%=@noti_count_chat%></span>
+                <% end %>
+              </i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path do %>
+              <span class="nav-line-1"><i class="fa fa-sign-out"></i>logout</span>
+            <% end %> 
+          </li>
         </ul>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <%= link_to follows_path,class: "count-info tooltips" , title: '', data: { toggle: 'tooltip', placement: 'bottom', original_title: 'Explore Users'} do %>
-                  <i class="fa fa-group"></i>
-                  <% if @noti_count_follow != 0 %>
-                    <span class="label label-warning"><%=@noti_count_follow%></span>
-                  <% end %>
-                <% end %>
-            </li>
-        </ul>       
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <%= link_to chats_path, class: "count-info" do %>
-                <i class="fa fa-envelope"></i>
-                    <% if @noti_count_chat != 0 %>
-                        <span class="label label-info"><%=@noti_count_chat%></span>
-                    <% end %>
-                <% end %>
-            </li>
-        </ul> 
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <%= link_to user_profile_path(id: current_user.id) do %>
-                <i class="fa fa-user-circle"> Profile</i>
-                <% end %> 
-            </li>
-        </ul>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <%= link_to dashboard_home_index_path(design_selection: "Following's Designs")do %>
-                <i class="fa fa-home"> Home</i>
-                <% end %>
-            </li>
-        </ul>
-        <% end %>
-    </nav>
+      <% end %>
+    </div>
 </div>

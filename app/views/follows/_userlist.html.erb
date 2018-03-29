@@ -1,6 +1,6 @@
 <h2> All User </h2>
 <% users.each do |u| %>
-	<div id="div<%=u.id%>" class="ibox float-e-margins container">
+	<div id="div<%=u.id%>" class="ibox float-e-margins">
 		<div  class="ibox-content">
 			<%= link_to user_profile_path(id: u.id) do %>
 			<h3 class="col-sm-8 font-bold"><%= u.name %></h3>

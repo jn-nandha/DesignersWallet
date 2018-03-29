@@ -1,9 +1,8 @@
-<div class="container page-wrapper">
-	<h2>Explore Users</h2>
+<div class="container">
+	<div><h2>Explore Users</h2></div>
 	<div>
 		<%= render partial: "follows/search", locals: { alluser: @allusers } %>
 	</div>
-	
 	<div id= "userrequest">
 		<%= render partial: "follows/requests", locals: { requests: @requested }%>
 	</div>

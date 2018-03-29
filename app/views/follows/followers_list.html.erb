@@ -1,20 +1,22 @@
-<div class="container" >
-<h2 class="font-bold">Followers</h2> 
-<% if @follower.count != 0 %>
-	<% @follower.each do |follower|%>
-		<div class="ibox float-e-margins"> 
-			<div class="ibox-content">
-				<%= link_to user_profile_path(id: follower.id) do %>
-					<%= follower.name %><br />
-				<% end %>
+<div class="container">
+	<div class="row">
+		<div class="wrapper wrapper-content animated fadeIn">
+			<h2>Followers Users</h2>
+			<% if @users.present? %>
+			<% @users.each do |user| %>
+			<div id="card<%=user.id%>" class="col-lg-3">
+				<div class="contact-box">
+					<h3><%=link_to user.name, user_profile_path(id: user.id)%></h3>
+					<p><i class="fa fa-map-marker"></i>  <%=user.city.city_name%></p>
+					<div class="contact-box-footer">
+						<%= link_to '#',class: "btn btn-xs btn-danger", id: "btn#{user.id}" do%>
+							<i class="fa fa-times"> button</i>
+						<% end %>
+					</div>
 				</div>
+			</div>
+			<% end %>
+			<% end %>
 		</div>
-	<% end %>
-<% else %>
-	<div class="ibox float-e-margins"> 
-		<div class="ibox-content">
-			<h3>NO Followers</h3>
-			</div></div>
-<% end %>
-<%= will_paginate @follower%>
+	</div>
 </div>

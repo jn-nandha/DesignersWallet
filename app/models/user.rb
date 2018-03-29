@@ -12,12 +12,23 @@ class User < ApplicationRecord
   has_many :followed_by_other, class_name: 'FollowingList', foreign_key: 'to_id'
   belongs_to :city 
 
+
+  #Class Method
+  # Give inactive users
   def self.inactive_users
     User.where(activation: false)
   end
 
+  #Instance Method
+  #Search functionality
   def search_users(name)
-    User.where("name LIKE ?","#{name.capitalize}%") - (self.blocked_users + User.inactive_users + [self])
+    User.where("name LIKE ?","#{name}%") - (self.blocked_users + User.inactive_users + [self])
+  end
+
+  #Design related method
+  
+  def all_designs
+    Design.where(user_id: (self.search_users("").pluck(:id) + [self.id])).order("updated_at DESC")
   end
 
   def uploaded_designs
@@ -36,40 +47,9 @@ class User < ApplicationRecord
     (self.uploaded_designs + self.favourited_designs).uniq
   end
 
+  #Chat related method
   def messages_with(user)
     Chat.where("(sender_id =? and receiver_id= ?) or (sender_id =? and receiver_id=?)", self.id, user.id, user.id, self.id).order('created_at ASC')
-  end
-
-  def blocked_by_me
-    User.where(id: followed_by_me.blocked.pluck(:to_id))
-  end
-
-  def blocked_by_whom
-    User.where(id: FollowingList.blocked.where(to_id: self.id).pluck(:from_id))
-  end
-
-  def blocked_users
-    (self.blocked_by_me + self.blocked_by_whom).uniq
-  end
-
-  def followers
-    User.where(id: FollowingList.where(to_id: self.id).accepted.pluck(:from_id)) - self.invalid_users
-  end
-
-  def followings
-    User.where(id: FollowingList.where(from_id: self.id).accepted.pluck(:to_id)) - self.invalid_users
-  end
-
-  def all_designs
-    Design.where(user_id: (self.search_users("").pluck(:id) + [self.id])).order("updated_at DESC")
-  end
-
-  def invalid_users
-    self.blocked_users + User.inactive_users
-  end
-
-  def requested_users
-    User.where(id: FollowingList.where(to_id: self.id).requested.pluck(:from_id)) - self.invalid_users
   end
 
   def notified_users
@@ -82,20 +62,69 @@ class User < ApplicationRecord
     User.where(id: (to + from).uniq)
   end
 
+
+
+
+  #Favourite Design
   def favourited(design_id)
     Favourite.find_by(user_id: self.id, design_id: design_id)
-  end
-
-  def feedback(design_id)
-    Feedback.find_by(user_id: self.id, design_id: design_id)
   end
 
   def favourite?(design_id)
     Favourite.find_by(user_id: self.id, design_id: design_id).present?
   end
 
-  def requested_by_me?(user)
-    FollowingList.where(from_id: self.id, to_id: user.id, follow_status: "requested").present?
+  #Feedback related method
+  def feedback(design_id)
+    Feedback.find_by(user_id: self.id, design_id: design_id)
+  end
+
+  
+
+
+  #Follow related method
+  def blocked_by_me
+    User.where(id: followed_by_me.blocked.pluck(:to_id))
+  end
+
+  def blocked_by_whom
+    User.where(id: followed_by_other.blocked.pluck(:from_id))
+  end
+
+  def blocked_users
+    (self.blocked_by_me + self.blocked_by_whom).uniq
+  end
+
+  def followers
+    User.where(id: followed_by_other.accepted.pluck(:from_id)) - self.invalid_users
+  end
+
+  def followings
+    User.where(id: followed_by_me.accepted.pluck(:to_id)) - self.invalid_users
+  end
+
+  def invalid_users
+    self.blocked_users + User.inactive_users
+  end
+
+  def requested_users
+    User.where(id: followed_by_other.requested.pluck(:from_id)) - self.invalid_users
+  end
+
+  def requested_by_me
+    User.where(id: followed_by_me.requested.pluck(:to_id)) - self.invalid_users
+  end
+
+  def follow_requested?(user)
+    FollowingList.requested.find_by(from_id: self.id, to_id: user.id).present?
+  end
+
+  def follow_accepted?(user)
+    FollowingList.accepted.find_by(from_id: self.id, to_id: user.id).present?
+  end
+
+  def follow_blocked?(user)
+    FollowingList.blocked.find_by(from_id: self.id, to_id: user.id).present?
   end
 
 end

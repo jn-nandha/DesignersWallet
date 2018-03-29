@@ -1,23 +1,27 @@
 <div class="container">
-<h2 class=" row font-bold">Blocked Users</h2>
-<% if @blockedusers.present? %>
-	<% @blockedusers.each do |blockeduser| %>
-		<div class="ibox float-e-margins" id= "user<%=blockeduser.id%>">
-			<div class="ibox-content row">
-			 <div class = "col-sm-8" >
-				<h3 class="font-bold"><%= blockeduser.name %></h3>
-			 </div>
-			 <div class= "col-sm-4" >
-			 	<%= button_to "Unblock",follows_unblockuser_path(id: blockeduser.id),method: "delete",remote: true ,class: "btn btn-default"%>
-			 </div>
-			</div>
+	<h1 class="font-bold">Blocked Users</h1>
+	<% if @blockedusers.present? %>
+	<table class="table table-hover	 white-bg">
+		<tbody>
+			<% @blockedusers.each do |blockeduser| %>
+			<tr id="tr<%=blockeduser.id%>">
+				<td class="project-title" width="80%">
+					<h3><%=blockeduser.name%></h3>
+				</td>
+				<td class="project-action" width="20%" style="vertical-align: middle;">
+					<%= link_to unblock_follows_path(id: blockeduser.id), method: "delete",remote: true,class: "btn btn-danger" do%>
+					<i class="fa fa-times"> Unblock</i>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% else %>
+	<div class="ibox float-e-margins">
+		<div class="ibox-content">
+			<h4>No Blocked User available</h4>
 		</div>
+	</div> 
 	<% end %>
-<% else %>
-  <div class="ibox float-e-margins">
-    <div class="ibox-content row">
-      <h4>No BlockedUser available</h4>
-    </div>
-    </div>    
-<% end %>
 </div>

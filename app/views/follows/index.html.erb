@@ -1,14 +1,18 @@
-<div class="container page-wrapper">
-	<h2>Explore Users</h2>
-	<div>
-		<%= render partial: "follows/search", locals: { alluser: @allusers } %>
-	</div>
-	
-	<div id= "userrequest">
-		<%= render partial: "follows/requests", locals: { requests: @requested }%>
+<div class="container">
+
+	<div id="searchusers">
+	<%= render partial: 'follows/searchusers', locals: { allusers: @all_users } %>
 	</div>
 
-	<div id = "userlist">
-		<%= render partial: "follows/userlist", locals: { users: @users } %>
+	<div id="requestedusers" class="row">
+		<% if @requested.present? %>
+		<%= render partial: 'follows/requestedusers', locals: { requestedusers: @requested } %>
+		<% end %>
+	</div>		
+
+	<div id="allusers" class="row">
+		<%= render partial: 'follows/allusers', locals: { allusers: @all_users } %>
 	</div>
+
 </div>
+

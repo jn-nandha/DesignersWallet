@@ -19,17 +19,18 @@
           </li>
           <li>
             <%= link_to follows_path,class: "count-info" do %>
-              <i class="fa fa-group"></i>
-              <% if @noti_count_follow != 0 %>
-                <span class="label label-warning"><%=@noti_count_follow%></span>
-              <% end %>
+              <i class="fa fa-group">
+                <% if @noti_count_follow != 0 %>
+                  <span class="badge badge-notify-requests"><%=@noti_count_follow%></span>
+                <% end %>
+              </i>
             <% end %>
           </li>
           <li>
             <%= link_to chats_path, class: "count-info" do %>
               <i class="fa fa-envelope">
                 <% if @noti_count_chat != 0 %>
-                <span class="label label-info"><%=@noti_count_chat%></span>
+                <span class="badge badge-notify-comments"><%=@noti_count_chat%></span>
                 <% end %>
               </i>
             <% end %>

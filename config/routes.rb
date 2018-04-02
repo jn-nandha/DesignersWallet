@@ -21,13 +21,10 @@ Rails.application.routes.draw do
 
       get 'user_profile',to: 'profile#user_profile'
       get 'profile/blockeduser_list'
-      resources :designs, only: [:index,:new,:create]
-      get 'designs/show_uploaded_design'
+      resources :designs, only: [:index,:new,:create,:destroy]
       get 'designs/favourites', to: 'favourites#fav_images', as: 'favourite_images'
-      delete 'designs/del_design'
       post 'favourites/change_fav'
       get 'follows', to: 'follows#index'
-  
       post 'follows', to: 'follows#follow_req'
       put 'approved', to: 'follows#approved'
       delete 'cancel', to: 'follows#cancel_request'
@@ -38,9 +35,6 @@ Rails.application.routes.draw do
       get 'followings',to: 'follows#followings_list'
       get 'followers',to: 'follows#followers_list'
       delete 'follows/unblockuser'
-
-      get 'user_profile',to: 'profile#user_profile'
-      
       get 'chats', to: 'chats#index'
       get 'chats/:id/msg', to: 'chats#msg', as: "personal_msg"
       post 'chats/send_message', to: 'chats#send_message', as: "send_msg"

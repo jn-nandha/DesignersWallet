@@ -28,4 +28,5 @@ class FeedbacksController < ApplicationController
     @complain = feedback
   end
 
+ 
 end

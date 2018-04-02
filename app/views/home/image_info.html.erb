@@ -1,3 +1,4 @@
+
 <!-- Modal -->
  <div class="modal fade" id="sharemodal" role="dialog">
     <div class="modal-dialog">
@@ -42,7 +43,15 @@
         <p>Note:You are able to register complain against this design once.If you are trying to complain again it will automatically overwrite your complain.</p>
         <div>
          <%= form_tag(feedbacks_complain_path(design_id: @design.id),method: "post", remote: true) do %>
-         <%= text_area_tag "feedback[complain]", nil ,id:"reportarea" ,style: "width:70%", value: "" %>
+         <% if @complian.present? %>
+            <% if @complain.report.present? %>
+             <%= text_area_tag "feedback[complain]", @complain.report ,id:"reportarea" ,style: "width:70%" %>
+           <% else %>
+              <%= text_area_tag "feedback[complain]", nil ,id:"reportarea" ,style: "width:70%" %>
+           <% end %>
+         <%else%>
+          <%= text_area_tag "feedback[complain]","ghdytfhv" ,id:"reportarea" ,style: "width:70%"%>
+         <% end %>
          <%= submit_tag "Submit" %>
          <% end %>
        </div>
@@ -96,7 +105,9 @@
               <div>
                 <div class="btn-group">
                   <button class="btn btn-white btn-sm" data-toggle="modal" data-target="#sharemodal"><i class="fa fa-share-alt"></i> Share</button>
-                  <button class="btn btn-white btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-bug"></i> Report</button>
+                  <%# if @complain.blank? %>
+                  <button id="Reportbtn" class="btn btn-white btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-bug"></i> Report</button>
+                  <%# end %>
                 </div>
               </div>
             </div>

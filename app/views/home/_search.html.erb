@@ -5,7 +5,7 @@
 </style>
 <div>
     <%= form_tag search_home_index_path, remote: true, class: "form-inline" do %>
-    <div class= "form-group" style="width: 80% ">
+    <div class= "form-group" style="width: 93% ">
     <select  multiple="multiple" data-placeholder="Select Option" class="select2 design-categories" width="100%">
       <% @cat.each do |cat| %>  
       <option><%= cat.cat_name %></option>

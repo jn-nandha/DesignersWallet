@@ -1,5 +1,5 @@
 	<div class="recipient">
-		<%= @user.name %>
+		<%=link_to @user.name, user_profile_path(id: @user.id)%>
 	</div>
 
 	<div class="chats" id="msg">

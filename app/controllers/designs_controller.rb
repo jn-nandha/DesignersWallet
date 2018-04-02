@@ -34,9 +34,9 @@ class DesignsController < ApplicationController
     end
   end
 
-  def del_design
-    @did = params[:design_id]
-    des = Design.find(params[:design_id])
+  def destroy
+    @did = params[:id]
+    des = Design.find(params[:id])
     usr = des.user if des.user == current_user
     des.destroy if usr.activation
   end

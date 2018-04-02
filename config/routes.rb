@@ -20,12 +20,9 @@ Rails.application.routes.draw do
       end
       get 'user/:id/profile',to: 'profile#user_profile', as: 'user_profile'
       get 'profile/blockeduser_list'
-      resources :designs, only: [:index,:new,:create]
-      get 'designs/show_uploaded_design'
+      resources :designs, only: [:index,:new,:create,:destroy]
       get 'designs/favourites', to: 'favourites#fav_images', as: 'favourite_images'
-      delete 'designs/del_design'
       post 'favourites/change_fav'
-  
       resources :follows, only:[:index] do
         collection do
           post ':id/toggle', to: 'follows#follow_toggle', as: 'toggle'
@@ -38,6 +35,7 @@ Rails.application.routes.draw do
           get 'followers_list'
         end
       end    
+
       get 'chats', to: 'chats#index'
       get 'chats/:id/msg', to: 'chats#msg', as: "personal_msg"
       post 'chats/send_message', to: 'chats#send_message', as: "send_msg"

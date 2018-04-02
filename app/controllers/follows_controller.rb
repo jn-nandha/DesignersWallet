@@ -83,6 +83,26 @@ class FollowsController < ApplicationController
 			record.destroy
 		end
 	end
+  # followings details
+  def followings_list
+    @following = current_user.followings
+  end
 
+  def search
+    fetch_records
+    if params[:name].blank?
+      @users = []
+    else
+      @users = User.where('name LIKE ? and id != ?', "#{params[:name].capitalize}%", current_user.id)
+    end
+  end
+
+  private
+  def fetch_records
+    @allusers =  current_user.search_users("")
+    @requested = current_user.requested_users
+    @accepted = current_user.followings
+    @users = @allusers - @requested
+  end
 end
 

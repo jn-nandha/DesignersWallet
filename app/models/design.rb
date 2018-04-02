@@ -6,7 +6,6 @@ class Design < ApplicationRecord
 	has_many :feedbacks , dependent: :destroy
 	mount_uploader :image, ImageUploader
 
-
 	def favourited_by
 		User.where(id: Favourite.where(design_id: self.id).pluck(:user_id))
 	end

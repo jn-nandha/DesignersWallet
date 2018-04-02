@@ -2,20 +2,13 @@ class FeedbacksController < ApplicationController
   def like
     @did = params[:design_id]
     retutn unless current_user.activation
-    feedback= current_user.feedback(@did)
-    if feedback.nil?
-      feedback = Feedback.new(user_id: current_user.id, design_id: params[:design_id],like: true)
-      feedback.save!
-    else
-      if feedback.like == true
-        feedback.update!(like: false)
+      feedback= current_user.feedback(@did)
+      if feedback.nil?
+        feedback = Feedback.create!(user_id: current_user.id, design_id: params[:design_id],like: true)
       else
-        feedback.update!(like: true)
-      end        
+        feedback.update_attributes!(like: !feedback.like)
+      end
     end
-
-  end
-
 
   def complain
     @flash_js= {}

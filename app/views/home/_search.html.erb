@@ -4,7 +4,6 @@
 	.design-categories{width:100%!important}
 </style>
 <div>
-	 <div class= "container">
     <%= form_tag search_home_index_path, remote: true, class: "form-inline" do %>
     <div class= "form-group" style="width: 80% ">
     <select  multiple="multiple" data-placeholder="Select Option" class="select2 design-categories" width="100%">
@@ -16,7 +15,6 @@
     <%= hidden_field_tag "categories" %>
     <%= submit_tag "search", class: "btn btn-default", id: "cat_search" %></div>
     <% end %>
-  </div>
   <br>	
 </div>
 <script>

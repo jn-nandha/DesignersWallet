@@ -11,18 +11,19 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+
+<body class= "top-navigation  pace-done">
+  <!-- Wrapper-->
   <div id="wrapper">
     <!-- Page wraper -->
-    <div class="wrapper wrapper-content gray-bg">        
-      <!-- Page wrapper --> 
-      <div class="page-wrapper top-margin" >
+    <div id="page-wrapper" class="gray-bg">
+      <div class="row border-bottom white-bg top-margin">
         <%= render 'layouts/topnavigation' %>
+      </div>
+      <div class="wrapper wrapper-content">
         <% flash.each do |key, value| %>
           <% if value != nil %>
-            <div class="alert alert-<%= key %>">
-              <%= value %>
-            </div>
+            <div class="alert alert-<%= key %>"><%= value %></div>
           <% end%>
         <% end %>
         <div id="flashjs">
@@ -31,8 +32,6 @@
         <%= yield %>
       </div>
     </div>
-    <!-- End page wrapper-->
   </div>
-  <!-- End wrapper-->
 </body>
 </html>

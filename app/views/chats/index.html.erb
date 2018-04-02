@@ -15,7 +15,7 @@
 		<%= render partial: 'chats/messages', locals: { msgs: @msgs, recipient: @user} %>
 	</div>
 	<div class="write" id="form">
-		<%= render partial: 'chats/form', locals: { recp: @recp} %>	
+		<%= render partial: 'chats/form', locals: { recp: @user} %>	
 	</div>
 </div>
 

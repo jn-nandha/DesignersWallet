@@ -25,8 +25,8 @@ class FeedbacksController < ApplicationController
       end
       @flash_js[:success]= "complain successfully registered."
     end
+    @design = Design.find(params[:design_id])
     @complain = feedback
   end
 
- 
 end

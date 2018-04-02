@@ -31,35 +31,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button id="cls2" type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Report</h4>
-      </div>
-      <div class="modal-body">
-        <p>Note:You are able to register complain against this design once.If you are trying to complain again it will automatically overwrite your complain.</p>
-        <div>
-         <%= form_tag(feedbacks_complain_path(design_id: @design.id),method: "post", remote: true) do %>
-         <% if @complian.present? %>
-            <% if @complain.report.present? %>
-             <%= text_area_tag "feedback[complain]", @complain.report ,id:"reportarea" ,style: "width:70%" %>
-           <% else %>
-              <%= text_area_tag "feedback[complain]", nil ,id:"reportarea" ,style: "width:70%" %>
-           <% end %>
-         <%else%>
-          <%= text_area_tag "feedback[complain]","ghdytfhv" ,id:"reportarea" ,style: "width:70%"%>
-         <% end %>
-         <%= submit_tag "Submit" %>
-         <% end %>
-       </div>
-     </div>
-     <div class="modal-footer">
-     </div>
-   </div>
- </div>
+ <%= render 'home/reportmodal' %>
 </div>
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -103,12 +75,12 @@
               </div>
               <hr>
               <div>
-                <div class="btn-group">
-                  <button class="btn btn-white btn-sm" data-toggle="modal" data-target="#sharemodal"><i class="fa fa-share-alt"></i> Share</button>
-                  <%# if @complain.blank? %>
-                  <button id="Reportbtn" class="btn btn-white btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-bug"></i> Report</button>
-                  <%# end %>
-                </div>
+                <!-- <div class="btn-group"> -->
+                  <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#sharemodal"><i class="fa fa-share-alt"></i> Share</button>
+                  <% if @complain.blank? %>
+                  <button id="Reportbtn" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-bug"></i> Report</button>
+                  <% end %>
+                <!-- </div> -->
               </div>
             </div>
           </div>
@@ -117,7 +89,6 @@
           <span class="pull-right">
             Upload at - <i class="fa fa-clock-o"></i> <%= @design.created_at%>
           </span>
-          .
         </div>
       </div>
     </div>

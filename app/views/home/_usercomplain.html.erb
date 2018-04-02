@@ -2,7 +2,8 @@
 	<% if complain.report.present? %>
 	<dl class="small m-t-md">
 		<dt>Your Complain: </dt>
-		<dd><%= complain.report %></dd>
+		<dd><%= complain.report %></dd><br />
+		<dt><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal">Edit complian</button></dt>
 	</dl>
 	<%end%>
 <%end%>

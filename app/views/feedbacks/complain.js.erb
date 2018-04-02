@@ -2,6 +2,7 @@ $("#reportarea").val('');
 <% if @complain.present? %>
 $('#complain').html("<%= j(render partial: 'home/usercomplain' , locals: { complain: @complain }) %>");
 $('#Reportbtn').remove();
+$('#myModal').html("<%= j(render partial: 'home/reportmodal') %>");
 <% end %>
 $('#cls2').click();
 $('#flashjs').html('<%= j render "layouts/flashpage" %>');

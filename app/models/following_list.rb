@@ -4,11 +4,8 @@ class FollowingList < ApplicationRecord
   belongs_to :to, class_name: 'User'
   belongs_to :from, class_name: 'User'
 
-
-
-  def self.delete_follow(id1,id2)
-    follow = FollowingList.find_by('from_id = ? and to_id = ?',id1,id2)
-    FollowingList.destroy(follow.id)
+  def self.find_record(from,to)
+  	FollowingList.find_by(from_id: from, to_id: to)
   end
 
 end

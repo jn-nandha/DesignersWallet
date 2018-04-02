@@ -1,0 +1,14 @@
+if($('#btn<%=@id%>').find("i").html() == " Follow")
+{
+	$('#btn<%=@id%>').find("i").html(" Revert Request");
+}
+else
+{
+	$('#btn<%=@id%>').find("i").html(" Follow");
+}
+$('#btn<%=@id%>').toggleClass('btn-success').toggleClass('btn-warning');
+$('#btn<%=@id%>').find("i").toggleClass('fa-undo').toggleClass('fa-user-plus');
+
+$('#card<%=@id%>').remove();
+
+$('#follow_button').html('<%= j render partial: "profile/follow_action" %>');

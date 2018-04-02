@@ -1,106 +1,135 @@
-<% if @user == current_user %>
-  <div class="container">
-    <h3 class="p font-bold">
-      <%= @user.name %>
-    </h3>
-    <div class="row">
-	    <%= link_to followings_path do%>
-	      <div class="col-md-3">
-	        <div class="ibox float-e-margins">
-	          <div class="ibox-title">
-	            <h3 class="col-sm-8">followings  :</h3> <h4 class="col-sm-3">
-                <%= @user_following_count %></h4>
-	          </div>
-          </div>
-			  </div>
-	    <% end %>
-	    <%= link_to followers_path do %>
-		    <div class="col-md-3">
-		      <div class="ibox float-e-margins">
-		        <div class="ibox-title">
-		          <h3 class="col-sm-8">followers  :</h3><h4 class="col-sm-3">
-                <%= @user_follower_count %></h4>
-		      	</div>
-		    	</div>
-		    </div>
-	    <% end %>
+<div class="container">
+
+  <% if @user.follow_requested?(current_user)%>
+  <div class="row" id="request_question">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h3 class="col-md-9"><%=@user.name%> wants to follow you, Do you want to accept?</h3> 
+        <%= link_to accept_follows_path(id: @user.id), method: "post",remote: true,class: "btn btn-success" do%>
+        <i class="fa fa-check"> Accept</i>
+        <% end %>
+        <%= link_to cancel_follows_path(id: @user.id), method: "post",remote: true,class: "btn btn-danger" do%>
+        <i class="fa fa-times"> Cancel</i>
+        <% end %>
+      </div>
     </div>
-    <div class="ibox">
-      <%= link_to new_design_path, method: "get" ,class: "btn btn-outline btn-success tooltips" , title: '', data: { toggle: 'tooltip', placement: 'bottom', original_title: 'Explore Users'} do %>
-        <i class="fa fa-upload"></i><span class="bold"> Upload</span>
-      <% end %>
-      <%= link_to favourite_images_path, method: "get" , class: 'btn btn-outline btn-primary' do %>
-        <i class="fa fa-star"></i><span class="bold"> Favourite List</span>
-      <% end %>
-      <%= link_to  profile_blockeduser_list_path , class: 'btn btn-outline btn-warning' do %>
-        <i class="fa fa-block"></i><span class="bold">Blocked Users List</span>
-      <% end %>
+  </div>
+  <% end %>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="ibox float-e-margins">
+        <h3 class="p font-bold">
+          <%= @user.name %>
+        </h3> 
+      </div>
     </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="ibox float-e-margins">
-          <div class="ibox-title">
-            <h5>Designs</h5>
+  </div>
+
+  <% if @user == current_user %>
+
+  <div class="row">
+    <%= link_to followings_list_follows_path do %>
+    <div class="col-md-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <div class="col-md-8">
+            <h5>Followings :</h5>  
           </div>
-          <% if @designs.count != 0 %>
-            <div class="ibox-content">
-              <div class="carousel-inner">
-                <div class="item gallery active">
-                  <%= render partial: 'profile/userdesigns' %>                
-                </div>
-              </div>
-            </div>
+          <div class="col-md-4">
+            <h5><%= @user_following_count %></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <%= link_to followers_list_follows_path do %>
+    <div class="col-md-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <div class="col-md-8">
+            <h5>Followers :</h5>  
+          </div>
+          <div class="col-md-4">
+            <h5><%= @user_follower_count %></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <%= link_to new_design_path, method: "get" ,class: "btn btn-outline btn-success tooltips" , title: '', data: { toggle: 'tooltip', placement: 'bottom', original_title: 'Explore Users'} do %>
+          <i class="fa fa-upload"></i><span class="bold"> Upload</span>
+          <% end %>
+          <%= link_to favourite_images_path, method: "get" , class: 'btn btn-outline btn-primary' do %>
+          <i class="fa fa-star"></i><span class="bold"> Favourite List</span>
+          <% end %>
+          <%= link_to  profile_blockeduser_list_path , class: 'btn btn-outline btn-warning' do %>
+          <i class="fa fa-block"></i><span class="bold">Blocked Users List</span>
           <% end %>
         </div>
       </div>
     </div>
-	</div>
-<% else %>
-	<div class="container">                                               
-  	<h3 class="p font-bold">
-      <%= @user.name %>
-    </h3>
-    <div class="row">
-    	<div class="col-md-3">
-        <div class="ibox float-e-margins">
-          <div class="ibox-title">
-            <h3>followings</h3>
+  </div>
+
+  <% else %>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <div class="col-md-8">
+            <h5>Followings :</h5>  
           </div>
-          <div class="ibox-content">
-            <h4 class="no-margins">
-              <%= @user_following_count %></h4>
+          <div class="col-md-4">
+            <h5><%= @user_following_count %></h5>
           </div>
         </div>
-  	  </div>
-    	<div class="col-md-3">
-        <div class="ibox float-e-margins">
-        	<div class="ibox-title">
-            <h3>followers</h3>
-          </div>
-          <div class="ibox-content">
-            <h4 class="no-margins">
-              <%= @user_follower_count %></h4>
-          </div>
-        </div>
-    	</div>
+      </div>
     </div>
-    <div class="row ">
-      <div class="col-lg-12">
-        <div class="ibox float-e-margins">
-          <div class="ibox-title ">
-            <h5>Designs</h5>
+    <div class="col-md-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <div class="col-md-8">
+            <h5>Followers :</h5>  
           </div>
-          <% if @designs.count != 0 %>
-            <div class="ibox-content">
-              <div class="carousel-inner">
-                <div class="item gallery active">
-                  <%= render partial: 'profile/userdesigns' %>
-                </div>
-              </div>
+          <div class="col-md-4">
+            <h5><%= @user_follower_count %></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="follow_button">
+    <%= render partial: 'profile/follow_action' %>
+  </div>
+
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Designs</h5>
+        </div>
+        <% if @designs.count != 0 %>
+        <div class="ibox-content">
+          <div class="carousel-inner">
+            <div class="item gallery active">
+              <%= render partial: 'profile/userdesigns' %>
             </div>
-          <% end %>
+          </div>
         </div>
-       </div>
+        <% end %>
+      </div>
     </div>
-	</div>
-<% end %>
+  </div>
+
+</div>

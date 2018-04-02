@@ -4,7 +4,7 @@
 <%= text_field_tag "follow[search]" , nil,style: "width:100%"%>
 <script>
   $( function() {
-    var user = <%= alluser.pluck(:name).inspect.html_safe %>
+    var user = <%= allusers.pluck(:name).inspect.html_safe %>
     $( "#follow_search" ).autocomplete({
       source: user
     });

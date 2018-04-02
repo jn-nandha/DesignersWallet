@@ -2,9 +2,13 @@ class ProfileController < ApplicationController
   # show user profile
   def user_profile
     @user = User.find(params[:id])
-    @designs = @user.designs
-    @user_follower_count = FollowingList.accepted.where(to_id: @user).count
-    @user_following_count = FollowingList.accepted.where(from_id: @user).count
+    if !current_user.invalid_users.include?(@user)
+      @designs = @user.designs
+      @user_follower_count = @user.followers.count
+      @user_following_count = @user.followings.count
+    else
+      redirect_to root_path
+    end
   end
 
   # blocked user list

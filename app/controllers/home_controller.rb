@@ -2,22 +2,26 @@ class HomeController < ApplicationController
   def dashboard
     return unless current_user.activation
     @cat = Category.all
-      return unless current_user.activation
-      design_selection = params[:design_selection]
-      design_selection ||= "Following's Designs"
-      if design_selection == "Following's Designs"
-        @designs = current_user.followings_designs
-        @title = "Followings Design"
-      elsif design_selection == "All Designs"
-        @designs = current_user.all_designs
-        @title = "All Design"
-      end 
+    return unless current_user.activation
+    design_selection = params[:design_selection]
+    design_selection ||= "Following's Designs"
+    if design_selection == "Following's Designs"
+      @designs = current_user.followings_designs
+      @title = "Followings Design"
+    elsif design_selection == "All Designs"
+      @designs = current_user.all_designs
+      @title = "All Design"
+    end 
   end
 
   def image_info
-    @users = current_user.search_users("")
     @design = Design.find(params[:design_id])
-    @complain =  current_user.feedback(params[:design_id])
+    if !current_user.invalid_users.include?(@design.user)
+      @users = current_user.search_users("")
+      @complain =  current_user.feedback(params[:design_id])
+    else
+      redirect_to root_path
+    end
   end
 
   def share_design

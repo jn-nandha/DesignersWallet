@@ -1,7 +1,7 @@
 <div class="wrapper wrapper-content animated fadeIn">
 	<h2><%=@title%></h2>
 	<% allusers.each do |user| %>
-	<div class="col-lg-3" id="card<%=user.id%>">
+	<div class="col-lg-4" id="cardf<%=user.id%>">
 		<div class="contact-box">
 			<h3><%=link_to user.name, user_profile_path(id: user.id)%></h3>
 			<p><i class="fa fa-map-marker"></i>  <%=user.city.city_name%></p>

@@ -18,7 +18,6 @@ Rails.application.routes.draw do
           post ':design_id', to: 'home#share_design', as: :share_design
         end
       end
-
       get 'user/:id/profile',to: 'profile#user_profile', as: 'user_profile'
       get 'profile/blockeduser_list'
       resources :designs, only: [:index,:new,:create,:destroy]
@@ -35,9 +34,7 @@ Rails.application.routes.draw do
           get 'followings_list'
           get 'followers_list'
         end
-      end
-
-      get 'user_profile',to: 'profile#user_profile'
+      end    
       get 'chats', to: 'chats#index'
       get 'chats/:id/msg', to: 'chats#msg', as: "personal_msg"
       post 'chats/send_message', to: 'chats#send_message', as: "send_msg"

@@ -12,7 +12,6 @@ class User < ApplicationRecord
   has_many :followed_by_other, class_name: 'FollowingList', foreign_key: 'to_id'
   belongs_to :city 
 
-
   # Give inactive users
   def self.inactive_users
     User.where(activation: false)

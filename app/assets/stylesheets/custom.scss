@@ -1,11 +1,11 @@
 .p
 {
-	font-size: 60px
+	font-size: 60px;
 }
 
 .top-margin
 {
-	margin-top: 20px
+	margin-top: 20px;
 }
 
 .image-padding-5px
@@ -16,4 +16,52 @@
 .image-padding-20px
 {
 	padding: 20px;
+}
+.tp {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+.tp .tptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+.tp:hover .tptext {
+    visibility: visible;
+}
+.h{
+    min-height: 200px;
+    line-height: 22px;
+}
+
+.mid-box{
+   max-width: 500px;
+  max-height: 800px;
+  z-index: 100;
+  margin: 0 auto;
+  padding-top: 60px;
+}
+.badge-notify-requests{
+   background:red;
+   position:relative;
+   top: -10px;
+   left: -10px;
+}
+.badge-notify-comments{
+   background:#1ab394;
+   position:relative;
+   top: -10px;
+   left: -10px;
 }

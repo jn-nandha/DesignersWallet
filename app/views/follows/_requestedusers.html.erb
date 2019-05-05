@@ -1,0 +1,22 @@
+<div class="wrapper wrapper-content animated fadeIn">
+	<h2>Requests</h2>
+	<table class="table white-bg">
+		<tbody>
+			<% requestedusers.each do |user| %>
+			<tr id="tr<%=user.id%>">
+				<td class="project-title" width="80%">
+					<h3><%=link_to user.name,user_profile_path(id: user.id)%></h3>
+				</td>
+				<td class="project-action" width="20%" style="vertical-align: middle;">
+					<%= link_to accept_follows_path(id: user.id), method: "post",remote: true,class: "btn btn-xs btn-success" do%>
+						<i class="fa fa-check"> Accept</i>
+					<% end %>
+					<%= link_to cancel_follows_path(id: user.id), method: "post",remote: true,class: "btn btn-xs btn-danger" do%>
+						<i class="fa fa-times"> Cancel</i>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

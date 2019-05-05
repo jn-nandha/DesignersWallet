@@ -1,0 +1,5 @@
+$('#recp-msgs').html("<%= j render partial: 'chats/messages', locals: { msgs: @msgs} %>");
+$('#chat_body').val("");
+$('#chat_designs_id').val("");
+$('#msg').scrollTop($('#msg').prop("scrollHeight"));
+$('#designs').html("");

@@ -1,0 +1,41 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+<style>
+  .design-categories{width:100%!important}
+</style>
+<div class="middle-box center animated ">
+<% if !@design.errors.empty? %>
+   <div class = "alert alert-error">  
+      <ul>
+         <% @design.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>   
+   </div>
+<% end %>
+<div class="ibox-content">
+   <%= form_for @design, html: { multipart: true } do |f| %>
+      <h2><%= f.label :Image %></h2>
+      <%= f.file_field :image , class: 'form-control'%>
+      <h3><%= f.label :Description %><br /></h3>
+      <%= f.text_area :description , rows: '10' , style: 'width: 100%;'%>
+      <div>
+        <select  multiple="multiple" data-placeholder="Select Option" class="select2 design-categories" width="100%">
+      <% @cat.each do |cat| %>  
+      <option><%= cat.cat_name %></option>
+      <% end %>
+    </select>
+     <%= hidden_field_tag "categories" %>
+      </div>
+      <%= f.submit "Save", class: "btn btn-primary", id: "save_design" %>
+   <% end %>
+</div>
+</div>
+
+
+<script>
+  $("#save_design").click(function(){
+    cat = $('.design-categories').select2('val');
+    $("#categories").val(cat);
+  });
+</script>

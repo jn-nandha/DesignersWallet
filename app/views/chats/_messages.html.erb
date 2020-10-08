@@ -1,0 +1,51 @@
+	<div class="recipient">
+		<%=link_to @user.name, user_profile_path(id: @user.id)%>
+	</div>
+
+	<div class="chats" id="msg">
+		<ul>
+			<% msgs.each do |message| %>
+			<li>
+				<% if message.sender_id == current_user.id %>
+				
+				<% message.designs.each do |design| %>
+				<div class="send">
+					<%= link_to image_info_home_index_path(design_id: design.id), method: "get", target: "_blank" do %>
+					<div class="image-r">
+						<%= image_tag("#{design.image_url}") %> 
+					</div>
+					<% end %>
+				</div>
+				<% end %>
+				<div class="send">
+					<% if message.body != "" %>
+					<div class="text-r">
+						<%= message.body %>	
+					</div>
+					<% end %>
+				</div>
+
+				<% else %>
+
+				<% message.designs.each do |design| %>
+				<div class="receiver">
+					<%= link_to image_info_home_index_path(design_id: design.id), method: "get", target: "_blank" do %>
+					<div class="image-l"> 
+						<%= image_tag("#{design.image_url}") %> 
+					</div>
+					<% end %>
+				</div>
+				<% end %>
+				<div class="receiver">
+					<% if message.body != "" %>
+					<div class="text-l">
+						<%= message.body %>	
+					</div>
+					<% end %>
+				</div>
+				<% end %>	
+
+				<% end %>
+			</li>
+		</ul>
+	</div>

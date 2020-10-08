@@ -1,0 +1,46 @@
+<div class="navbar navbar-fixed-top" role="navigation" >
+    <div class="navbar-header" >
+      <%= link_to dashboard_home_index_path(design_selection: "All Designs") ,{class: "navbar-brand"} do %>
+        Designer's Wallet
+      <% end %>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" >
+      <ul class="nav navbar-nav" >
+      </ul>
+      <% if user_signed_in? %>
+        <ul class="nav navbar-top-links navbar-right">
+          <li>
+            <%= link_to dashboard_home_index_path(design_selection: "Following's Designs")do %>Home<% end %>
+          </li>
+          <li>
+            <%= link_to user_profile_path(id: current_user.id) do %>
+              <i class="fa fa-user-circle"> <%=current_user.name%></i>
+            <% end %> 
+          </li>
+          <li>
+            <%= link_to follows_path,class: "count-info tp" do %>
+              <i class="fa fa-group">
+                <% if @noti_count_follow != 0 %>
+                  <span class="badge badge-notify-requests tptext"><%=@noti_count_follow%></span>
+                <% end %>
+              </i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to chats_path, class: "count-info tp" do %>
+              <i class="fa fa-comments">
+                <% if @noti_count_chat != 0 %>
+                <span class="badge badge-notify-comments tptext"><%=@noti_count_chat%></span>
+                <% end %>
+              </i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path do %>
+              <span class="nav-line-1"><i class="fa fa-sign-out"></i>logout</span>
+            <% end %> 
+          </li>
+        </ul>
+      <% end %>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+
+<!-- Modal -->
+ <div class="modal fade" id="sharemodal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button id="cls" type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Userlist</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            <%= form_tag(share_design_home_index_path(design_id: @design.id),method: "post",remote: true) do %>
+            <div style="height: 300px;overflow-y: auto;">
+              <% @users.each do |user| %>
+              <div>
+                <%= check_box_tag "selectedusers[]",  user.id %>
+                <%= user.name %>
+              </div>
+              <% end %>
+            </div>
+            <%= submit_tag "Submit" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+ <%= render 'home/reportmodal' %>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox product-detail">
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="product-images">
+                <div class="image-imitation image-padding-20px">
+                  <%= link_to @design.image_url, target: "_blank" do %>
+                  <%= image_tag("#{@design.image_url}", height: "400px", width: "400px") %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h1 class="font-bold m-b-xs">
+                <%= @design.user.name %>
+              </h1>
+              <small><i class="fa fa-map-marker"></i> <%= @design.user.city.city_name %></small>
+              <div class="m-t-md">
+                <h2 class="product-main-price"><%= @design.user.email %></h2>
+              </div>
+              <hr>
+              <h4>Design description</h4>
+              <div class="small text-muted">
+                <%= @design.description %>
+              </div>
+              <dl class="small m-t-md">
+                <dt>Design Categories:</dt>
+                <dd>
+                  <% @design.categories.each do |category| %>
+                  <%= category.cat_name %><br />
+                  <% end %>
+                </dd>
+              </dl>
+              <div id = "complain" >
+                <%= render partial: 'home/usercomplain' , locals: { complain: @complain } %>
+              </div>
+              <hr>
+              <div>
+                <!-- <div class="btn-group"> -->
+                  <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#sharemodal"><i class="fa fa-share-alt"></i> Share</button>
+                  <% if @complain.blank? %>
+                  <button id="Reportbtn" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-bug"></i> Report</button>
+                  <% end %>
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ibox-footer">
+          <span class="pull-right">
+            Upload at - <i class="fa fa-clock-o"></i> <%= @design.created_at%>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

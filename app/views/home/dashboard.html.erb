@@ -1,0 +1,10 @@
+<div class = "container">
+	<div>
+		<%= render partial: 'home/search' %>
+	</div>
+	<div >
+		<div id="search" >
+			<%= render partial: 'home/displaydesigns', locals: { images: @designs } %>
+		</div>
+	</div>
+</div>

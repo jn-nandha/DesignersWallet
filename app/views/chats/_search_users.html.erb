@@ -1,0 +1,8 @@
+<% if searchusers.count > 0 %> <strong> Search Result </strong> <% end %>
+<% searchusers.each do |user| %>
+<%= link_to personal_msg_path(user), remote: true do %>
+<div class="person">
+	<%= user.name%>
+</div>	
+<% end %>
+<% end %>
